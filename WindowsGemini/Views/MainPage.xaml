@@ -126,7 +126,7 @@
                 </TextBlock>
                 <Button Margin="0,30,0,0" Width="160" Height="36"
                         Background="#0078d7" Content="Scan for Duplicates" BorderThickness="0"
-                        Command="{Binding Path=StartScanningSelectedFolderCommand}">
+                        Command="{Binding StartScanningSelectedFolderCommand}">
                     <Button.Resources>
                         <ResourceDictionary>
                             <ResourceDictionary.ThemeDictionaries>
