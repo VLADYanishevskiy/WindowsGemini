@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -22,13 +23,15 @@ namespace WindowsGemini.ViewModels
         private ObservableCollection<StorageFile> _other = new ObservableCollection<StorageFile>();
 
 
-        public ObservableCollection<StorageFile> Images
+        public Task<ulong> Images
         {
-            get { return _images; }
+            get {
+                return GetFilesSizeInMB(_images); 
+            }
         }
-        public ObservableCollection<StorageFile> Video
+        public Task<ulong> Video
         {
-            get { return _video; }
+            get { return GetFilesSizeInMB(_video); }
         }
         public ObservableCollection<StorageFile> Audio
         {
@@ -80,5 +83,25 @@ namespace WindowsGemini.ViewModels
             NotifyPropertyChanged("Other");
         }
 
+
+
+        private async Task<ulong> GetFilesSizeInMB(ICollection<StorageFile> files)
+        {
+            ulong FilesSize = 0;
+
+            foreach (var item in files)
+            {
+                FilesSize += await GetFileSizeInMB(item);
+            }
+
+            return FilesSize;
+        }
+        private async Task<ulong> GetFileSizeInMB(StorageFile file)
+        {
+            var baseProperties = await file.GetBasicPropertiesAsync();
+            var bytesSize = baseProperties.Size;
+
+            return (bytesSize / 1024) / 1024;
+        }
     }
 }

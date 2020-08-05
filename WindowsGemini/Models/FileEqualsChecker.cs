@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Toolkit.Uwp.Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -59,5 +60,17 @@ namespace WindowsGemini.Models
             var stream = await fname.OpenStreamForReadAsync();
             return new BufferedStream(stream , BUFFER_SIZE);
         }
+
+        private async Task<ulong> GetFileSize(StorageFile File)
+        {
+            Windows.Storage.FileProperties.BasicProperties file1Prop = await File.GetBasicPropertiesAsync();
+            return file1Prop.Size;
+        }
+
+        public static async Task<byte[]> GetFileContent(StorageFile file)
+        {
+            return await file.ReadBytesAsync();
+        }
+
     }
 }

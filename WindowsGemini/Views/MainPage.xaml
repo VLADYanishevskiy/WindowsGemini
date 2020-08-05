@@ -154,7 +154,7 @@
                 <uiShadowsToolkit:DockPanel Margin="0,5,0,5">
                     <Rectangle Fill="#fff59d" Height="23" Width="4" HorizontalAlignment="Left"/>
                     <TextBlock Text="Media" FontSize="16" FontWeight="SemiLight" Foreground="#202020" Margin="3,6,0,5"/>
-                    <TextBlock Text="506 MB" FontSize="16" FontWeight="SemiLight" Foreground="#202020" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <TextBlock Text="{Binding Images}" FontSize="16" FontWeight="SemiLight" Foreground="#202020" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                 </uiShadowsToolkit:DockPanel>
                 <uiShadowsToolkit:DockPanel Margin="0,5,0,5">
                     <Rectangle Fill="#d0df9c" Height="23" Width="4" HorizontalAlignment="Left"/>
