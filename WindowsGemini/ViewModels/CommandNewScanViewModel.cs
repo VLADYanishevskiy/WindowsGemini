@@ -20,13 +20,13 @@ namespace WindowsGemini.ViewModels
         }
         private async void StartNewScanAction()
         {
-            Images.Clear();
-            Video.Clear();
-            Audio.Clear();
-            Documents.Clear();
-            Archieves.Clear();
-            Folders.Clear();
-            Other.Clear();
+            _images.Clear();
+            _video.Clear();
+            _audio.Clear();
+            _documents.Clear();
+            _archieves.Clear();
+            _folders.Clear();
+            _other.Clear();
             StackPanelNewScanVisibility = Visibility.Visible;
             StackPanelResultsScanVisibility = Visibility.Collapsed;
             SelectedFolder = null;

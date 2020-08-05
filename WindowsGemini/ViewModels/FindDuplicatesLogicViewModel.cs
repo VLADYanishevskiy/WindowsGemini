@@ -49,36 +49,36 @@ namespace WindowsGemini.ViewModels
                         {
                             if (FileTypeChecker.IsImage(entry.Value[i].FileType))
                             {
-                                Images.Add(entry.Value[i]);
-                                Images.Add(entry.Value[j]);
+                                _images.Add(entry.Value[i]);
+                                _images.Add(entry.Value[j]);
                                 continue;
                             }
                             if (FileTypeChecker.IsDocument(entry.Value[i].FileType)){
-                                Documents.Add(entry.Value[i]);
-                                Documents.Add(entry.Value[j]);
+                                _documents.Add(entry.Value[i]);
+                                _documents.Add(entry.Value[j]);
                                 continue;
                             }
                             if (FileTypeChecker.IsArchive(entry.Value[i].FileType))
                             {
-                                Archieves.Add(entry.Value[i]);
-                                Archieves.Add(entry.Value[j]);
+                                _archieves.Add(entry.Value[i]);
+                                _archieves.Add(entry.Value[j]);
                                 continue;
                             }
                             if (FileTypeChecker.IsVideo(entry.Value[i].FileType))
                             {
-                                Video.Add(entry.Value[i]);
-                                Video.Add(entry.Value[j]);
+                                _video.Add(entry.Value[i]);
+                                _video.Add(entry.Value[j]);
                                 continue;
                             }
                             if (FileTypeChecker.IsAudio(entry.Value[i].FileType))
                             {
-                                Audio.Add(entry.Value[i]);
-                                Audio.Add(entry.Value[j]);
+                                _audio.Add(entry.Value[i]);
+                                _audio.Add(entry.Value[j]);
                                 continue;
                             }
 
-                            Other.Add(entry.Value[i]);
-                            Other.Add(entry.Value[j]);
+                            _other.Add(entry.Value[i]);
+                            _other.Add(entry.Value[j]);
 
                         }
                     }

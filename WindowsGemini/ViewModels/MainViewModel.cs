@@ -39,6 +39,18 @@ namespace WindowsGemini.ViewModels
             groupedFiles = new Dictionary<string, List<StorageFile>>();
             _stackPanelNewScanVisibility = Visibility.Visible;
             _stackPanelResultsScanVisibility = Visibility.Collapsed;
+            ConnectListsResultsToEventCollectionChanged();
+        }
+
+        private void ConnectListsResultsToEventCollectionChanged()
+        {
+            _images.CollectionChanged += Images_CollectionChanged;
+            _video.CollectionChanged += Video_CollectionChanged;
+            _audio.CollectionChanged += Audio_CollectionChanged;
+            _documents.CollectionChanged += Documents_CollectionChanged;
+            _archieves.CollectionChanged += Archieves_CollectionChanged;
+            _folders.CollectionChanged += Folders_CollectionChanged;
+            _other.CollectionChanged += Other_CollectionChanged;
         }
 
         private void IncludeFolders_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
