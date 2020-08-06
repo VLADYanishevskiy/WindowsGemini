@@ -6,6 +6,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.VoiceCommands;
 using Windows.Storage;
 
 namespace WindowsGemini.ViewModels
@@ -23,15 +24,18 @@ namespace WindowsGemini.ViewModels
         private ObservableCollection<StorageFile> _other = new ObservableCollection<StorageFile>();
 
 
-        public Task<ulong> Images
+
+        private ulong _imagesSize;
+        public ulong ImagesSize
         {
             get {
-                return GetFilesSizeInMB(_images); 
+                return _imagesSize; 
             }
         }
-        public Task<ulong> Video
+        private ulong _videoSize;
+        public ulong Video
         {
-            get { return GetFilesSizeInMB(_video); }
+            get { return _videoSize; }
         }
         public ObservableCollection<StorageFile> Audio
         {
@@ -54,35 +58,18 @@ namespace WindowsGemini.ViewModels
             get { return _other; }
         }
 
-        private void Images_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private async void Notify_Results_Collection_Completed()
         {
-            NotifyPropertyChanged("Images");
-        }
-        private void Video_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
+            _imagesSize = await GetFilesSizeInMB(_images);
+            _videoSize = await GetFilesSizeInMB(_video);
+            NotifyPropertyChanged("ImagesSize");
             NotifyPropertyChanged("Video");
+            //NotifyPropertyChanged("Audio");
+            //NotifyPropertyChanged("Documents");
+            //NotifyPropertyChanged("Archives");
+            //NotifyPropertyChanged("Folders");
+            //NotifyPropertyChanged("Other");
         }
-        private void Audio_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            NotifyPropertyChanged("Audio");
-        }
-        private void Documents_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            NotifyPropertyChanged("Documents");
-        }
-        private void Archieves_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            NotifyPropertyChanged("Archives");
-        }
-        private void Folders_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            NotifyPropertyChanged("Folders");
-        }
-        private void Other_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            NotifyPropertyChanged("Other");
-        }
-
 
 
         private async Task<ulong> GetFilesSizeInMB(ICollection<StorageFile> files)
@@ -102,6 +89,11 @@ namespace WindowsGemini.ViewModels
             var bytesSize = baseProperties.Size;
 
             return (bytesSize / 1024) / 1024;
+        }
+        private async Task<ulong> GetFileSizeInBytes(StorageFile file)
+        {
+            var baseProperties = await file.GetBasicPropertiesAsync();
+            return baseProperties.Size;
         }
     }
 }

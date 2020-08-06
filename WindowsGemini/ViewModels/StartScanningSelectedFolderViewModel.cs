@@ -24,6 +24,8 @@ namespace WindowsGemini.ViewModels
                 groupedFiles.Clear();
                 await ScanFolder(SelectedFolder);
                 await FindDublicates();
+                Notify_Results_Collection_Completed();
+
                 StackPanelNewScanVisibility = Windows.UI.Xaml.Visibility.Collapsed;
                 StackPanelResultsScanVisibility = Windows.UI.Xaml.Visibility.Visible;
             }

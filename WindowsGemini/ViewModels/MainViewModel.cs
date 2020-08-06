@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -22,7 +23,7 @@ namespace WindowsGemini.ViewModels
     partial class MainViewModel : BaseViewModel
     {
 
-        Dictionary<string, List<StorageFile>> groupedFiles;
+        Stack<StorageFile> groupedFiles;
 
         private readonly ObservableCollection<StorageFolder> _includeFolders;
         public ObservableCollection<StorageFolder> FoldersToScan
@@ -36,21 +37,9 @@ namespace WindowsGemini.ViewModels
         {
             _includeFolders = new ObservableCollection<StorageFolder>();
             _includeFolders.CollectionChanged += IncludeFolders_CollectionChanged;
-            groupedFiles = new Dictionary<string, List<StorageFile>>();
+            groupedFiles = new Stack<StorageFile>();
             _stackPanelNewScanVisibility = Visibility.Visible;
             _stackPanelResultsScanVisibility = Visibility.Collapsed;
-            ConnectListsResultsToEventCollectionChanged();
-        }
-
-        private void ConnectListsResultsToEventCollectionChanged()
-        {
-            _images.CollectionChanged += Images_CollectionChanged;
-            _video.CollectionChanged += Video_CollectionChanged;
-            _audio.CollectionChanged += Audio_CollectionChanged;
-            _documents.CollectionChanged += Documents_CollectionChanged;
-            _archieves.CollectionChanged += Archieves_CollectionChanged;
-            _folders.CollectionChanged += Folders_CollectionChanged;
-            _other.CollectionChanged += Other_CollectionChanged;
         }
 
         private void IncludeFolders_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
