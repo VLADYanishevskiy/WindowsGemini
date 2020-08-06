@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Windows.Security.Authentication.Identity.Core;
+using Windows.Security.Cryptography.Core;
 using Windows.Storage;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
@@ -36,7 +37,7 @@ namespace WindowsGemini.ViewModels
         {
             Dictionary<ulong, List<StorageFile>> sortedFiles = new Dictionary<ulong, List<StorageFile>>();
 
-            while(groupedFiles.Count > 0)
+            while (groupedFiles.Count > 0)
             {
                 ulong fileSize = await GetFileSizeInBytes(groupedFiles.Peek());
 
@@ -61,18 +62,16 @@ namespace WindowsGemini.ViewModels
             GC.Collect();
 
 
-            foreach (var entry in sortedFiles){
-
-                //var stackByMIMETYPE = entry.Value.GroupBy(file => file.FileType).ToList();
-
-                for (int i = 0; i < entry.Value.Count(); i++)
+            foreach (var entry in sortedFiles)
+            {
+                for (int i = 0; i < entry.Value.Count; i++)
                 {
                     if (entry.Value[i] == null) continue;
                     bool hasduplicatesOfCurrentFile = false;
 
                     byte[] currentFileContent = await entry.Value[i].ReadBytesAsync();
 
-                    for (int j = i + 1; j < entry.Value.Count(); j++)
+                    for (int j = i + 1; j < entry.Value.Count; j++)
                     {
                         if (entry.Value[j] != null)
                         {
@@ -82,88 +81,49 @@ namespace WindowsGemini.ViewModels
                                 if (currentFileContent.SequenceEqual(await entry.Value[j].ReadBytesAsync()))
                                 {
                                     hasduplicatesOfCurrentFile = true;
-                                    _images.Add(entry.Value[j]);
+                                    AddDuplicateToResultFolder(entry.Value[j]);
                                     entry.Value[j] = null;
-                                    // add duplicate to collection;
                                 }
-
                             }
                         }
                     }
 
                     if (hasduplicatesOfCurrentFile)
                     {
-                        _images.Add(entry.Value[i]);
+                        AddDuplicateToResultFolder(entry.Value[i]);
                     }
                 }
-
-
             }
-
-            //foreach (KeyValuePair<string, List<StorageFile>> entry in groupedFiles)
-            //{
-            //    if (FileTypeChecker.IsImage(entry.Key))
-            //    {
-            //        var duplicates = entry.Value.GroupBy(file => new
-            //        {
-            //            file.Name,
-            //            Size = GetFileSizeInMB(file),
-            //            byteContent = FileEqualsChecker.GetFileContent(file)
-            //        });
-
-            //        continue;
-            //    }
-            //    //if (FileTypeChecker.IsDocument(entry.Key))
-            //    //{
-            //    //    for (int j = i + 1; j < entry.Value.Count; j++)
-            //    //    {
-            //    //        if (await checker.IsSameFile(entry.Value[i], entry.Value[j]))
-            //    //        {
-            //    //            _documents.Add(entry.Value[i]);
-            //    //            _documents.Add(entry.Value[j]);
-            //    //        }
-            //    //    }
-            //    //    continue;
-            //    //}
-            //    //if (FileTypeChecker.IsArchive(entry.Key))
-            //    //{
-            //    //    for (int j = i + 1; j < entry.Value.Count; j++)
-            //    //    {
-            //    //        if (await checker.IsSameFile(entry.Value[i], entry.Value[j]))
-            //    //        {
-            //    //            _archieves.Add(entry.Value[i]);
-            //    //            _archieves.Add(entry.Value[j]);
-            //    //        }
-            //    //    }
-            //    //    continue;
-            //    //}
-            //    //if (FileTypeChecker.IsVideo(entry.Key))
-            //    //{
-            //    //    for (int j = i + 1; j < entry.Value.Count; j++)
-            //    //    {
-            //    //        if (await checker.IsSameFile(entry.Value[i], entry.Value[j]))
-            //    //        {
-            //    //            _video.Add(entry.Value[i]);
-            //    //            _video.Add(entry.Value[j]);
-            //    //        }
-            //    //    }
-            //    //    continue;
-            //    //}
-            //    //if (FileTypeChecker.IsAudio(entry.Key))
-            //    //{
-            //    //    for (int j = i + 1; j < entry.Value.Count; j++)
-            //    //    {
-            //    //        if (await checker.IsSameFile(entry.Value[i], entry.Value[j]))
-            //    //        {
-            //    //            _audio.Add(entry.Value[i]);
-            //    //            _audio.Add(entry.Value[j]);
-            //    //        }
-            //    //    }
-            //    //    continue;
-            //    //}
-            //}
         }
 
+        private void AddDuplicateToResultFolder(StorageFile file)
+        {
+            if (FileTypeChecker.IsImage(file.FileType))
+            {
+                _images.Add(file);
+            }
+            else if (FileTypeChecker.IsVideo(file.FileType))
+            {
+                _video.Add(file);
+            }
+            else if (FileTypeChecker.IsDocument(file.FileType))
+            {
+                _documents.Add(file);
+            }
+            else if (FileTypeChecker.IsAudio(file.FileType))
+            {
+                _audio.Add(file);
+            }
+            else if (FileTypeChecker.IsArchive(file.FileType))
+            {
+                _archieves.Add(file);
+            }
+            else
+            {
+                _other.Add(file);
+            }
+        }
         
     }
+
 }

@@ -15,10 +15,10 @@ namespace WindowsGemini.ViewModels
         {
             get
             {
-                return new CommandHandler(() => this.StartNewScanAction());
+                return new CommandHandler(() => StartNewScanAction());
             }
         }
-        private async void StartNewScanAction()
+        private void StartNewScanAction()
         {
             _images.Clear();
             _video.Clear();

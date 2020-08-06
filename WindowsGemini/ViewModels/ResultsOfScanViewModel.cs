@@ -33,46 +33,61 @@ namespace WindowsGemini.ViewModels
             }
         }
         private ulong _videoSize;
-        public ulong Video
+        public ulong VideoSize
         {
             get { return _videoSize; }
         }
-        public ObservableCollection<StorageFile> Audio
+        private ulong _audioSize;
+        public ulong AudioSize
         {
-            get { return _audio; }
+            get { return _audioSize; }
         }
-        public ObservableCollection<StorageFile> Documents
+        private ulong _documentsSize;
+        public ulong DocumentsSize
         {
-            get { return _documents; }
+            get { return _documentsSize; }
         }
-        public ObservableCollection<StorageFile> Archives
+        private ulong _archivesSize;
+        public ulong ArchivesSize
         {
-            get { return _archieves; }
+            get { return _archivesSize; }
         }
         public ObservableCollection<StorageFolder> Folders
         {
             get { return _folders; }
         }
-        public ObservableCollection<StorageFile> Other
+        private ulong _otherSize;
+        public ulong OtherSize
         {
-            get { return _other; }
+            get { return _otherSize; }
+        }
+        public ulong _fullSizeOfDuplicates;
+        public ulong FullSizeOfDuplicates
+        {
+            get { return _fullSizeOfDuplicates; }
         }
 
         private async void Notify_Results_Collection_Completed()
         {
             _imagesSize = await GetFilesSizeInMB(_images);
             _videoSize = await GetFilesSizeInMB(_video);
-            NotifyPropertyChanged("ImagesSize");
-            NotifyPropertyChanged("Video");
-            //NotifyPropertyChanged("Audio");
-            //NotifyPropertyChanged("Documents");
-            //NotifyPropertyChanged("Archives");
+            _audioSize = await GetFilesSizeInMB(_audio);
+            _documentsSize = await GetFilesSizeInMB(_documents);
+            _archivesSize = await GetFilesSizeInMB(_archieves);
+            _otherSize = await GetFilesSizeInMB(_other);
+            _fullSizeOfDuplicates = _imagesSize + _videoSize + _audioSize + _documentsSize + _archivesSize + _otherSize;
+            NotifyPropertyChanged(nameof(ImagesSize));
+            NotifyPropertyChanged(nameof(VideoSize));
+            NotifyPropertyChanged(nameof(AudioSize));
+            NotifyPropertyChanged(nameof(DocumentsSize));
+            NotifyPropertyChanged(nameof(ArchivesSize));
             //NotifyPropertyChanged("Folders");
-            //NotifyPropertyChanged("Other");
+            NotifyPropertyChanged(nameof(OtherSize));
+            NotifyPropertyChanged(nameof(FullSizeOfDuplicates));
         }
 
 
-        private async Task<ulong> GetFilesSizeInMB(ICollection<StorageFile> files)
+        private static async Task<ulong> GetFilesSizeInMB(ICollection<StorageFile> files)
         {
             ulong FilesSize = 0;
 
@@ -83,14 +98,17 @@ namespace WindowsGemini.ViewModels
 
             return FilesSize;
         }
-        private async Task<ulong> GetFileSizeInMB(StorageFile file)
+        private static async Task<ulong> GetFileSizeInMB(StorageFile file)
         {
             var baseProperties = await file.GetBasicPropertiesAsync();
             var bytesSize = baseProperties.Size;
 
-            return (bytesSize / 1024) / 1024;
+            
+            //return bytesSize; // Bytes
+            return bytesSize / 1024;//KB
+            //return (bytesSize / 1024) / 1024; //MB
         }
-        private async Task<ulong> GetFileSizeInBytes(StorageFile file)
+        private static async Task<ulong> GetFileSizeInBytes(StorageFile file)
         {
             var baseProperties = await file.GetBasicPropertiesAsync();
             return baseProperties.Size;

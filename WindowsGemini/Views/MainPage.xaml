@@ -145,32 +145,46 @@
                 <TextBlock Text="Scan Completed!" FontSize="18" FontWeight="SemiLight" HorizontalAlignment="Left"/>
                 <Rectangle Height="1" Fill="#919191" Margin="0,10,0,5" Opacity="20"/>
                 <uiShadowsToolkit:DockPanel>
-                    <TextBlock Text="1.7 GB" Foreground="#008aff" FontSize="24" FontWeight="SemiLight" 
-                               uiShadowsToolkit:DockPanel.Dock="Left"/>
+                    <TextBlock Foreground="#008aff" FontSize="24" FontWeight="SemiLight" 
+                               uiShadowsToolkit:DockPanel.Dock="Left">
+                        <Run Text="{Binding FullSizeOfDuplicates}"/>
+                        <Run Text="KB"/>
+                    </TextBlock>
                     <TextBlock Text="found in folders" Foreground="#797979" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                 </uiShadowsToolkit:DockPanel>
                 <Rectangle Height="1" Fill="#919191" Margin="0,5,0,5" Opacity="20"/>
                      
                 <uiShadowsToolkit:DockPanel Margin="0,5,0,5">
                     <Rectangle Fill="#fff59d" Height="23" Width="4" HorizontalAlignment="Left"/>
-                    <!--Must be media-->
-                    <TextBlock Text="ImagesSize" FontSize="16" FontWeight="SemiLight" Foreground="#202020" Margin="3,6,0,5"/>
-                    <TextBlock Text="{Binding ImagesSize}" FontSize="16" FontWeight="SemiLight" Foreground="#202020" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <TextBlock Text="Images" FontSize="16" FontWeight="SemiLight" Foreground="#202020" Margin="3,6,0,5"/>
+                    <TextBlock FontSize="16" FontWeight="SemiLight" Foreground="#202020" VerticalAlignment="Center" HorizontalAlignment="Right">
+                        <Run Text="{Binding ImagesSize}"/> 
+                        <Run Text=" MB"/>
+                    </TextBlock>
                 </uiShadowsToolkit:DockPanel>
                 <uiShadowsToolkit:DockPanel Margin="0,5,0,5">
                     <Rectangle Fill="#d0df9c" Height="23" Width="4" HorizontalAlignment="Left"/>
                     <TextBlock Text="Documents" FontSize="16" FontWeight="SemiLight" Foreground="#202020" Margin="3,6,0,5"/>
-                    <TextBlock Text="123 MB" FontSize="16" FontWeight="SemiLight" Foreground="#202020" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <TextBlock FontSize="16" FontWeight="SemiLight" Foreground="#202020" VerticalAlignment="Center" HorizontalAlignment="Right">
+                        <Run Text="{Binding DocumentsSize}"/> 
+                        <Run Text=" MB"/>
+                    </TextBlock>
                 </uiShadowsToolkit:DockPanel>
                 <uiShadowsToolkit:DockPanel Margin="0,5,0,5">
                     <Rectangle Fill="#c293c2" Height="23" Width="4" HorizontalAlignment="Left"/>
                     <TextBlock Text="Archives" FontSize="16" FontWeight="SemiLight" Foreground="#202020" Margin="3,6,0,5"/>
-                    <TextBlock Text="234 MB" FontSize="16" FontWeight="SemiLight" Foreground="#202020" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <TextBlock FontSize="16" FontWeight="SemiLight" Foreground="#202020" VerticalAlignment="Center" HorizontalAlignment="Right">
+                        <Run Text="{Binding DocumentsSize}"/>
+                        <Run Text=" MB"/>
+                    </TextBlock>
                 </uiShadowsToolkit:DockPanel>
                 <uiShadowsToolkit:DockPanel Margin="0,5,0,5">
                     <Rectangle Fill="#8ed0f4" Height="23" Width="4" HorizontalAlignment="Left"/>
                     <TextBlock Text="Other" FontSize="16" FontWeight="SemiLight" Foreground="#202020" Margin="3,6,0,5"/>
-                    <TextBlock Text="347.5 MB" FontSize="16" FontWeight="SemiLight" Foreground="#202020" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <TextBlock FontSize="16" FontWeight="SemiLight" Foreground="#202020" VerticalAlignment="Center" HorizontalAlignment="Right">
+                        <Run Text="{Binding OtherSize}"/>
+                        <Run Text=" MB"/>
+                    </TextBlock>
                 </uiShadowsToolkit:DockPanel>
 
                 <uiShadowsToolkit:DockPanel Margin="0,25,0,0">
