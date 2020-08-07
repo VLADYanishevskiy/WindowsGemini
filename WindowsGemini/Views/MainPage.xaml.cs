@@ -8,6 +8,7 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel.Core;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.Pickers;
@@ -31,5 +32,6 @@ namespace WindowsGemini
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
 
         }
+
     }
 }

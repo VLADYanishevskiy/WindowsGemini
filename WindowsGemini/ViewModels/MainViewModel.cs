@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prism.Commands;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -40,6 +41,7 @@ namespace WindowsGemini.ViewModels
             groupedFiles = new Stack<StorageFile>();
             _stackPanelNewScanVisibility = Visibility.Visible;
             _stackPanelResultsScanVisibility = Visibility.Collapsed;
+            DropCommand = new DelegateCommand<DragEventArgs>(ExecuteDropCommandAsync);
         }
 
         private void IncludeFolders_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -54,6 +56,5 @@ namespace WindowsGemini.ViewModels
             NotifyPropertyChanged("BtnBigPlusAddFolder");
             NotifyPropertyChanged("GridWithBtnAddAndListOfFolderVisibility");
         }
-
     }
 }

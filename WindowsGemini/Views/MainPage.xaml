@@ -10,7 +10,10 @@
     xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions" 
     xmlns:Windows10version1903="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 8)"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:wi="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:cmd="http://www.galasoft.ch/mvvmlight"
     extensions:TitleBarExtensions.BackgroundColor="Transparent"
     extensions:TitleBarExtensions.ButtonBackgroundColor="Transparent"
     extensions:TitleBarExtensions.ButtonForegroundColor="Black"
@@ -18,7 +21,7 @@
     extensions:TitleBarExtensions.InactiveBackgroundColor="Transparent"
     extensions:TitleBarExtensions.ForegroundColor="Black"
     xmlns:media="using:Windows.UI.Xaml.Media" 
-    xmlns:viewmodels="using:WindowsGemini.ViewModels"
+    xmlns:viewmodels="using:WindowsGemini.ViewModels" xmlns:Custom1="using:WindowsGemini.Models.Behaviors"
     Width="500" Height="500" >
     <Page.DataContext>
         <viewmodels:MainViewModel/>
@@ -33,7 +36,18 @@
     </Page.Resources>
 
     <StackPanel Orientation="Horizontal" Padding="0" Background="{StaticResource HostBackdropBrush}">
-        <Grid x:Name="leftFileGrid"  Background="White" Width="240" Height="500" BorderThickness="0" BorderBrush="Transparent">
+        
+        <Grid x:Name="leftFileGrid"  Background="White" AllowDrop="True"  Width="240" Height="500" BorderThickness="0" BorderBrush="Transparent">
+            <i:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="DragOver" >
+                    <core:InvokeCommandAction Command="{Binding DragOverCommand}"></core:InvokeCommandAction>
+                </core:EventTriggerBehavior>
+                <core:EventTriggerBehavior EventName="Drop">
+                    <core:InvokeCommandAction Command="{Binding DropCommand}"></core:InvokeCommandAction>
+                </core:EventTriggerBehavior>
+            </i:Interaction.Behaviors>
+
+
             <TextBlock Text="WinGemini" Margin="13,10,0,0" FontSize="12" FontWeight="Medium" FontFamily="Assets/Fonts/9404.ttf#SegoeUI"/>
 
             <Button Background="Transparent" Height="32" Width="32"

@@ -119,11 +119,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\CommandHandler.cs" />
+    <Compile Include="Models\Behaviors\ElementDraggableBehavior.cs" />
+    <Compile Include="Models\CommandHadlers\CommandHandler.cs" />
     <Compile Include="Models\FileEqualsChecker.cs" />
     <Compile Include="Models\FileTypeChecker.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CommandNewScanViewModel.cs" />
+    <Compile Include="ViewModels\DragAndDropFileCommands.cs" />
     <Compile Include="ViewModels\FilePickerViewModel.cs" />
     <Compile Include="ViewModels\ResultsOfScanViewModel.cs" />
     <Compile Include="ViewModels\StackPanelVisibilityViewModel.cs" />
@@ -180,6 +182,12 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
       <Version>2.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmLight">
+      <Version>5.4.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Prism.Core">
+      <Version>7.2.0.1422</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup />
