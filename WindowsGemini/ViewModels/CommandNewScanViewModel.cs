@@ -27,8 +27,8 @@ namespace WindowsGemini.ViewModels
             _archieves.Clear();
             _folders.Clear();
             _other.Clear();
-            StackPanelNewScanVisibility = Visibility.Visible;
-            StackPanelResultsScanVisibility = Visibility.Collapsed;
+
+            _state_select_folder();
             SelectedFolder = null;
         }
     }

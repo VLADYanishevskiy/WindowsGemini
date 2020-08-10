@@ -14,9 +14,12 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 using WindowsGemini.Models;
 using WindowsGemini.ViewModels;
+using WindowsGemini.Views.CustomControls;
 
 namespace WindowsGemini
 {
@@ -30,6 +33,15 @@ namespace WindowsGemini
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
+            
+            Binding myBinding = new Binding();
+            myBinding.Source = this.DataContext;
+            myBinding.Path = new PropertyPath("StateOfScanning");
+            myBinding.Mode = BindingMode.TwoWay;
+            myBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+            BindingOperations.SetBinding(mltView, MultiViewControl.selectedItemShowProperty, myBinding);
+            mltView.SelectedItemShow = 0;
+            mltView.selectedItemChanged();
         }
 
     }

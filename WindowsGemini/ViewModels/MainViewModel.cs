@@ -36,11 +36,10 @@ namespace WindowsGemini.ViewModels
 
         public MainViewModel()
         {
+            StateOfScanning = 0;
             _includeFolders = new ObservableCollection<StorageFolder>();
             _includeFolders.CollectionChanged += IncludeFolders_CollectionChanged;
             groupedFiles = new Stack<StorageFile>();
-            _stackPanelNewScanVisibility = Visibility.Visible;
-            _stackPanelResultsScanVisibility = Visibility.Collapsed;
             DropCommand = new DelegateCommand<DragEventArgs>(ExecuteDropCommandAsync);
         }
 

@@ -22,35 +22,5 @@ namespace WindowsGemini.ViewModels
                 NotifyPropertyChanged(nameof(StateOfScanning));
             }
         }
-
-        private Visibility _stackPanelNewScanVisibility;
-        public Visibility StackPanelNewScanVisibility
-        {
-            get
-            {
-                return _stackPanelNewScanVisibility;
-            }
-            set
-            {
-                _stackPanelNewScanVisibility = value;
-
-                NotifyPropertyChanged("StackPanelNewScanVisibility");
-            }
-        }
-
-        private Visibility _stackPanelResultsScanVisibility;
-        public Visibility StackPanelResultsScanVisibility
-        {
-            get
-            {
-                return _stackPanelResultsScanVisibility;
-            }
-            set
-            {
-                _stackPanelResultsScanVisibility = value;
-
-                NotifyPropertyChanged("StackPanelResultsScanVisibility");
-            }
-        }
     }
 }

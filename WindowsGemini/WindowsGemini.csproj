@@ -133,6 +133,7 @@
     <Compile Include="ViewModels\FindDuplicatesLogicViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SelectedFolderToScanViewModel.cs" />
+    <Compile Include="ViewModels\StatesOfScanningVM.cs" />
     <Compile Include="ViewModels\TextBlockViewModel.cs" />
     <Compile Include="ViewModels\VisibilityGridOrSymbolPlusToAddFolderViewModel.cs" />
     <Compile Include="Views\CustomControls\MultiViewControl.xaml.cs">

@@ -21,13 +21,17 @@ namespace WindowsGemini.ViewModels
             }
             else
             {
+                _state_scanning_comparing_files();
                 groupedFiles.Clear();
+
                 await ScanFolder(SelectedFolder);
                 await FindDublicates();
                 Notify_Results_Collection_Completed();
 
-                StackPanelNewScanVisibility = Windows.UI.Xaml.Visibility.Collapsed;
-                StackPanelResultsScanVisibility = Windows.UI.Xaml.Visibility.Visible;
+                _state_scanning_finished();
+
+                //StackPanelNewScanVisibility = Windows.UI.Xaml.Visibility.Collapsed;
+                //StackPanelResultsScanVisibility = Windows.UI.Xaml.Visibility.Visible;
             }
         }
 

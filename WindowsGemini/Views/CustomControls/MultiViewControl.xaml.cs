@@ -20,19 +20,18 @@ namespace WindowsGemini.Views.CustomControls
             get { return (int)GetValue(selectedItemShowProperty); }
             set {
                 SetValue(selectedItemShowProperty, value);
-                selectedItemChanged();
-                NotifyPropertyChanged(nameof(Views));
             }
         }
         public static readonly DependencyProperty selectedItemShowProperty =
-            DependencyProperty.Register("selectedItemShow", typeof(int), typeof(MultiViewControl), new PropertyMetadata(0));
+            DependencyProperty.Register("selectedItemShow", typeof(int), typeof(MultiViewControl), new PropertyMetadata(0,new PropertyChangedCallback(OnSelectedItemChanged)));
 
         public ObservableCollection<UIElement> Views
         {
             get { return (ObservableCollection<UIElement>)GetValue(ViewsProperty); }
             set {
+                SetValue(ViewsProperty, value);
                 NotifyPropertyChanged(nameof(Views));
-                SetValue(ViewsProperty, value); }
+            }
         }
         public static readonly DependencyProperty ViewsProperty =
             DependencyProperty.Register("Views", typeof(ObservableCollection<UIElement>), typeof(MultiViewControl), new PropertyMetadata(new ObservableCollection<UIElement>()));
@@ -41,19 +40,24 @@ namespace WindowsGemini.Views.CustomControls
         public MultiViewControl()
         {
             this.InitializeComponent();
-            mainStackPanel.ItemsSource = Views;
+            selectedItemChanged();
+        }
+
+        private static void OnSelectedItemChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            MultiViewControl cc = d as MultiViewControl;
+            int content = (int)e.NewValue;
+            cc.SelectedItemShow = content;
+            cc.selectedItemChanged();
         }
 
         public void selectedItemChanged()
         {
-            foreach(var item in this.mainStackPanel.Items)
-            {
-                (item as UIElement).Visibility = Visibility.Collapsed;
-            }
+            mainStackPanel.Children.Clear();
+            
+            if (SelectedItemShow > Views.Count || Views.Count == 0) return;
 
-            if (SelectedItemShow > this.mainStackPanel.Items.Count) return;
-
-            (this.mainStackPanel.Items[SelectedItemShow] as UIElement ).Visibility = Visibility.Visible;
+            mainStackPanel.Children.Add(Views[SelectedItemShow]);
         }
     }
 }

@@ -30,7 +30,7 @@
                             />
     </Page.Resources>
 
-    <StackPanel Orientation="Horizontal" Padding="0" Background="{StaticResource HostBackdropBrush}">
+    <StackPanel Orientation="Horizontal" Padding="0" Background="{StaticResource HostBackdropBrush}" HorizontalAlignment="Left" Width="500">
         
         <Grid x:Name="leftFileGrid"  Background="White" AllowDrop="True"  Width="240" Height="500" BorderThickness="0" BorderBrush="Transparent">
             <i:Interaction.Behaviors>
@@ -115,15 +115,14 @@
             </Grid>
             
         </Grid>
-        
-        
-        
+
+
         <!--Right GRID-->
         <Grid Width="260">
             <SymbolIcon Symbol="Setting" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,44,11,0"/>
-            <customcontrols:MultiViewControl x:Name="mltView" SelectedItemShow="{Binding StateOfScanning}">
+            <customcontrols:MultiViewControl x:Name="mltView" >
                 <customcontrols:MultiViewControl.Views>
-                    <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0" Visibility="{Binding StackPanelNewScanVisibility}">
+                    <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0" >
                         <TextBlock x:Name="txt" TextWrapping="Wrap"  FontSize="16" Foreground="#202020" FontFamily="SegoeUI" FontWeight="SemiBold" >
                     <Run Text="{Binding txbMainPageHello}"/>
                     <LineBreak/>
@@ -151,7 +150,26 @@
                             </Button.Resources>
                         </Button>
                     </StackPanel>
-                    <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Width="235" Visibility="{Binding StackPanelResultsScanVisibility}">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0">
+                        <TextBlock Text="Scanning..." FontSize="24" FontWeight="SemiLight" Margin="0,0,0,20"/>
+                        <ProgressBar Width="220" Height="32" Value="50" Background="#a2a2a2" CornerRadius="10">
+                            <ProgressBar.Foreground>
+                                <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
+                                    <GradientStop Color="#002e97" Offset="1" />
+                                    <GradientStop Color="#0078d7" Offset="0" />
+                                </LinearGradientBrush>
+                            </ProgressBar.Foreground>
+                        </ProgressBar>
+                        <TextBlock Foreground="#008aff" FontSize="16" Margin="0,16" FontWeight="Light">
+                <Run Text="345"/>
+                <Run Text=" of 968 file(s) checked"/>
+                        </TextBlock>
+                        <TextBlock FontWeight="Light" Foreground="#797979" FontSize="12" Margin="0,30,0,50">
+                <Run Text="D:\SomeFolderName\SomeFolder\SomeName"/>
+                        </TextBlock>
+                        <Button Content="Stop" FontSize="24" Background="#0078d7" Foreground="White" Width="180" Height="44"/>
+                    </StackPanel>
+                    <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Width="235">
                         <TextBlock Text="Scan Completed!" FontSize="18" FontWeight="SemiLight" HorizontalAlignment="Left"/>
                         <Rectangle Height="1" Fill="#919191" Margin="0,10,0,5" Opacity="20"/>
                         <uiShadowsToolkit:DockPanel>
@@ -205,7 +223,6 @@
                             Content="New scan" FontSize="16" FontWeight="SemiLight" Command="{Binding startNewScanCommand}"/>
                         </uiShadowsToolkit:DockPanel>
                     </StackPanel>
-
                 </customcontrols:MultiViewControl.Views>
             </customcontrols:MultiViewControl>
         </Grid>
