@@ -135,6 +135,9 @@
     <Compile Include="ViewModels\SelectedFolderToScanViewModel.cs" />
     <Compile Include="ViewModels\TextBlockViewModel.cs" />
     <Compile Include="ViewModels\VisibilityGridOrSymbolPlusToAddFolderViewModel.cs" />
+    <Compile Include="Views\CustomControls\MultiViewControl.xaml.cs">
+      <DependentUpon>MultiViewControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -154,12 +157,17 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="TODO.txt" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\CustomControls\MultiViewControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -30,7 +30,6 @@ namespace WindowsGemini
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
-
         }
 
     }
