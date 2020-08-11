@@ -153,7 +153,10 @@
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0">
                         <TextBlock Text="Scanning..." FontSize="24" FontWeight="SemiLight" Margin="0,0,0,20"/>
-                        <ProgressBar Width="220" Height="16" Value="50" HorizontalAlignment="Left" Background="#a2a2a2" CornerRadius="10">
+                        <ProgressBar Width="220" Height="16" HorizontalAlignment="Left" Background="#a2a2a2" CornerRadius="10"
+                                     Minimum="0"
+                                     Value="{Binding CountOfCheckedFiles}"
+                                     Maximum="{Binding CountOfFiles}">
                             <ProgressBar.Foreground>
                                 <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
                                     <GradientStop Color="#002e97" Offset="1" />
@@ -162,13 +165,15 @@
                             </ProgressBar.Foreground>
                         </ProgressBar>
                         <TextBlock Foreground="#008aff" FontSize="16" Margin="0,16" FontWeight="Light">
-                <Run Text="345"/>
-                <Run Text=" of 968 file(s) checked"/>
+                            <Run Text="{Binding CountOfCheckedFiles}"/>
+                            <Run Text=" of "/>
+                            <Run Text="{Binding CountOfFiles}"/>
+                            <Run Text=" file(s) checked"/>
                         </TextBlock>
                         <TextBlock FontWeight="SemiLight" Foreground="#797979" FontSize="12" Margin="0,15,0,30">
-                <Run Text="D:\SomeFolderName\SomeFolder\SomeName"/>
+                <Run Text="{Binding CurrentCheckingFile}"/>
                         </TextBlock>
-                        <Button Content="Stop" FontSize="16" Background="#0078d7" Foreground="White" Width="120" Height="32" HorizontalAlignment="Left"/>
+                        <Button Content="Stop" FontSize="16" Background="#0078d7" Foreground="White" Width="120" Height="32" HorizontalAlignment="Left" Command="{Binding StopScanCommand}"/>
                     </StackPanel>
                     <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Width="235">
                         <TextBlock Text="Scan Completed!" FontSize="18" FontWeight="SemiLight" HorizontalAlignment="Left"/>
@@ -177,7 +182,7 @@
                             <TextBlock Foreground="#008aff" FontSize="24" FontWeight="SemiLight" 
                                uiShadowsToolkit:DockPanel.Dock="Left">
                         <Run Text="{Binding FullSizeOfDuplicates}"/>
-                        <Run Text="KB"/>
+                        <Run Text="MB"/>
                             </TextBlock>
                             <TextBlock Text="found in folders" Foreground="#797979" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                         </uiShadowsToolkit:DockPanel>

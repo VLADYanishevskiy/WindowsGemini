@@ -125,6 +125,7 @@
     <Compile Include="Models\FileTypeChecker.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CommandNewScanViewModel.cs" />
+    <Compile Include="ViewModels\CommandStopScanVM.cs" />
     <Compile Include="ViewModels\DragAndDropFileCommands.cs" />
     <Compile Include="ViewModels\FilePickerViewModel.cs" />
     <Compile Include="ViewModels\ResultsOfScanViewModel.cs" />

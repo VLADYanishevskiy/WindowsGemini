@@ -25,30 +25,30 @@ namespace WindowsGemini.ViewModels
 
 
 
-        private ulong _imagesSize;
-        public ulong ImagesSize
+        private double _imagesSize;
+        public double ImagesSize
         {
             get {
                 return _imagesSize; 
             }
         }
-        private ulong _videoSize;
-        public ulong VideoSize
+        private double _videoSize;
+        public double VideoSize
         {
             get { return _videoSize; }
         }
-        private ulong _audioSize;
-        public ulong AudioSize
+        private double _audioSize;
+        public double AudioSize
         {
             get { return _audioSize; }
         }
-        private ulong _documentsSize;
-        public ulong DocumentsSize
+        private double _documentsSize;
+        public double DocumentsSize
         {
             get { return _documentsSize; }
         }
-        private ulong _archivesSize;
-        public ulong ArchivesSize
+        private double _archivesSize;
+        public double ArchivesSize
         {
             get { return _archivesSize; }
         }
@@ -56,13 +56,13 @@ namespace WindowsGemini.ViewModels
         {
             get { return _folders; }
         }
-        private ulong _otherSize;
-        public ulong OtherSize
+        private double _otherSize;
+        public double OtherSize
         {
             get { return _otherSize; }
         }
-        public ulong _fullSizeOfDuplicates;
-        public ulong FullSizeOfDuplicates
+        public double _fullSizeOfDuplicates;
+        public double FullSizeOfDuplicates
         {
             get { return _fullSizeOfDuplicates; }
         }
@@ -87,9 +87,9 @@ namespace WindowsGemini.ViewModels
         }
 
 
-        private static async Task<ulong> GetFilesSizeInMB(ICollection<StorageFile> files)
+        private static async Task<double> GetFilesSizeInMB(ICollection<StorageFile> files)
         {
-            ulong FilesSize = 0;
+            double FilesSize = 0;
 
             foreach (var item in files)
             {
@@ -98,15 +98,15 @@ namespace WindowsGemini.ViewModels
 
             return FilesSize;
         }
-        private static async Task<ulong> GetFileSizeInMB(StorageFile file)
+        private static async Task<double> GetFileSizeInMB(StorageFile file)
         {
             var baseProperties = await file.GetBasicPropertiesAsync();
             var bytesSize = baseProperties.Size;
 
             
             //return bytesSize; // Bytes
-            return bytesSize / 1024;//KB
-            //return (bytesSize / 1024) / 1024; //MB
+            //return bytesSize / 1024;//KB
+            return (bytesSize / 1024) / 1024; //MB
         }
         private static async Task<ulong> GetFileSizeInBytes(StorageFile file)
         {

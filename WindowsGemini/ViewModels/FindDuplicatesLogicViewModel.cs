@@ -18,11 +18,51 @@ namespace WindowsGemini.ViewModels
 {
     partial class MainViewModel
     {
+
+        private bool StopScan = false;
+
+        private int _countOfFiles = 0;
+        public int CountOfFiles
+        {
+            get { return _countOfFiles; }
+            set { _countOfFiles = value;
+                NotifyPropertyChanged(nameof(CountOfFiles));
+            }
+        }
+
+        private int _countOfCheckedFiles;
+        public int CountOfCheckedFiles
+        {
+            get { return _countOfCheckedFiles; }
+            set { 
+                if(value <= CountOfFiles)
+                    _countOfCheckedFiles = value;
+                NotifyPropertyChanged(nameof(CountOfCheckedFiles));
+            }
+        }
+
+        private string _currentCheckingFile;
+        public string CurrentCheckingFile
+        {
+            get { return _currentCheckingFile; }
+            set { _currentCheckingFile = value;
+                NotifyPropertyChanged(nameof(CurrentCheckingFile));
+            }
+        }
+
+        private void ClearStatsOfScanning()
+        {
+            CountOfCheckedFiles = 0;
+            CountOfFiles = 0;
+            CurrentCheckingFile = "";
+        }
+
         private async Task ScanFolder(StorageFolder folder)
         {
             foreach (var item in await folder.GetFilesAsync())
             {
                 groupedFiles.Push(item);
+                CountOfFiles++;
             }
 
             foreach (var item in await folder.GetFoldersAsync())
@@ -64,17 +104,19 @@ namespace WindowsGemini.ViewModels
 
             foreach (var entry in sortedFiles)
             {
-                for (int i = 0; i < entry.Value.Count; i++)
+                for (int i = 0; i < entry.Value.Count && StopScan == false; i++)
                 {
                     if (entry.Value[i] == null) continue;
                     bool hasduplicatesOfCurrentFile = false;
 
                     byte[] currentFileContent = await entry.Value[i].ReadBytesAsync();
 
-                    for (int j = i + 1; j < entry.Value.Count; j++)
+                    for (int j = i + 1; j < entry.Value.Count && StopScan == false; j++)
                     {
                         if (entry.Value[j] != null)
                         {
+                            CountOfCheckedFiles++;
+                            CurrentCheckingFile = entry.Value[j].Path;
                             if (entry.Value[i].FileType == entry.Value[j].FileType)
                             {
 

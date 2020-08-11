@@ -21,11 +21,15 @@ namespace WindowsGemini.ViewModels
             }
             else
             {
-                _state_scanning_comparing_files();
+                StopScan = false;
                 groupedFiles.Clear();
+                ClearStatsOfScanning();
+
+                _state_scanning_comparing_files();
 
                 await ScanFolder(SelectedFolder);
                 await FindDublicates();
+
                 Notify_Results_Collection_Completed();
 
                 _state_scanning_finished();
