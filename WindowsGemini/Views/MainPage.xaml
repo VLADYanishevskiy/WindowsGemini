@@ -116,6 +116,7 @@
             
         </Grid>
 
+        
 
         <!--Right GRID-->
         <Grid Width="260">
@@ -152,7 +153,7 @@
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0">
                         <TextBlock Text="Scanning..." FontSize="24" FontWeight="SemiLight" Margin="0,0,0,20"/>
-                        <ProgressBar Width="220" Height="32" Value="50" Background="#a2a2a2" CornerRadius="10">
+                        <ProgressBar Width="220" Height="16" Value="50" HorizontalAlignment="Left" Background="#a2a2a2" CornerRadius="10">
                             <ProgressBar.Foreground>
                                 <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
                                     <GradientStop Color="#002e97" Offset="1" />
@@ -164,10 +165,10 @@
                 <Run Text="345"/>
                 <Run Text=" of 968 file(s) checked"/>
                         </TextBlock>
-                        <TextBlock FontWeight="Light" Foreground="#797979" FontSize="12" Margin="0,30,0,50">
+                        <TextBlock FontWeight="SemiLight" Foreground="#797979" FontSize="12" Margin="0,15,0,30">
                 <Run Text="D:\SomeFolderName\SomeFolder\SomeName"/>
                         </TextBlock>
-                        <Button Content="Stop" FontSize="24" Background="#0078d7" Foreground="White" Width="180" Height="44"/>
+                        <Button Content="Stop" FontSize="16" Background="#0078d7" Foreground="White" Width="120" Height="32" HorizontalAlignment="Left"/>
                     </StackPanel>
                     <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Width="235">
                         <TextBlock Text="Scan Completed!" FontSize="18" FontWeight="SemiLight" HorizontalAlignment="Left"/>
