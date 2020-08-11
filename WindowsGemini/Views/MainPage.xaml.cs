@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using WindowsGemini.Models;
 using WindowsGemini.ViewModels;
+using WindowsGemini.Views;
 using WindowsGemini.Views.CustomControls;
 
 namespace WindowsGemini
@@ -44,5 +45,9 @@ namespace WindowsGemini
             mltView.selectedItemChanged();
         }
 
+        private void OpenSettings_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(SettingPage));
+        }
     }
 }
