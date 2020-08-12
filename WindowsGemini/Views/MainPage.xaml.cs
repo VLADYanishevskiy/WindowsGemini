@@ -47,6 +47,7 @@ namespace WindowsGemini
 
         private void OpenSettings_Click(object sender, RoutedEventArgs e)
         {
+            mltView.Views.Clear();
             this.Frame.Navigate(typeof(SettingPage));
         }
     }
