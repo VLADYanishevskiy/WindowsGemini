@@ -28,7 +28,7 @@ namespace WindowsGemini.ViewModels
         {
             get
             {
-                return FoldersToScan.Count == 0 ? "SomeNameApp!" : "";
+                return FoldersToScan.Count == 0 ? "WindowsGemini!" : "";
             }
             private set { }
         }

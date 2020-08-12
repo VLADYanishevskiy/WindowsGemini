@@ -17,22 +17,24 @@
     extensions:TitleBarExtensions.ForegroundColor="Black"
     xmlns:media="using:Windows.UI.Xaml.Media" 
     xmlns:viewmodels="using:WindowsGemini.ViewModels" xmlns:Custom1="using:WindowsGemini.Models.Behaviors" xmlns:customcontrols="using:WindowsGemini.Views.CustomControls"
-    Width="500" Height="500">
+    Width="500" Height="500"
+    xmlns:AppFolder="using:WindowsGemini">
     <Page.DataContext>
         <viewmodels:MainViewModel/>
     </Page.DataContext>
     <Page.Resources>
-        <media:AcrylicBrush x:Key="HostBackdropBrush"
-                            BackgroundSource="HostBackdrop"
-                            TintColor="#c4c4c4"
-                            TintOpacity="0.85"
-                            FallbackColor="#c4c4c4"
-                            />
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary Source="/Assets/ThemeColors/ThemeDictionaryLight.xaml" x:Key="Light"/>
+                <ResourceDictionary Source="/Assets/ThemeColors/ThemeDictionaryDark.xaml" x:Key="Dark"/>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+
     </Page.Resources>
 
-    <StackPanel Orientation="Horizontal" Padding="0" Background="{StaticResource HostBackdropBrush}" HorizontalAlignment="Left" Width="500">
-        
-        <Grid x:Name="leftFileGrid"  Background="White" AllowDrop="True"  Width="240" Height="500" BorderThickness="0" BorderBrush="Transparent">
+    <StackPanel Orientation="Horizontal" Padding="0" Background="{ThemeResource HostBackdropBrush}" HorizontalAlignment="Left" Width="500">
+
+        <Grid x:Name="leftFileGrid" AllowDrop="True"  Width="240" Height="500" BorderThickness="0" BorderBrush="Transparent" Background="{ThemeResource GridWithFoldersBackground}">
             <i:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="DragOver" >
                     <core:InvokeCommandAction Command="{Binding DragOverCommand}"></core:InvokeCommandAction>
@@ -49,20 +51,12 @@
                     Visibility="{Binding BtnBigPlusAddFolder}"
                     BorderThickness="0" HorizontalAlignment="Center"
                     Padding="0"
-                    Command="{Binding Path=OpenFilePickerCommand}">
+                    Command="{Binding Path=OpenFilePickerCommand}" 
+                    Foreground="{ThemeResource ButtonPlusMainForeground}">
                 <SymbolIcon Symbol="Add" Margin="0"/>
-                <Button.Resources>
-                    <ResourceDictionary>
-                        <ResourceDictionary.ThemeDictionaries>
-                            <ResourceDictionary x:Key="Light">
-                                <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="White"/>
-                            </ResourceDictionary>
-                        </ResourceDictionary.ThemeDictionaries>
-                    </ResourceDictionary>
-                </Button.Resources>
             </Button>
             
-            <Grid Padding="0,30,0,0" Visibility="{Binding GridWithBtnAddAndListOfFolderVisibility}">
+            <Grid Padding="0,30,0,0" Visibility="{Binding GridWithBtnAddAndListOfFolderVisibility}" >
                 <ScrollViewer VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                     <ListView x:Name="listViewOfFolders" Background="Transparent"
                               ItemsSource="{Binding FoldersToScan}" Margin="0,0,0,44"
@@ -71,7 +65,7 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <uiShadowsToolkit:DockPanel HorizontalAlignment="Stretch" Width="216">
-                                    <SymbolIcon Symbol="Folder" uiShadowsToolkit:DockPanel.Dock="Left"/>
+                                    <SymbolIcon Symbol="Folder" uiShadowsToolkit:DockPanel.Dock="Left" Foreground="{ThemeResource CymbolFolderForeground}"/>
                                     <TextBlock Text="{Binding Name}" MaxWidth="160"  Margin="13,8,0,8" FontSize="16" FontWeight="SemiLight" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
                                     
                                     <Button Margin="0" Visibility="Visible" HorizontalAlignment="Right" uiShadowsToolkit:DockPanel.Dock="Right" Background="Transparent" BorderThickness="0">
@@ -84,7 +78,7 @@
                                                 </ResourceDictionary.ThemeDictionaries>
                                             </ResourceDictionary>
                                         </Button.Resources>
-                                        <SymbolIcon Symbol="Cancel" Foreground="#0078d7" />
+                                        <SymbolIcon Symbol="Cancel" Foreground="{ThemeResource BtnRemoveFolderFromLeftGrid}" />
                                     </Button>
                                     
                                 </uiShadowsToolkit:DockPanel>
@@ -97,30 +91,30 @@
                 
                 <Button VerticalAlignment="Bottom" 
                         HorizontalAlignment="Center" 
-                        Background="#f6f6f6" 
+                        Background="{ThemeResource BtnBottomAddFolderBackground}" 
+                        Foreground="{ThemeResource BtnBottomAddFolderForeground}"
                         Width="240" Height="44"
                         Command="{Binding Path=OpenFilePickerCommand}">
                     <SymbolIcon Symbol="Add"/>
-                    <Button.Resources>
+                    <!--<Button.Resources>
                         <ResourceDictionary>
                             <ResourceDictionary.ThemeDictionaries>
                                 <ResourceDictionary x:Key="Light">
-                                    <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="#fefefe"/>
-                                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#003b6a"/>
+                                    <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="{StaticResource BtnBottomAddFolderForegroundMouseOver}"/>
+                                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="{StaticResource BtnBottoomAddFolderBackgroundMouseOver}"/>
                                 </ResourceDictionary>
                             </ResourceDictionary.ThemeDictionaries>
                         </ResourceDictionary>
-                    </Button.Resources>
+                    </Button.Resources>-->
                 </Button>
             </Grid>
             
         </Grid>
 
-        
-
         <!--Right GRID-->
         <Grid Width="260">
-            <Button Background="Transparent"  VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,44,11,0" Click="OpenSettings_Click">
+            <Button Background="Transparent" Foreground="{ThemeResource BtnSettingsForeground}"
+                    VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,44,11,0" Click="OpenSettings_Click">
                 <SymbolIcon Symbol="Setting"/>
             </Button>
             
@@ -128,106 +122,91 @@
                 <customcontrols:MultiViewControl.Views>
                     <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0" >
                         <TextBlock x:Name="txt" TextWrapping="Wrap"  FontSize="16" Foreground="#202020" FontFamily="SegoeUI" FontWeight="SemiBold" >
-                    <Run Text="{Binding txbMainPageHello}"/>
-                    <LineBreak/>
-                    <Run Text="{Binding txbMainPageWelcomeTo}" />
-                    <Run Text="{Binding txbMainPageSomeNameApp}" Foreground="#0078d7"/>
+                            <Run Text="{Binding txbMainPageHello}" Foreground="{ThemeResource GeneralTxbForeground}"/>
+                            <LineBreak/>
+                            <Run Text="{Binding txbMainPageWelcomeTo}" Foreground="{ThemeResource GeneralTxbForeground}"/>
+                            <Run Text="{Binding txbMainPageSomeNameApp}" Foreground="{ThemeResource TxbAppNameForeground}"/>
                         </TextBlock>
-                        <TextBlock TextWrapping="Wrap" Margin="0,20,0,0" Foreground="#797979">
-                <Run Text="{Binding txbMainPageHintPlusOrPressButoonTop}"/>
-                <LineBreak/>
-                <Run Text="{Binding txbMainPageHintPlusOrPressButoonBottom}"/>
+                        <TextBlock TextWrapping="Wrap" Margin="0,20,0,0" Foreground="{ThemeResource TxbPressPlusForeground}">
+                            <Run Text="{Binding txbMainPageHintPlusOrPressButoonTop}"/>
+                            <LineBreak/>
+                            <Run Text="{Binding txbMainPageHintPlusOrPressButoonBottom}"/>
                         </TextBlock>
-                        <Button Margin="0,30,0,0" Width="160" Height="36"
-                        Background="#0078d7" Content="Scan for Duplicates" BorderThickness="0"
-                        Command="{Binding StartScanningSelectedFolderCommand}">
-                            <Button.Resources>
-                                <ResourceDictionary>
-                                    <ResourceDictionary.ThemeDictionaries>
-                                        <ResourceDictionary x:Key="Light">
-                                            
-                                        </ResourceDictionary>
-                                    </ResourceDictionary.ThemeDictionaries>
-                                </ResourceDictionary>
-                            </Button.Resources>
-                        </Button>
+                        <Button Margin="0,30,0,0" Width="160" Height="36" Foreground="{ThemeResource GeneralBlueWhiteButtonForeground}" Background="{ThemeResource GeneralBlueWhiteButtonBackground}" Content="Scan for Duplicates" BorderThickness="0" Command="{Binding StartScanningSelectedFolderCommand}"/>
                     </StackPanel>
+                    
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0">
-                        <TextBlock Text="Scanning..." FontSize="24" FontWeight="SemiLight" Margin="0,0,0,20"/>
-                        <ProgressBar Width="220" Height="16" HorizontalAlignment="Left" Background="#a2a2a2" CornerRadius="10"
+                        <TextBlock Text="Scanning..." FontSize="24" FontWeight="SemiLight" Margin="0,0,0,20" Foreground="{ThemeResource GeneralTxbForeground}"/>
+                        <ProgressBar Width="220" Height="16" HorizontalAlignment="Left" Background="{ThemeResource ProgressBarBackground}" CornerRadius="10"
                                      Minimum="0"
                                      Value="{Binding CountOfCheckedFiles}"
-                                     Maximum="{Binding CountOfFiles}">
-                            <ProgressBar.Foreground>
-                                <LinearGradientBrush StartPoint="1,0" EndPoint="0,0">
-                                    <GradientStop Color="#002e97" Offset="1" />
-                                    <GradientStop Color="#0078d7" Offset="0" />
-                                </LinearGradientBrush>
-                            </ProgressBar.Foreground>
-                        </ProgressBar>
-                        <TextBlock Foreground="#008aff" FontSize="16" Margin="0,16" FontWeight="Light">
+                                     Maximum="{Binding CountOfFiles}"
+                                     Foreground="{ThemeResource ProgressBarForeground}"/>
+                        <TextBlock Foreground="{ThemeResource TxbCountOfFilesCheckedForeground}" FontSize="16" Margin="0,16" FontWeight="Light">
                             <Run Text="{Binding CountOfCheckedFiles}"/>
                             <Run Text=" of "/>
                             <Run Text="{Binding CountOfFiles}"/>
                             <Run Text=" file(s) checked"/>
                         </TextBlock>
-                        <TextBlock FontWeight="SemiLight" Foreground="#797979" FontSize="12" Margin="0,15,0,30">
-                <Run Text="{Binding CurrentCheckingFile}"/>
+
+                        <TextBlock FontWeight="SemiLight" Foreground="{ThemeResource TxbCurrentCheckingFileForeground}" FontSize="12" Margin="0,15,0,30">
+                            <Run Text="{Binding CurrentCheckingFile}"/>
                         </TextBlock>
-                        <Button Content="Stop" FontSize="16" Background="#0078d7" Foreground="White" Width="120" Height="32" HorizontalAlignment="Left" Command="{Binding StopScanCommand}"/>
+                        <Button Content="Stop" FontSize="16" Background="{ThemeResource GeneralBlueWhiteButtonBackground}" Foreground="{ThemeResource GeneralBlueWhiteButtonForeground}" Width="120" Height="32" HorizontalAlignment="Left" Command="{Binding StopScanCommand}"/>
                     </StackPanel>
+                    
                     <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Width="235">
-                        <TextBlock Text="Scan Completed!" FontSize="18" FontWeight="SemiLight" HorizontalAlignment="Left"/>
-                        <Rectangle Height="1" Fill="#919191" Margin="0,10,0,5" Opacity="20"/>
+                        <TextBlock Text="Scan Completed!" FontSize="18" FontWeight="SemiLight" HorizontalAlignment="Left" Foreground="{ThemeResource GeneralTxbForeground}"/>
+                        <Rectangle Height="1" Fill="{ThemeResource RectangleSplitFill}" Margin="0,10,0,5" Opacity="20"/>
                         <uiShadowsToolkit:DockPanel>
-                            <TextBlock Foreground="#008aff" FontSize="24" FontWeight="SemiLight" 
+                            <TextBlock Foreground="{ThemeResource TxbFullSizeOfDuplicatesForeground}" FontSize="24" FontWeight="SemiLight" 
                                uiShadowsToolkit:DockPanel.Dock="Left">
-                        <Run Text="{Binding FullSizeOfDuplicates}"/>
-                        <Run Text="MB"/>
+                                <Run Text="{Binding FullSizeOfDuplicates}"/>
+                                <Run Text="MB"/>
                             </TextBlock>
                             <TextBlock Text="found in folders" Foreground="#797979" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                         </uiShadowsToolkit:DockPanel>
-                        <Rectangle Height="1" Fill="#919191" Margin="0,5,0,5" Opacity="20"/>
+                        <Rectangle Height="1" Fill="{ThemeResource RectangleSplitFill}" Margin="0,5,0,5" Opacity="20"/>
 
                         <uiShadowsToolkit:DockPanel Margin="0,5,0,5">
-                            <Rectangle Fill="#fff59d" Height="23" Width="4" HorizontalAlignment="Left"/>
-                            <TextBlock Text="Images" FontSize="16" FontWeight="SemiLight" Foreground="#202020" Margin="3,6,0,5"/>
-                            <TextBlock FontSize="16" FontWeight="SemiLight" Foreground="#202020" VerticalAlignment="Center" HorizontalAlignment="Right">
-                        <Run Text="{Binding ImagesSize}"/> 
-                        <Run Text=" MB"/>
+                            <Rectangle Fill="{ThemeResource RectangleImageFill}" Height="23" Width="4" HorizontalAlignment="Left"/>
+                            <TextBlock Text="Images" FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" Margin="3,6,0,5"/>
+                            <TextBlock FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                <Run Text="{Binding ImagesSize}"/> 
+                                <Run Text=" MB"/>
                             </TextBlock>
                         </uiShadowsToolkit:DockPanel>
                         <uiShadowsToolkit:DockPanel Margin="0,5,0,5">
-                            <Rectangle Fill="#d0df9c" Height="23" Width="4" HorizontalAlignment="Left"/>
-                            <TextBlock Text="Documents" FontSize="16" FontWeight="SemiLight" Foreground="#202020" Margin="3,6,0,5"/>
-                            <TextBlock FontSize="16" FontWeight="SemiLight" Foreground="#202020" VerticalAlignment="Center" HorizontalAlignment="Right">
-                        <Run Text="{Binding DocumentsSize}"/> 
-                        <Run Text=" MB"/>
+                            <Rectangle Fill="{ThemeResource RectangleDocumentsFill}" Height="23" Width="4" HorizontalAlignment="Left"/>
+                            <TextBlock Text="Documents" FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" Margin="3,6,0,5"/>
+                            <TextBlock FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                <Run Text="{Binding DocumentsSize}"/> 
+                                <Run Text=" MB"/>
                             </TextBlock>
                         </uiShadowsToolkit:DockPanel>
                         <uiShadowsToolkit:DockPanel Margin="0,5,0,5">
-                            <Rectangle Fill="#c293c2" Height="23" Width="4" HorizontalAlignment="Left"/>
-                            <TextBlock Text="Archives" FontSize="16" FontWeight="SemiLight" Foreground="#202020" Margin="3,6,0,5"/>
-                            <TextBlock FontSize="16" FontWeight="SemiLight" Foreground="#202020" VerticalAlignment="Center" HorizontalAlignment="Right">
-                        <Run Text="{Binding DocumentsSize}"/>
-                        <Run Text=" MB"/>
+                            <Rectangle Fill="{ThemeResource RectangleArchivesFill}" Height="23" Width="4" HorizontalAlignment="Left"/>
+                            <TextBlock Text="Archives" FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" Margin="3,6,0,5"/>
+                            <TextBlock FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                <Run Text="{Binding DocumentsSize}"/>
+                                <Run Text=" MB"/>
                             </TextBlock>
                         </uiShadowsToolkit:DockPanel>
                         <uiShadowsToolkit:DockPanel Margin="0,5,0,5">
-                            <Rectangle Fill="#8ed0f4" Height="23" Width="4" HorizontalAlignment="Left"/>
-                            <TextBlock Text="Other" FontSize="16" FontWeight="SemiLight" Foreground="#202020" Margin="3,6,0,5"/>
-                            <TextBlock FontSize="16" FontWeight="SemiLight" Foreground="#202020" VerticalAlignment="Center" HorizontalAlignment="Right">
-                        <Run Text="{Binding OtherSize}"/>
-                        <Run Text=" MB"/>
+                            <Rectangle Fill="{ThemeResource RectangleOtherFill}" Height="23" Width="4" HorizontalAlignment="Left"/>
+                            <TextBlock Text="Other" FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" Margin="3,6,0,5"/>
+                            <TextBlock FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                <Run Text="{Binding OtherSize}"/>
+                                <Run Text=" MB"/>
                             </TextBlock>
                         </uiShadowsToolkit:DockPanel>
 
                         <uiShadowsToolkit:DockPanel Margin="0,25,0,0">
-                            <Button Width="120" Height="32" Background="#0078d7" BorderThickness="0" Content="Review results"
-                            FontSize="16" Foreground="White" FontWeight="SemiLight" />
+                            <Button Width="120" Height="32" Background="{ThemeResource GeneralBlueWhiteButtonBackground}" BorderThickness="0" Content="Review results"
+                            FontSize="16" Foreground="{ThemeResource GeneralBlueWhiteButtonForeground}" FontWeight="SemiLight" />
                             <Button Width="100" Height="32" HorizontalAlignment="Right" 
-                            Background="Transparent" BorderBrush="#0078d7" BorderThickness="1"
-                            Content="New scan" FontSize="16" FontWeight="SemiLight" Command="{Binding startNewScanCommand}"/>
+                            Background="Transparent" BorderBrush="{ThemeResource GeneralBlueWhiteButtonBackground}" BorderThickness="1"
+                            Content="New scan" FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" Command="{Binding startNewScanCommand}"/>
                         </uiShadowsToolkit:DockPanel>
                     </StackPanel>
                 </customcontrols:MultiViewControl.Views>
