@@ -120,7 +120,6 @@ namespace WindowsGemini.ViewModels
                             CurrentCheckingFile = entry.Value[j].Path;
                             if (entry.Value[i].FileType == entry.Value[j].FileType)
                             {
-
                                 if (currentFileContent.SequenceEqual(await entry.Value[j].ReadBytesAsync()))
                                 {
                                     hasduplicatesOfCurrentFile = true;
