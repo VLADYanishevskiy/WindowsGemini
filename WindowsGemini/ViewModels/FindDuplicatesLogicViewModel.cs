@@ -63,6 +63,7 @@ namespace WindowsGemini.ViewModels
             {
                 groupedFiles.Push(item);
                 CountOfFiles++;
+                CurrentCheckingFile = "Founded : " + item.Path;
             }
 
             foreach (var item in await folder.GetFoldersAsync())

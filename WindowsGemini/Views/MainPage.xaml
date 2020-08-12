@@ -145,9 +145,7 @@
                                 <ResourceDictionary>
                                     <ResourceDictionary.ThemeDictionaries>
                                         <ResourceDictionary x:Key="Light">
-                                            <SolidColorBrush x:Key="ButtonForeground" Color="#f8f8f8"/>
-                                            <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="#fefefe"/>
-                                            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#003b6a"/>
+                                            
                                         </ResourceDictionary>
                                     </ResourceDictionary.ThemeDictionaries>
                                 </ResourceDictionary>
