@@ -45,6 +45,7 @@ namespace WindowsGemini.Views
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            Window.Current.SetTitleBar(AppTitleBar);
         }
     }
 }

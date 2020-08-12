@@ -11,15 +11,25 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
 
     <Grid>
-        <StackPanel VerticalAlignment="Top" Orientation="Horizontal" Margin="12,0,0,0">
-            <Button Background="Transparent"  Grid.Column="0" Width="22" Padding="0" FontSize="20" Click="GoBack">
-                <TextBlock VerticalAlignment="Center">←</TextBlock>
-            </Button>
+        <Grid x:Name="AppTitleBar" Background="Transparent" Height="30" VerticalAlignment="Top" Padding="11,0,0,0">
+            <!-- Width of the padding columns is set in LayoutMetricsChanged handler. -->
+            <!-- Using padding columns instead of Margin ensures that the background
+                 paints the area under the caption control buttons (for transparent buttons). -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Background="Transparent" x:Name="BackButtonGrid">
+                <Button Background="Transparent" BorderBrush="Transparent" Grid.Column="0" Width="22" Padding="0" FontSize="20" Click="GoBack">
+                    <TextBlock VerticalAlignment="Center">←</TextBlock>
+                </Button>
+            </Grid>
+            
             <TextBlock Text="WindowsGemini" Grid.Column="1" VerticalAlignment="Center" FontSize="12"/>
-        </StackPanel>
+        </Grid>
         <ScrollViewer>
             <StackPanel Orientation="Vertical" Padding="13,38,0,0">
-                
                 <TextBlock Text="Settings" Foreground="#0078d7" FontSize="18"/>
                 <TextBlock Text="Language" Margin="0,12,0,0" FontSize="18"/>
                 <ComboBox Width="350" Height="32" BorderThickness="1" Margin="0,12,0,0">
