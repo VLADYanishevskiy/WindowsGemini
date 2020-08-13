@@ -29,8 +29,7 @@ namespace WindowsGemini
 {
     public sealed partial class MainPage : Page
     {
-        ThemeListener Listener = new ThemeListener();
-
+        private ThemeListener Listener = new ThemeListener();
         public MainPage()
         {
             this.InitializeComponent();
@@ -69,7 +68,6 @@ namespace WindowsGemini
                     break;
             }
         }
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);

@@ -4,12 +4,23 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WindowsGemini.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:settingspageviewmodel="using:WindowsGemini.ViewModels.SettingsPageViewModel"
     mc:Ignorable="d"
     Width="500"
     Height="500"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
-
+    <Page.DataContext>
+        <settingspageviewmodel:SettingsViewModel/>
+    </Page.DataContext>
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Assets/Styles/RadioButtonAccentColorsStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    
     <Grid>
         <Grid x:Name="TitleBarGrid" VerticalAlignment="Top" Height="30">
             <Grid.ColumnDefinitions>
@@ -36,15 +47,24 @@
                     <RadioButton GroupName="mode" Content="Dark" FontSize="16"/>
                     <RadioButton GroupName="mode" Content="Use system settings" FontSize="16"/>
                     <TextBlock Text="Accent colors" Margin="0,20,0,0" FontSize="18"/>
-                    <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
-                        <Rectangle Width="40" Height="40" Fill="#f7630c" Margin="0,0,1,0"/>
-                        <Rectangle Width="40" Height="40" Fill="#ff4343" Margin="1,0,1,0"/>
-                        <Rectangle Width="40" Height="40" Fill="#ea005e" Margin="1,0,1,0"/>
-                        <Rectangle Width="40" Height="40" Fill="#b146c2" Margin="1,0,1,0"/>
-                        <Rectangle Width="40" Height="40" Fill="#107c10" Margin="1,0,1,0"/>
-                        <Rectangle Width="40" Height="40" Fill="#0078d7" Margin="1,0,0,0"/>
-                    </StackPanel>
+
+
+
+                    <ItemsControl x:Name="tStack" ItemsSource="{Binding AccentColors}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <RadioButton GroupName="AccentColors" HorizontalAlignment="Left" Style="{StaticResource rbtnRectStyle}" Background="{Binding}" BorderThickness="3" BorderBrush="White"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
                 </StackPanel>
+                
             </ScrollViewer>
         </StackPanel>
         
