@@ -11,10 +11,9 @@
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     extensions:TitleBarExtensions.BackgroundColor="Transparent"
     extensions:TitleBarExtensions.ButtonBackgroundColor="Transparent"
-    extensions:TitleBarExtensions.ButtonForegroundColor="Black"
     extensions:TitleBarExtensions.ButtonInactiveBackgroundColor="Transparent"
     extensions:TitleBarExtensions.InactiveBackgroundColor="Transparent"
-    extensions:TitleBarExtensions.ForegroundColor="Black"
+
     xmlns:media="using:Windows.UI.Xaml.Media" 
     xmlns:viewmodels="using:WindowsGemini.ViewModels" xmlns:Custom1="using:WindowsGemini.Models.Behaviors" xmlns:customcontrols="using:WindowsGemini.Views.CustomControls"
     Width="500" Height="500"

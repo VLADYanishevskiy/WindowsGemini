@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
+﻿using Microsoft.Toolkit.Uwp.UI.Helpers;
 using Windows.ApplicationModel.Core;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=234238
@@ -24,11 +16,36 @@ namespace WindowsGemini.Views
     /// </summary>
     public sealed partial class SettingPage : Page
     {
+        ThemeListener Listener = new ThemeListener();
+
         public SettingPage()
         {
             this.InitializeComponent();
             CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
+            this.RequestedTheme = ElementTheme.Dark;
+            Listener.ThemeChanged += Listener_ThemeChanged;
+            CorrectTitleBarTheme(App.Current.RequestedTheme);
+        }
+
+        private void Listener_ThemeChanged(ThemeListener sender)
+        {
+            var theme = sender.CurrentTheme;
+            CorrectTitleBarTheme(theme);
+        }
+        private void CorrectTitleBarTheme(ApplicationTheme theme)
+        {
+            var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+            switch (theme)
+            {
+                case ApplicationTheme.Dark:
+                    titleBar.ForegroundColor = Colors.White;
+                    break;
+                default:
+                case ApplicationTheme.Light:
+                    titleBar.ForegroundColor = Colors.Black;
+                    break;
+            }
         }
 
         private void App_BackRequested(object sender, BackRequestedEventArgs e)
@@ -50,7 +67,6 @@ namespace WindowsGemini.Views
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
             Windows.UI.Core.AppViewBackButtonVisibility.Visible;
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += App_BackRequested;
-
         }
     }
 }

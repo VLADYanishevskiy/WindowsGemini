@@ -124,19 +124,19 @@
     <Compile Include="Models\FileEqualsChecker.cs" />
     <Compile Include="Models\FileTypeChecker.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\CommandNewScanViewModel.cs" />
-    <Compile Include="ViewModels\CommandStopScanVM.cs" />
-    <Compile Include="ViewModels\DragAndDropFileCommands.cs" />
-    <Compile Include="ViewModels\FilePickerViewModel.cs" />
-    <Compile Include="ViewModels\ResultsOfScanViewModel.cs" />
-    <Compile Include="ViewModels\StackPanelVisibilityViewModel.cs" />
-    <Compile Include="ViewModels\StartScanningSelectedFolderViewModel.cs" />
-    <Compile Include="ViewModels\FindDuplicatesLogicViewModel.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\SelectedFolderToScanViewModel.cs" />
-    <Compile Include="ViewModels\StatesOfScanningVM.cs" />
-    <Compile Include="ViewModels\TextBlockViewModel.cs" />
-    <Compile Include="ViewModels\VisibilityGridOrSymbolPlusToAddFolderViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel\CommandNewScanViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel\CommandStopScanVM.cs" />
+    <Compile Include="ViewModels\MainViewModel\DragAndDropFileCommands.cs" />
+    <Compile Include="ViewModels\MainViewModel\FilePickerViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel\ResultsOfScanViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel\StackPanelVisibilityViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel\StartScanningSelectedFolderViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel\FindDuplicatesLogicViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel\SelectedFolderToScanViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel\StatesOfScanningVM.cs" />
+    <Compile Include="ViewModels\MainViewModel\TextBlockViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel\VisibilityGridOrSymbolPlusToAddFolderViewModel.cs" />
     <Compile Include="Views\CustomControls\MultiViewControl.xaml.cs">
       <DependentUpon>MultiViewControl.xaml</DependentUpon>
     </Compile>
@@ -215,7 +215,9 @@
       <Version>7.2.0.1422</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Settings\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Fonts\9404.ttf" />
   </ItemGroup>

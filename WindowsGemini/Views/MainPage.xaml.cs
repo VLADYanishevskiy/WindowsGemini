@@ -1,5 +1,6 @@
 ﻿using Microsoft.Toolkit.Collections;
 using Microsoft.Toolkit.Uwp.Helpers;
+using Microsoft.Toolkit.Uwp.UI.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,6 +13,7 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -27,6 +29,8 @@ namespace WindowsGemini
 {
     public sealed partial class MainPage : Page
     {
+        ThemeListener Listener = new ThemeListener();
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -44,7 +48,26 @@ namespace WindowsGemini
             BindingOperations.SetBinding(mltView, MultiViewControl.selectedItemShowProperty, myBinding);
             mltView.SelectedItemShow = 0;
             mltView.selectedItemChanged();
-            
+            Listener.ThemeChanged += Listener_ThemeChanged;
+        }
+        private void Listener_ThemeChanged(ThemeListener sender)
+        {
+            var theme = sender.CurrentTheme;
+            CorrectTitleBarTheme(theme);
+        }
+        private void CorrectTitleBarTheme(ApplicationTheme theme)
+        {
+            var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+            switch (theme)
+            {
+                case ApplicationTheme.Dark:
+                    titleBar.ForegroundColor = Colors.White;
+                    break;
+                default:
+                case ApplicationTheme.Light:
+                    titleBar.ForegroundColor = Colors.Black;
+                    break;
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -57,7 +80,6 @@ namespace WindowsGemini
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
             Windows.UI.Core.AppViewBackButtonVisibility.Disabled;
         }
-
         private void OpenSettings_Click(object sender, RoutedEventArgs e)
         {
             mltView.Views.Clear();
