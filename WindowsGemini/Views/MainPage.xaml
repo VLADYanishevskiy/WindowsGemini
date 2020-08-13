@@ -188,7 +188,7 @@
                             <Rectangle Fill="{ThemeResource RectangleArchivesFill}" Height="23" Width="4" HorizontalAlignment="Left"/>
                             <TextBlock Text="Archives" FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" Margin="3,6,0,5"/>
                             <TextBlock FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" VerticalAlignment="Center" HorizontalAlignment="Right">
-                                <Run Text="{Binding DocumentsSize}"/>
+                                <Run Text="{Binding ArchivesSize}"/>
                                 <Run Text=" MB"/>
                             </TextBlock>
                         </uiShadowsToolkit:DockPanel>

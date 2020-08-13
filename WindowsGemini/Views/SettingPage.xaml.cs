@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -28,14 +29,9 @@ namespace WindowsGemini.Views
             this.InitializeComponent();
             CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
-           
-        }
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
         }
 
-        private void GoBack(object sender, RoutedEventArgs e)
+        private void App_BackRequested(object sender, BackRequestedEventArgs e)
         {
             if (this.Frame.CanGoBack)
             {
@@ -43,9 +39,18 @@ namespace WindowsGemini.Views
             }
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+        }
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            //Window.Current.SetTitleBar(AppTitleBar);
+            Window.Current.SetTitleBar(TitleBarGrid);
+            Windows.UI.Core.SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+            Windows.UI.Core.AppViewBackButtonVisibility.Visible;
+            Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += App_BackRequested;
+
         }
     }
 }

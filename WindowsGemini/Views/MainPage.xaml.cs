@@ -17,6 +17,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Navigation;
 using WindowsGemini.Models;
 using WindowsGemini.ViewModels;
 using WindowsGemini.Views;
@@ -43,6 +44,18 @@ namespace WindowsGemini
             BindingOperations.SetBinding(mltView, MultiViewControl.selectedItemShowProperty, myBinding);
             mltView.SelectedItemShow = 0;
             mltView.selectedItemChanged();
+            
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            HideBackButtonOnCurrentpage();
+        }
+        private static void HideBackButtonOnCurrentpage()
+        {
+            Windows.UI.Core.SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+            Windows.UI.Core.AppViewBackButtonVisibility.Disabled;
         }
 
         private void OpenSettings_Click(object sender, RoutedEventArgs e)

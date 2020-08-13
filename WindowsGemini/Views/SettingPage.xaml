@@ -11,17 +11,15 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
 
     <Grid>
+        <Grid x:Name="TitleBarGrid" VerticalAlignment="Top" Height="30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="WindowsGemini" Grid.Column="1" VerticalAlignment="Center" FontSize="12"/>
+        </Grid>
         <StackPanel Padding="11,20,0,0">
-            <StackPanel Orientation="Horizontal">
-                <Grid Background="Transparent" x:Name="BackButtonGrid">
-                    <Button Background="Transparent" BorderBrush="Transparent" Grid.Column="0" Width="22" Padding="0" FontSize="20" Click="GoBack">
-                        <TextBlock VerticalAlignment="Center">←</TextBlock>
-                    </Button>
-                </Grid>
-
-                <TextBlock Text="WindowsGemini" Grid.Column="1" VerticalAlignment="Center" FontSize="12"/>
-            </StackPanel>
-
             <ScrollViewer>
                 <StackPanel Orientation="Vertical" Padding="13,18,0,0">
                     <TextBlock Text="Settings" Foreground="#0078d7" FontSize="18"/>
