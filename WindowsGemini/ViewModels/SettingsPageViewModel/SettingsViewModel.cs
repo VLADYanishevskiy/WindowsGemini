@@ -1,4 +1,5 @@
 ﻿using Microsoft.Toolkit.Uwp.Helpers;
+using Prism.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,18 +12,12 @@ using WindowsGemini.Models.Settings;
 
 namespace WindowsGemini.ViewModels.SettingsPageViewModel
 {
-    class SettingsViewModel : BaseViewModel
+    partial class SettingsViewModel : BaseViewModel
     {
-        DeletionMode mode = DeletionMode.SendToTecycleBin;
-
-        private ObservableCollection<string> _accentColors = new ObservableCollection<string>() {
-            "#f7630c" , "#ff4343",
-            "#ea005e" , "#b146c2",
-            "#107c10" , "#0078d7", };
-        public ObservableCollection<string> AccentColors
+        public SettingsViewModel()
         {
-            get { return _accentColors; }
-            set { _accentColors = value; }
+            SetColorCommand =  new DelegateCommand<object>(SetColor);
         }
+        
     }
 }

@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:settingspageviewmodel="using:WindowsGemini.ViewModels.SettingsPageViewModel"
+    xmlns:Converters="using:WindowsGemini.Models.ValueConverters"
     mc:Ignorable="d"
     Width="500"
     Height="500"
@@ -51,6 +52,9 @@
 
 
                     <ItemsControl x:Name="tStack" ItemsSource="{Binding AccentColors}">
+                        <ItemsControl.Resources>
+                            <Converters:RadioButtonCheckedConverter x:Key="RadioButtonCheckedConverter"/>
+                        </ItemsControl.Resources>
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Horizontal"/>
@@ -58,7 +62,13 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <RadioButton GroupName="AccentColors" HorizontalAlignment="Left" Style="{StaticResource rbtnRectStyle}" Background="{Binding}" BorderThickness="3" BorderBrush="White"/>
+                                <RadioButton GroupName="AccentColors" 
+                                             HorizontalAlignment="Left"
+                                             Style="{StaticResource rbtnRectStyle}" 
+                                             Background="{Binding}"
+                                             BorderThickness="3" BorderBrush="White"
+                                             
+                                             Command="{Binding command}"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>

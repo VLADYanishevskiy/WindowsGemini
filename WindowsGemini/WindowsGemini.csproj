@@ -127,6 +127,7 @@
     <Compile Include="Models\Settings\DeleteDuplicatesSettings.cs" />
     <Compile Include="Models\Settings\DeletionMode.cs" />
     <Compile Include="Models\Settings\ThemeSettings.cs" />
+    <Compile Include="Models\ValueConverters\RadioButtonCheckedConverter.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel\CommandNewScanViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel\CommandStopScanVM.cs" />
@@ -141,7 +142,10 @@
     <Compile Include="ViewModels\MainViewModel\StatesOfScanningVM.cs" />
     <Compile Include="ViewModels\MainViewModel\TextBlockViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel\VisibilityGridOrSymbolPlusToAddFolderViewModel.cs" />
+    <Compile Include="ViewModels\SettingsPageViewModel\ColorsProperties.cs" />
+    <Compile Include="ViewModels\SettingsPageViewModel\DeletionMode.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\SettingsPageViewModel\ThemeMode.cs" />
     <Compile Include="Views\CustomControls\MultiViewControl.xaml.cs">
       <DependentUpon>MultiViewControl.xaml</DependentUpon>
     </Compile>
