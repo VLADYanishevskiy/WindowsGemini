@@ -97,6 +97,7 @@ namespace WindowsGemini
             //TODO: Сохранить состояние приложения и остановить все фоновые операции
             deferral.Complete();
         }
+
         
     }
 }

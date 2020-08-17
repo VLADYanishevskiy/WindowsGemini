@@ -24,20 +24,23 @@ namespace WindowsGemini.ViewModels.SettingsPageViewModel
                 _applicationTheme = value;
                 CompositeSettings.localSettings.Values["ApplicationTheme"] = _applicationTheme.ToString();
 
-                switch (_applicationTheme)
+                if (Window.Current.Content is FrameworkElement frameworkElement)
                 {
-                    case ApplTheme.Light:
-                        Application.Current.RequestedTheme = Windows.UI.Xaml.ApplicationTheme.Light;
-                        break;
-                    case ApplTheme.Dark:
-                        Application.Current.RequestedTheme = Windows.UI.Xaml.ApplicationTheme.Dark;
-                        break;
-                    case ApplTheme.UseDefault:
-                        //Application.Current.RequestedTheme = Windows.UI.Xaml.ApplicationTheme;
-                        break;
-                    default:
-                        break;
-                }
+                    switch (_applicationTheme)
+                    {
+                        case ApplTheme.Light:
+                            frameworkElement.RequestedTheme = ElementTheme.Light;
+                            break;
+                        case ApplTheme.Dark:
+                            frameworkElement.RequestedTheme = ElementTheme.Dark;
+                            break;
+                        case ApplTheme.UseDefault:
+                            frameworkElement.RequestedTheme = ElementTheme.Default;
+                            break;
+                        default:
+                            break;
+                    }
+            }
 
             }
         }

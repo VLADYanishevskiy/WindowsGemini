@@ -10,26 +10,30 @@
     mc:Ignorable="d"
     Width="500"
     Height="500"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
+    Loaded="Page_Loaded">
     <Page.DataContext>
         <settingspageviewmodel:SettingsViewModel/>
     </Page.DataContext>
     <Page.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary Source="/Assets/ThemeColors/ThemeDictionaryLight.xaml" x:Key="Light"/>
+                <ResourceDictionary Source="/Assets/ThemeColors/ThemeDictionaryDark.xaml" x:Key="Dark"/>
+            </ResourceDictionary.ThemeDictionaries>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Assets/Styles/RadioButtonAccentColorsStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    
-    <Grid>
+
+    <Grid Background="{ThemeResource HostBackdropBrush}">
         <Grid x:Name="TitleBarGrid" VerticalAlignment="Top" Height="30">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="WindowsGemini" Grid.Column="1" VerticalAlignment="Center" FontSize="12"/>
+            <TextBlock Text="WindowsGemini" Grid.Column="1" Foreground="{ThemeResource GeneralTxbForeground}" VerticalAlignment="Center" FontSize="12"/>
         </Grid>
         <StackPanel Padding="11,20,0,0">
             <StackPanel.Resources>
@@ -37,24 +41,24 @@
             </StackPanel.Resources>
             <ScrollViewer>
                 <StackPanel Orientation="Vertical" Padding="13,18,0,0">
-                    <TextBlock Text="Settings" Foreground="#0078d7" FontSize="18"/>
-                    <TextBlock Text="Language" Margin="0,12,0,0" FontSize="18"/>
-                    <ComboBox Width="350" Height="32" BorderThickness="1" Margin="0,12,0,0">
+                    <TextBlock Text="Settings" Foreground="{ThemeResource GeneralBlueWhiteButtonBackground}" FontSize="18"/>
+                    <TextBlock Text="Language" Margin="0,12,0,0" FontSize="18" Foreground="{ThemeResource GeneralTxbForeground}"/>
+                    <ComboBox Width="350" Height="32" BorderThickness="1" Margin="0,12,0,0" Foreground="{ThemeResource GeneralTxbForeground}">
                         <ComboBoxItem Content="English" FontSize="16"/>
                         <ComboBoxItem Content="Rus"/>
                     </ComboBox>
-                    <TextBlock Text="Duplicate files deletion mode" Margin="0,20,0,0" FontSize="18"/>
+                    <TextBlock Text="Duplicate files deletion mode" Margin="0,20,0,0" FontSize="18" Foreground="{ThemeResource GeneralTxbForeground}"/>
                     <!--<RadioButton GroupName="deleteMode" IsChecked="{Binding Path=ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=SendToTecycleBin , Mode=TwoWay}" FontSize="16">Send to Recycle Bin</RadioButton>
                     <RadioButton GroupName="deleteMode" IsChecked="{Binding Path=ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=PermanentDeletion , Mode=TwoWay}" FontSize="16">Permanent deletion</RadioButton>-->
 
 
-                    <TextBlock Text="Mode" Margin="0,20,0,0" FontSize="18"/>
+                    <TextBlock Text="Mode" Margin="0,20,0,0" FontSize="18" Foreground="{ThemeResource GeneralTxbForeground}"/>
 
-                    <RadioButton GroupName="mode" IsChecked="{Binding Path=ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Light , Mode=TwoWay}" FontSize="16">Light</RadioButton>
-                    <RadioButton GroupName="mode" IsChecked="{Binding Path=ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Dark , Mode=TwoWay}" FontSize="16">Dark</RadioButton>
-                    <RadioButton GroupName="mode" IsChecked="{Binding Path=ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=UseDefault , Mode=TwoWay}" FontSize="16">Use system settings</RadioButton>
+                    <RadioButton GroupName="mode" IsChecked="{Binding Path=ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Light , Mode=TwoWay}" FontSize="16" Foreground="{ThemeResource GeneralTxbForeground}">Light</RadioButton>
+                    <RadioButton GroupName="mode" IsChecked="{Binding Path=ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Dark , Mode=TwoWay}" FontSize="16" Foreground="{ThemeResource GeneralTxbForeground}">Dark</RadioButton>
+                    <RadioButton GroupName="mode" IsChecked="{Binding Path=ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=UseDefault , Mode=TwoWay}" FontSize="16" Foreground="{ThemeResource GeneralTxbForeground}">Use system settings</RadioButton>
 
-                    <TextBlock Text="Accent colors" Margin="0,20,0,0" FontSize="18"/>
+                    <TextBlock Text="Accent colors" Margin="0,20,0,0" FontSize="18" Foreground="{ThemeResource GeneralTxbForeground}"/>
 
 
                     <GridView ItemsSource="{Binding AccentColors}" SelectionMode="Single">
