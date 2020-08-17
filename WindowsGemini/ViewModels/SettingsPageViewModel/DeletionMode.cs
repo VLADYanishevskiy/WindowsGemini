@@ -6,4 +6,9 @@ namespace WindowsGemini.ViewModels.SettingsPageViewModel
     {
         DeletionMode mode = DeletionMode.SendToTecycleBin;
     }
+    enum DeletionMode
+    {
+        SendToTecycleBin,
+        PermanentDeletion
+    }
 }

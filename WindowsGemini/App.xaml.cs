@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WindowsGemini.Models.Settings;
 
 namespace WindowsGemini
 {
@@ -96,5 +97,6 @@ namespace WindowsGemini
             //TODO: Сохранить состояние приложения и остановить все фоновые операции
             deferral.Complete();
         }
+        
     }
 }

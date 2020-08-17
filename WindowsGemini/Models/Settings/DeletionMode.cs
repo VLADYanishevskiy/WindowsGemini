@@ -6,9 +6,5 @@ using System.Threading.Tasks;
 
 namespace WindowsGemini.Models.Settings
 {
-    enum DeletionMode
-    {
-        SendToTecycleBin,
-        PermanentDeletion
-    }
+    
 }

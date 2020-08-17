@@ -32,6 +32,9 @@
             <TextBlock Text="WindowsGemini" Grid.Column="1" VerticalAlignment="Center" FontSize="12"/>
         </Grid>
         <StackPanel Padding="11,20,0,0">
+            <StackPanel.Resources>
+                <Converters:EnumBooleanConverter x:Key="enumBooleanConverter" />
+            </StackPanel.Resources>
             <ScrollViewer>
                 <StackPanel Orientation="Vertical" Padding="13,18,0,0">
                     <TextBlock Text="Settings" Foreground="#0078d7" FontSize="18"/>
@@ -41,24 +44,30 @@
                         <ComboBoxItem Content="Rus"/>
                     </ComboBox>
                     <TextBlock Text="Duplicate files deletion mode" Margin="0,20,0,0" FontSize="18"/>
-                    <RadioButton GroupName="deleteMode" Content="Send to Recycle Bin" IsChecked="True" FontSize="16"/>
-                    <RadioButton GroupName="deleteMode" Content="Permanent deletion" FontSize="16"/>
+                    <!--<RadioButton GroupName="deleteMode" IsChecked="{Binding Path=ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=SendToTecycleBin , Mode=TwoWay}" FontSize="16">Send to Recycle Bin</RadioButton>
+                    <RadioButton GroupName="deleteMode" IsChecked="{Binding Path=ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=PermanentDeletion , Mode=TwoWay}" FontSize="16">Permanent deletion</RadioButton>-->
+
+
                     <TextBlock Text="Mode" Margin="0,20,0,0" FontSize="18"/>
-                    <RadioButton GroupName="mode" Content="Light" IsChecked="True" FontSize="16"/>
-                    <RadioButton GroupName="mode" Content="Dark" FontSize="16"/>
-                    <RadioButton GroupName="mode" Content="Use system settings" FontSize="16"/>
+
+                    <RadioButton GroupName="mode" IsChecked="{Binding Path=ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Light , Mode=TwoWay}" FontSize="16">Light</RadioButton>
+                    <RadioButton GroupName="mode" IsChecked="{Binding Path=ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Dark , Mode=TwoWay}" FontSize="16">Dark</RadioButton>
+                    <RadioButton GroupName="mode" IsChecked="{Binding Path=ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=UseDefault , Mode=TwoWay}" FontSize="16">Use system settings</RadioButton>
+
                     <TextBlock Text="Accent colors" Margin="0,20,0,0" FontSize="18"/>
 
-                    
-                    <GridView ItemsSource="{Binding AccentColors}" >
+
+                    <GridView ItemsSource="{Binding AccentColors}" SelectionMode="Single">
                         <GridView.ItemTemplate>
                             <DataTemplate>
-                                <RadioButton GroupName="AccentColors" 
+                                <StackPanel>
+                                    <RadioButton GroupName="AccentColors" 
                                              HorizontalAlignment="Left"
                                              Style="{StaticResource rbtnRectStyle}" 
                                              Background="{Binding}"
                                              BorderThickness="3" BorderBrush="White"
                                              />
+                                </StackPanel>
                             </DataTemplate>
                         </GridView.ItemTemplate>
                         <GridView.ItemsPanel>

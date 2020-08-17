@@ -124,9 +124,10 @@
     <Compile Include="Models\FileEqualsChecker.cs" />
     <Compile Include="Models\FileTypeChecker.cs" />
     <Compile Include="Models\Settings\AccentColorSettings.cs" />
+    <Compile Include="Models\Settings\CompositeSettings.cs" />
     <Compile Include="Models\Settings\DeleteDuplicatesSettings.cs" />
     <Compile Include="Models\Settings\DeletionMode.cs" />
-    <Compile Include="Models\Settings\ThemeSettings.cs" />
+    <Compile Include="Models\ValueConverters\EnumBooleanConverter.cs" />
     <Compile Include="Models\ValueConverters\RadioButtonCheckedConverter.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel\CommandNewScanViewModel.cs" />

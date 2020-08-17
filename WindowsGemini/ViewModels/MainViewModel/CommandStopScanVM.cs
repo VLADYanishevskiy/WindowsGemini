@@ -15,7 +15,7 @@ namespace WindowsGemini.ViewModels
         {
             get
             {
-                return new CommandHandler(() => StopScanActionAsync());
+                return new CommandHandler(async () => await StopScanActionAsync());
             }
         }
         private async Task StopScanActionAsync()

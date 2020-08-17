@@ -2,6 +2,7 @@
 using Windows.ApplicationModel.Core;
 using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -47,7 +48,6 @@ namespace WindowsGemini.Views
                     break;
             }
         }
-
         private void App_BackRequested(object sender, BackRequestedEventArgs e)
         {
             if (this.Frame.CanGoBack)
@@ -55,12 +55,10 @@ namespace WindowsGemini.Views
                 this.Frame.GoBack();
             }
         }
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
         }
-
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             Window.Current.SetTitleBar(TitleBarGrid);
@@ -68,5 +66,6 @@ namespace WindowsGemini.Views
             Windows.UI.Core.AppViewBackButtonVisibility.Visible;
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += App_BackRequested;
         }
+
     }
 }

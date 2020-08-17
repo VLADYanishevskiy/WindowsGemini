@@ -17,7 +17,18 @@ namespace WindowsGemini.ViewModels.SettingsPageViewModel
         public SettingsViewModel()
         {
             SetColorCommand =  new DelegateCommand<object>(SetColor);
+            if ((CompositeSettings.localSettings.Values["ApplicationTheme"] as string) != null)
+            {
+                object obj = CompositeSettings.localSettings.Values["ApplicationTheme"];
+                _applicationTheme = (ApplTheme)Enum.Parse(typeof(ApplTheme), obj.ToString());
+            }
+            else
+            {
+                _applicationTheme = ApplTheme.UseDefault;
+
+            }
+
         }
-        
+
     }
 }

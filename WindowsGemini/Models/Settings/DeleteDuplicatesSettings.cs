@@ -8,6 +8,6 @@ namespace WindowsGemini.Models.Settings
 {
     class DeleteDuplicatesSettings
     {
-        public static DeletionMode deletionMode;
+        //public static DeletionMode deletionMode;
     }
 }
