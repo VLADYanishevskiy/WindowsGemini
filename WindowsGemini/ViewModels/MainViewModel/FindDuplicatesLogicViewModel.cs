@@ -20,6 +20,7 @@ namespace WindowsGemini.ViewModels
     {
 
         private bool StopScan = false;
+        private bool StopFindScan = false;
 
         private int _countOfFiles = 0;
         public int CountOfFiles
@@ -59,8 +60,20 @@ namespace WindowsGemini.ViewModels
 
         private async Task ScanFolder(StorageFolder folder)
         {
+            //if (StopFindScan == true) return;
+
+            //if (StopScan == true && StopFindScan == false)
+            //{
+            //    bool askToStopResult = await AskToStop();
+            //    if (askToStopResult == true)
+            //    {
+            //        StopFindScan = true;
+            //    }
+            //}
+
             foreach (var item in await folder.GetFilesAsync())
             {
+                if (StopFindScan == true) return;
                 groupedFiles.Push(item);
                 CountOfFiles++;
                 CurrentCheckingFile = "Founded : " + item.Path;
@@ -76,6 +89,7 @@ namespace WindowsGemini.ViewModels
 
         private async Task FindDublicates()
         {
+            if (StopFindScan == true) return;
             Dictionary<ulong, List<StorageFile>> sortedFiles = new Dictionary<ulong, List<StorageFile>>();
 
             while (groupedFiles.Count > 0)
@@ -105,15 +119,28 @@ namespace WindowsGemini.ViewModels
 
             foreach (var entry in sortedFiles)
             {
-                for (int i = 0; i < entry.Value.Count && StopScan == false; i++)
+                for (int i = 0; i < entry.Value.Count && StopScan == false ; i++)
                 {
                     if (entry.Value[i] == null) continue;
                     bool hasduplicatesOfCurrentFile = false;
 
                     byte[] currentFileContent = await entry.Value[i].ReadBytesAsync();
 
-                    for (int j = i + 1; j < entry.Value.Count && StopScan == false; j++)
+                    for (int j = i + 1; j < entry.Value.Count ; j++)
                     {
+                        if (StopScan == true)
+                        {
+                            bool askToStopResult = await AskToStop();
+                            if (askToStopResult == true)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                StopScan = false;
+                            }
+                        }
+
                         if (entry.Value[j] != null)
                         {
                             CountOfCheckedFiles++;
@@ -166,6 +193,39 @@ namespace WindowsGemini.ViewModels
             }
         }
         
+
+        private async Task<bool> AskToStop()
+        {
+            var content = "Are you sure you want to stop scanning?";
+
+            var yesCommand = new UICommand("Yes", cmd => { });
+            var noCommand = new UICommand("No", cmd => { });
+
+
+            var dialog = new MessageDialog(content);
+            dialog.Options = MessageDialogOptions.None;
+            dialog.Commands.Add(yesCommand);
+
+            dialog.DefaultCommandIndex = 0;
+            dialog.CancelCommandIndex = 0;
+
+            if (noCommand != null)
+            {
+                dialog.Commands.Add(noCommand);
+                dialog.CancelCommandIndex = (uint)dialog.Commands.Count - 1;
+            }
+
+            var command = await dialog.ShowAsync();
+
+            if (command == yesCommand)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 
 }

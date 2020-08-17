@@ -49,9 +49,26 @@
                     <RadioButton GroupName="mode" Content="Use system settings" FontSize="16"/>
                     <TextBlock Text="Accent colors" Margin="0,20,0,0" FontSize="18"/>
 
+                    
+                    <ListView ItemsSource="{Binding AccentColors}">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <RadioButton GroupName="AccentColors" 
+                                             HorizontalAlignment="Left"
+                                             Style="{StaticResource rbtnRectStyle}" 
+                                             Background="{Binding}"
+                                             BorderThickness="3" BorderBrush="White"
+                                                />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
 
-
-                    <ItemsControl x:Name="tStack" ItemsSource="{Binding AccentColors}">
+                    <!--<ItemsControl x:Name="tStack" ItemsSource="{Binding AccentColors}">
                         <ItemsControl.Resources>
                             <Converters:RadioButtonCheckedConverter x:Key="RadioButtonCheckedConverter"/>
                         </ItemsControl.Resources>
@@ -71,7 +88,7 @@
                                              Command="{Binding command}"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                    </ItemsControl>-->
 
                 </StackPanel>
                 

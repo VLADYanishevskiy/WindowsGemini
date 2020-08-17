@@ -13,7 +13,7 @@
     extensions:TitleBarExtensions.ButtonBackgroundColor="Transparent"
     extensions:TitleBarExtensions.ButtonInactiveBackgroundColor="Transparent"
     extensions:TitleBarExtensions.InactiveBackgroundColor="Transparent"
-
+    xmlns:mediaToolKit="using:Microsoft.Toolkit.Uwp.UI.Media"
     xmlns:media="using:Windows.UI.Xaml.Media" 
     xmlns:viewmodels="using:WindowsGemini.ViewModels" xmlns:Custom1="using:WindowsGemini.Models.Behaviors" xmlns:customcontrols="using:WindowsGemini.Views.CustomControls"
     Width="500" Height="500"
@@ -30,10 +30,9 @@
         </ResourceDictionary>
 
     </Page.Resources>
-
-    <StackPanel Orientation="Horizontal" Padding="0" Background="{ThemeResource HostBackdropBrush}" HorizontalAlignment="Left" Width="500">
-
-        <Grid x:Name="leftFileGrid" AllowDrop="True"  Width="240" Height="500" BorderThickness="0" BorderBrush="Transparent" Background="{ThemeResource GridWithFoldersBackground}">
+    <Canvas >
+        <StackPanel x:Name="mainStackPanel" Orientation="Horizontal" Padding="0" Background="{ThemeResource HostBackdropBrush}" HorizontalAlignment="Left" Width="500">
+            <Grid x:Name="leftFileGrid" AllowDrop="True"  Width="240" Height="500" BorderThickness="0" BorderBrush="Transparent" Background="{ThemeResource GridWithFoldersBackground}">
             <i:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="DragOver" >
                     <core:InvokeCommandAction Command="{Binding DragOverCommand}"></core:InvokeCommandAction>
@@ -95,23 +94,13 @@
                         Width="240" Height="44"
                         Command="{Binding Path=OpenFilePickerCommand}">
                     <SymbolIcon Symbol="Add"/>
-                    <!--<Button.Resources>
-                        <ResourceDictionary>
-                            <ResourceDictionary.ThemeDictionaries>
-                                <ResourceDictionary x:Key="Light">
-                                    <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="{StaticResource BtnBottomAddFolderForegroundMouseOver}"/>
-                                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="{StaticResource BtnBottoomAddFolderBackgroundMouseOver}"/>
-                                </ResourceDictionary>
-                            </ResourceDictionary.ThemeDictionaries>
-                        </ResourceDictionary>
-                    </Button.Resources>-->
                 </Button>
             </Grid>
             
         </Grid>
 
-        <!--Right GRID-->
-        <Grid Width="260">
+            <!--Right GRID-->
+            <Grid Width="260">
             <Button Background="Transparent" Foreground="{ThemeResource BtnSettingsForeground}"
                     VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,44,11,0" Click="OpenSettings_Click">
                 <SymbolIcon Symbol="Setting"/>
@@ -211,7 +200,11 @@
                 </customcontrols:MultiViewControl.Views>
             </customcontrols:MultiViewControl>
         </Grid>
-        
 
     </StackPanel>
+
+        <!--<Rectangle Width="500" Height="500" RelativePanel.Above="mainStackPanel" Fill="{ThemeResource HostBackdropBrush}">
+
+        </Rectangle>-->
+    </Canvas>
 </Page>
