@@ -10,15 +10,16 @@
     mc:Ignorable="d"
     Width="500"
     Height="500"
-    Loaded="Page_Loaded">
+    Loaded="Page_Loaded"
+    Background="{ThemeResource HostBackdropBrush}">
     <Page.DataContext>
         <settingspageviewmodel:SettingsViewModel/>
     </Page.DataContext>
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
-                <ResourceDictionary Source="/Assets/ThemeColors/ThemeDictionaryLight.xaml" x:Key="Light"/>
                 <ResourceDictionary Source="/Assets/ThemeColors/ThemeDictionaryDark.xaml" x:Key="Dark"/>
+                <ResourceDictionary Source="/Assets/ThemeColors/ThemeDictionaryLight.xaml" x:Key="Light"/>
             </ResourceDictionary.ThemeDictionaries>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Assets/Styles/RadioButtonAccentColorsStyle.xaml"/>
@@ -26,7 +27,7 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource HostBackdropBrush}">
+    <Grid >
         <Grid x:Name="TitleBarGrid" VerticalAlignment="Top" Height="30">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>

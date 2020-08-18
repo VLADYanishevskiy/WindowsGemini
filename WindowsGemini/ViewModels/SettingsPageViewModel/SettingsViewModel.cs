@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
+using Windows.UI.Popups;
 using Windows.UI.Xaml.Media;
 using WindowsGemini.Models.Settings;
 
@@ -27,8 +28,8 @@ namespace WindowsGemini.ViewModels.SettingsPageViewModel
                 _applicationTheme = ApplTheme.UseDefault;
 
             }
-
         }
+        
 
     }
 }

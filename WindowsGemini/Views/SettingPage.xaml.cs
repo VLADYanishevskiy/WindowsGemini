@@ -1,4 +1,5 @@
-﻿using Microsoft.Toolkit.Uwp.UI.Helpers;
+﻿using Microsoft.Toolkit.Extensions;
+using Microsoft.Toolkit.Uwp.UI.Helpers;
 using Windows.ApplicationModel.Core;
 using Windows.UI;
 using Windows.UI.Core;
@@ -24,7 +25,6 @@ namespace WindowsGemini.Views
             this.InitializeComponent();
             CoreApplicationViewTitleBar coreTitleBar = CoreApplication.GetCurrentView().TitleBar;
             coreTitleBar.ExtendViewIntoTitleBar = true;
-            this.RequestedTheme = ElementTheme.Dark;
             Listener.ThemeChanged += Listener_ThemeChanged;
             CorrectTitleBarTheme(App.Current.RequestedTheme);
         }
