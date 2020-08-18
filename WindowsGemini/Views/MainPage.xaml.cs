@@ -54,7 +54,7 @@ namespace WindowsGemini
             var theme = sender.CurrentTheme;
             CorrectTitleBarTheme(theme);
         }
-        private void CorrectTitleBarTheme(ApplicationTheme theme)
+        private static void CorrectTitleBarTheme(ApplicationTheme theme)
         {
             var titleBar = ApplicationView.GetForCurrentView().TitleBar;
             switch (theme)

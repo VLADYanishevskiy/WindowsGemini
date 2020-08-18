@@ -53,9 +53,12 @@ namespace WindowsGemini
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                if (e != null)
                 {
-                    //TODO: Загрузить состояние из ранее приостановленного приложения
+                    if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                    {
+                        //TODO: Загрузить состояние из ранее приостановленного приложения
+                    }
                 }
 
                 // Размещение фрейма в текущем окне

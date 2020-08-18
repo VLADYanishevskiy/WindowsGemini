@@ -9,7 +9,7 @@ namespace WindowsGemini.Models.Settings
 {
     public static class CompositeSettings
     {
-        public static ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+        public readonly static ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
         
     }
 }

@@ -11,8 +11,10 @@ namespace WindowsGemini.Models
 {
     public class FileEqualsChecker
     {
-        public async Task<bool> IsSameFile(StorageFile fname1 , StorageFile fname2)
+        public static async Task<bool> IsSameFile(StorageFile fname1 , StorageFile fname2)
         {
+            if (fname1 == null || fname2 == null) return false;
+
             if (string.CompareOrdinal(fname1.Name, fname2.Name) == 0) return true;
 
             bool isSameSize = await IsSameSize(fname1, fname2);
@@ -20,7 +22,7 @@ namespace WindowsGemini.Models
 
             return await IsSameContent(fname1, fname2);
         }
-        private async Task<bool> IsSameSize(StorageFile file1 , StorageFile file2)
+        private static async Task<bool> IsSameSize(StorageFile file1 , StorageFile file2)
         {
             Windows.Storage.FileProperties.BasicProperties file1Prop = await file1.GetBasicPropertiesAsync();
             Windows.Storage.FileProperties.BasicProperties file2Prop = await file2.GetBasicPropertiesAsync();

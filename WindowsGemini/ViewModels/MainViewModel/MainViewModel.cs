@@ -46,15 +46,15 @@ namespace WindowsGemini.ViewModels
 
         private void IncludeFolders_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            NotifyPropertyChanged("FoldersToScan");
-            NotifyPropertyChanged("txbMainPageHello");
-            NotifyPropertyChanged("txbMainPageWelcomeTo");
-            NotifyPropertyChanged("txbMainPageSomeNameApp");
-            NotifyPropertyChanged("txbMainPageHintPlusOrPressButoonTop");
-            NotifyPropertyChanged("txbMainPageHintPlusOrPressButoonBottom");
-            NotifyPropertyChanged("GridWithBtnAddAndListOfFolderVisibility");
-            NotifyPropertyChanged("BtnBigPlusAddFolder");
-            NotifyPropertyChanged("GridWithBtnAddAndListOfFolderVisibility");
+            NotifyPropertyChanged(nameof(FoldersToScan));
+            NotifyPropertyChanged(nameof(txbMainPageHello));
+            NotifyPropertyChanged(nameof(txbMainPageWelcomeTo));
+            NotifyPropertyChanged(nameof(txbMainPageSomeNameApp));
+            NotifyPropertyChanged(nameof(txbMainPageHintPlusOrPressButoonTop));
+            NotifyPropertyChanged(nameof(txbMainPageHintPlusOrPressButoonBottom));
+            NotifyPropertyChanged(nameof(GridWithBtnAddAndListOfFolderVisibility));
+            NotifyPropertyChanged(nameof(BtnBigPlusAddFolder));
+            NotifyPropertyChanged(nameof(GridWithBtnAddAndListOfFolderVisibility));
         }
     }
 }

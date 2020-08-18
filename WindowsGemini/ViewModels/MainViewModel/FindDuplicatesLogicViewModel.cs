@@ -116,6 +116,8 @@ namespace WindowsGemini.ViewModels
             toRemove = null;
             GC.Collect();
 
+            //CountOfFiles = sortedFiles.Count;
+
 
             foreach (var entry in sortedFiles)
             {
@@ -194,7 +196,7 @@ namespace WindowsGemini.ViewModels
         }
         
 
-        private async Task<bool> AskToStop()
+        private static async Task<bool> AskToStop()
         {
             var content = "Are you sure you want to stop scanning?";
 
