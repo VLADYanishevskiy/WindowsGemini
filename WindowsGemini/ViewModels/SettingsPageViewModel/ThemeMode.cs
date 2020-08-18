@@ -14,7 +14,7 @@ namespace WindowsGemini.ViewModels.SettingsPageViewModel
 {
     partial class SettingsViewModel
     {
-        public static ApplTheme ApplicationTheme
+        public ApplTheme ApplicationTheme
         {
             get
             {
