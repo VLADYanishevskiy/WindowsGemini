@@ -51,6 +51,6 @@
     <SolidColorBrush x:Key="RectangleArchivesFill" Color="#c293c2"/>
     <SolidColorBrush x:Key="RectangleOtherFill" Color="#8ed0f4"/>
 
-    <SolidColorBrush x:Key="GraySolidBrush" Color="#a9a9a9"/>
+    <SolidColorBrush x:Key="GraySolidBrush" Color="Gray"/>
 
 </ResourceDictionary>
