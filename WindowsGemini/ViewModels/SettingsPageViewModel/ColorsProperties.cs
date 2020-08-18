@@ -39,7 +39,7 @@ namespace WindowsGemini.ViewModels.SettingsPageViewModel
             }
         }
         public DelegateCommand<object> SetColorCommand { get; }
-       
+
         private void SetColor(object color)
         {
             this.CurrentAccentColor = color as string;

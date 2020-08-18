@@ -127,6 +127,7 @@
     <Compile Include="Models\Settings\CompositeSettings.cs" />
     <Compile Include="Models\Settings\DeleteDuplicatesSettings.cs" />
     <Compile Include="Models\Settings\DeletionMode.cs" />
+    <Compile Include="Models\ThemeSettingsController.cs" />
     <Compile Include="Models\ValueConverters\EnumBooleanConverter.cs" />
     <Compile Include="Models\ValueConverters\RadioButtonCheckedConverter.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />

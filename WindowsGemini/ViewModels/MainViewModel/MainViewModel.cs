@@ -41,6 +41,7 @@ namespace WindowsGemini.ViewModels
             _includeFolders.CollectionChanged += IncludeFolders_CollectionChanged;
             groupedFiles = new Stack<StorageFile>();
             DropCommand = new DelegateCommand<DragEventArgs>(ExecuteDropCommandAsync);
+            ThemeSettingsController.LoadTheme();
         }
 
         private void IncludeFolders_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

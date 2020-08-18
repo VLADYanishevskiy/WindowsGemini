@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Media;
+using WindowsGemini.Models;
 using WindowsGemini.Models.Settings;
 
 namespace WindowsGemini.ViewModels.SettingsPageViewModel
@@ -18,18 +19,6 @@ namespace WindowsGemini.ViewModels.SettingsPageViewModel
         public SettingsViewModel()
         {
             SetColorCommand =  new DelegateCommand<object>(SetColor);
-            if ((CompositeSettings.localSettings.Values["ApplicationTheme"] as string) != null)
-            {
-                object obj = CompositeSettings.localSettings.Values["ApplicationTheme"];
-                _applicationTheme = (ApplTheme)Enum.Parse(typeof(ApplTheme), obj.ToString());
-            }
-            else
-            {
-                _applicationTheme = ApplTheme.UseDefault;
-
-            }
         }
-        
-
     }
 }

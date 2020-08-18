@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WindowsGemini.Models;
 using WindowsGemini.Models.Settings;
 
 namespace WindowsGemini
@@ -30,6 +31,7 @@ namespace WindowsGemini
         public App()
         {
             this.InitializeComponent();
+
             this.Suspending += OnSuspending;
         }
 
