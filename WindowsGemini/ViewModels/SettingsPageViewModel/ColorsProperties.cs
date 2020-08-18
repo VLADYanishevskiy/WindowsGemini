@@ -26,23 +26,9 @@ namespace WindowsGemini.ViewModels.SettingsPageViewModel
             }
             set
             {
-                MessageDialog msg = new MessageDialog(value);
-                msg.ShowAsync();
             }
         }
-        public ICommand command { get
-            {
-                return new CommandHandler(() => {
-                MessageDialog msg = new MessageDialog("Message");
-                msg.ShowAsync();
-                });
-            }
-        }
-        public DelegateCommand<object> SetColorCommand { get; }
-
-        private void SetColor(object color)
-        {
-            this.CurrentAccentColor = color as string;
-        }
+       
+       
     }
 }
