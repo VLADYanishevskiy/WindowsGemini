@@ -36,9 +36,10 @@ namespace WindowsGemini
 
             ApplicationView.PreferredLaunchViewSize = new Size(500, 500);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
-            
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(500, 500));
+
+
             Binding myBinding = new Binding();
             myBinding.Source = this.DataContext;
             myBinding.Path = new PropertyPath("StateOfScanning");
@@ -83,5 +84,11 @@ namespace WindowsGemini
             mltView.Views.Clear();
             this.Frame.Navigate(typeof(SettingPage));
         }
+        private void BtnOpenResultsScan(object sender, RoutedEventArgs e)
+        {
+            mltView.Views.Clear();
+            this.Frame.Navigate(typeof(ResultsScanPage));
+        }
+
     }
 }

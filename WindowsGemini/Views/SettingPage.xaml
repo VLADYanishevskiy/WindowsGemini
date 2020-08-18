@@ -6,11 +6,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:settingspageviewmodel="using:WindowsGemini.ViewModels.SettingsPageViewModel"
-    xmlns:Converters="using:WindowsGemini.Models.ValueConverters"
+    xmlns:Converters="using:WindowsGemini.Models.ValueConverters" xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
-    Width="500"
-    Height="500"
     Loaded="Page_Loaded"
+    MinHeight="500"
     Background="{ThemeResource HostBackdropBrush}">
     <Page.DataContext>
         <settingspageviewmodel:SettingsViewModel/>
@@ -39,30 +38,33 @@
         <StackPanel Padding="11,20,0,0">
             <StackPanel.Resources>
                 <Converters:EnumBooleanConverter x:Key="enumBooleanConverter" />
+                <Converters:ModeEnumBooleanConverter x:Key="modeEnumBooleanConverter"/>
             </StackPanel.Resources>
-            <ScrollViewer>
-                <StackPanel Orientation="Vertical" Padding="13,18,0,0">
-                    <TextBlock Text="Settings" Foreground="{ThemeResource GeneralBlueWhiteButtonBackground}" FontSize="18"/>
-                    <TextBlock Text="Language" Margin="0,12,0,0" FontSize="18" Foreground="{ThemeResource GeneralTxbForeground}"/>
-                    <ComboBox Width="350" Height="32" BorderThickness="1" Margin="0,12,0,0" Foreground="{ThemeResource GeneralTxbForeground}">
-                        <ComboBoxItem Content="English" FontSize="16"/>
-                        <ComboBoxItem Content="Rus"/>
-                    </ComboBox>
-                    <TextBlock Text="Duplicate files deletion mode" Margin="0,20,0,0" FontSize="18" Foreground="{ThemeResource GeneralTxbForeground}"/>
-                    <!--<RadioButton GroupName="deleteMode" IsChecked="{Binding Path=ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=SendToTecycleBin , Mode=TwoWay}" FontSize="16">Send to Recycle Bin</RadioButton>
-                    <RadioButton GroupName="deleteMode" IsChecked="{Binding Path=ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=PermanentDeletion , Mode=TwoWay}" FontSize="16">Permanent deletion</RadioButton>-->
+            <TextBlock Text="Settings" Foreground="{ThemeResource GeneralBlueWhiteButtonBackground}" Margin="10,10,0,0" FontSize="18"/>
+            <ScrollViewer Margin="13,10,0,0" Height="450">
+                <controls:WrapPanel  Orientation="Horizontal" >
+                    <StackPanel x:Name="TopStackSettings" Orientation="Vertical">
+                        <TextBlock Text="Language" Margin="0,12,0,0" FontSize="18" Foreground="{ThemeResource GeneralTxbForeground}"/>
+                        <ComboBox Width="350" Height="32" BorderThickness="1" Margin="0,12,0,0" Foreground="{ThemeResource GeneralTxbForeground}">
+                            <ComboBoxItem Content="English" FontSize="16"/>
+                            <ComboBoxItem Content="Rus"/>
+                        </ComboBox>
+                        <TextBlock Text="Duplicate files deletion mode" Margin="0,20,0,0" FontSize="18" Foreground="{ThemeResource GeneralTxbForeground}"/>
+
+                        <RadioButton GroupName="deleteMode" IsChecked="{Binding Path=DeleTionMode, Converter={StaticResource modeEnumBooleanConverter}, ConverterParameter=SendToTecycleBin , Mode=TwoWay}" FontSize="16">Send to Recycle Bin</RadioButton>
+                        <RadioButton GroupName="deleteMode" IsChecked="{Binding Path=DeleTionMode, Converter={StaticResource modeEnumBooleanConverter}, ConverterParameter=PermanentDeletion , Mode=TwoWay}" FontSize="16">Permanent deletion</RadioButton>
 
 
-                    <TextBlock Text="Mode" Margin="0,20,0,0" FontSize="18" Foreground="{ThemeResource GeneralTxbForeground}"/>
+                        <TextBlock Text="Mode" Margin="0,20,0,0" FontSize="18" Foreground="{ThemeResource GeneralTxbForeground}"/>
 
-                    <RadioButton GroupName="mode" IsChecked="{Binding Path=ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Light , Mode=TwoWay}" FontSize="16" Foreground="{ThemeResource GeneralTxbForeground}">Light</RadioButton>
-                    <RadioButton GroupName="mode" IsChecked="{Binding Path=ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Dark , Mode=TwoWay}" FontSize="16" Foreground="{ThemeResource GeneralTxbForeground}">Dark</RadioButton>
-                    <RadioButton GroupName="mode" IsChecked="{Binding Path=ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=UseDefault , Mode=TwoWay}" FontSize="16" Foreground="{ThemeResource GeneralTxbForeground}">Use system settings</RadioButton>
+                        <RadioButton GroupName="themeMode" IsChecked="{Binding Path=ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Light , Mode=TwoWay}" FontSize="16" Foreground="{ThemeResource GeneralTxbForeground}">Light</RadioButton>
+                        <RadioButton GroupName="themeMode" IsChecked="{Binding Path=ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Dark , Mode=TwoWay}" FontSize="16" Foreground="{ThemeResource GeneralTxbForeground}">Dark</RadioButton>
+                        <RadioButton GroupName="themeMode" IsChecked="{Binding Path=ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=UseDefault , Mode=TwoWay}" FontSize="16" Foreground="{ThemeResource GeneralTxbForeground}">Use system settings</RadioButton>
 
-                    <TextBlock Text="Accent colors" Margin="0,20,0,0" FontSize="18" Foreground="{ThemeResource GeneralTxbForeground}"/>
+                        <TextBlock Text="Accent colors" Margin="0,20,0,0" FontSize="18" Foreground="{ThemeResource GeneralTxbForeground}"/>
 
 
-                    <GridView ItemsSource="{Binding AccentColors}" SelectionMode="Single">
+                        <GridView ItemsSource="{Binding AccentColors}" SelectionMode="Single">
                         <GridView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
@@ -81,10 +83,39 @@
                             </ItemsPanelTemplate>
                         </GridView.ItemsPanel>
                     </GridView>
+                    </StackPanel>
 
-                   
-                </StackPanel>
-                
+                    <StackPanel Height="450" HorizontalAlignment="Stretch">
+                        <TextBlock Text="About" Foreground="{ThemeResource GeneralTxbForeground}" FontSize="18"/>
+
+                        <TextBlock Foreground="{ThemeResource TxbPressPlusForeground}" FontSize="16" Margin="0,13,0,0">
+                            <Run Text="SomeNameApp"/>
+                            <LineBreak/>
+                            <Run Text="Version "/>
+                            <Run Text="4151512"/>
+                            <LineBreak/>
+                            <Run Text="Microsoft Research"/>
+                        </TextBlock>
+
+
+                        <TextBlock FontSize="16" Width="465" Padding="0" Margin="0 , 20 , 0 ,0 " Foreground="{ThemeResource GeneralTxbForeground}">
+                            <Run Text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do"/>
+                            <LineBreak/>
+                            <Run Text="eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut"/>
+                            <LineBreak/>
+                            <Run Text="enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi"/>
+                            <LineBreak/>
+                            <Run Text="ut aliquip ex ea commodo consequat. Duis aute irure dolor in "/>
+                            <LineBreak/>
+                        </TextBlock>
+
+                        <Button Background="Transparent" Padding="0" Content="Share application" FontSize="16" Margin="0,24,0,24" Foreground="{ThemeResource GeneralBlueWhiteButtonBackground}"/>
+                        <Button Background="Transparent" Padding="0" Content="More apps" FontSize="16" Foreground="{ThemeResource GeneralBlueWhiteButtonBackground}"/>
+                        <Button Background="Transparent" Padding="0" Content="Send feedback" FontSize="16" Margin="0,20,0,0" Foreground="{ThemeResource GeneralBlueWhiteButtonBackground}"/>
+
+                    </StackPanel>
+
+                </controls:WrapPanel>
             </ScrollViewer>
         </StackPanel>
         

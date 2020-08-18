@@ -1,0 +1,146 @@
+﻿<Page
+    x:Class="WindowsGemini.Views.ResultsScanPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WindowsGemini.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Width="500"
+    Height="500"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary Source="/Assets/ThemeColors/ThemeDictionaryDark.xaml" x:Key="Dark"/>
+                <ResourceDictionary Source="/Assets/ThemeColors/ThemeDictionaryLight.xaml" x:Key="Light"/>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource HostBackdropBrush}">
+        <Grid x:Name="TitleBarGrid" VerticalAlignment="Top" Height="30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="WindowsGemini" Grid.Column="1" Foreground="{ThemeResource GeneralTxbForeground}" VerticalAlignment="Center" FontSize="12"/>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="224"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel x:Name="leftStackPanelOfInfo" Margin="16,43,0,0"  Orientation="Vertical">
+                <TextBlock Text="Exact Duplicates" Foreground="{ThemeResource GraySolidBrush}"/>
+                <ListView>
+                    <ListViewItem>
+                        <StackPanel Orientation="Horizontal" Padding="9,0,12,0" Height="36">
+                            <Viewbox MaxHeight="17" MaxWidth="16" VerticalAlignment="Center">
+                                <SymbolIcon Symbol="AllApps"/>
+                            </Viewbox>
+                            <TextBlock Text="All duplicates" Width="92" Margin="10,0,0,0" VerticalAlignment="Center" FontWeight="SemiLight"/>
+                            <TextBlock Width="55" VerticalAlignment="Center" HorizontalTextAlignment="Right" Foreground="{ThemeResource GraySolidBrush}">
+                                <Run Text="604" />
+                                <Run Text=" MB"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem>
+                        <StackPanel Orientation="Horizontal" Padding="9,0,12,0" Height="36">
+                            <Viewbox MaxHeight="17" MaxWidth="16" VerticalAlignment="Center">
+                                <SymbolIcon Symbol="Camera"/>
+                            </Viewbox>
+                            <TextBlock Text="Images" Width="92" Margin="10,0,0,0" VerticalAlignment="Center" FontWeight="SemiLight"/>
+                            <TextBlock Width="55" VerticalAlignment="Center" HorizontalTextAlignment="Right" Foreground="{ThemeResource GraySolidBrush}">
+                                <Run Text="604" />
+                                <Run Text=" MB"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+
+
+                    <ListViewItem>
+                        <StackPanel Orientation="Horizontal" Padding="9,0,12,0" Height="36">
+                            <Viewbox MaxHeight="17" MaxWidth="16" VerticalAlignment="Center">
+                                <SymbolIcon Symbol="Video"/>
+                            </Viewbox>
+                            <TextBlock Text="Video" Width="92" Margin="10,0,0,0" VerticalAlignment="Center" FontWeight="SemiLight"/>
+                            <TextBlock Width="55" VerticalAlignment="Center" HorizontalTextAlignment="Right" Foreground="{ThemeResource GraySolidBrush}">
+                                <Run Text="604" />
+                                <Run Text=" MB"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem>
+                        <StackPanel Orientation="Horizontal" Padding="9,0,12,0" Height="36">
+                            <Viewbox MaxHeight="17" MaxWidth="16" VerticalAlignment="Center">
+                                <SymbolIcon Symbol="Audio"/>
+                            </Viewbox>
+                            <TextBlock Text="Audio" Width="92" Margin="10,0,0,0" VerticalAlignment="Center" FontWeight="SemiLight"/>
+                            <TextBlock Width="55" VerticalAlignment="Center" HorizontalTextAlignment="Right" Foreground="{ThemeResource GraySolidBrush}">
+                                <Run Text="604" />
+                                <Run Text=" MB"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem>
+                        <StackPanel Orientation="Horizontal" Padding="9,0,12,0" Height="36">
+                            <Viewbox MaxHeight="17" MaxWidth="16" VerticalAlignment="Center">
+                                <SymbolIcon Symbol="Document"/>
+                            </Viewbox>
+                            <TextBlock Text="Documents" Width="92" Margin="10,0,0,0" VerticalAlignment="Center" FontWeight="SemiLight"/>
+                            <TextBlock Width="55" VerticalAlignment="Center" HorizontalTextAlignment="Right" Foreground="{ThemeResource GraySolidBrush}">
+                                <Run Text="604" />
+                                <Run Text=" MB"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem>
+                        <StackPanel Orientation="Horizontal" Padding="9,0,12,0" Height="36">
+                            <Viewbox MaxHeight="17" MaxWidth="16" VerticalAlignment="Center">
+                                <SymbolIcon Symbol="SyncFolder"/>
+                            </Viewbox>
+                            <TextBlock Text="Archives" Width="92" Margin="10,0,0,0" VerticalAlignment="Center" FontWeight="SemiLight"/>
+                            <TextBlock Width="55" VerticalAlignment="Center" HorizontalTextAlignment="Right" Foreground="{ThemeResource GraySolidBrush}">
+                                <Run Text="604" />
+                                <Run Text=" MB"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem>
+                        <StackPanel Orientation="Horizontal" Padding="9,0,12,0" Height="36">
+                            <Viewbox MaxHeight="17" MaxWidth="16" VerticalAlignment="Center">
+                                <SymbolIcon Symbol="Page2"/>
+                            </Viewbox>
+                            <TextBlock Text="Other" Width="92" Margin="10,0,0,0" VerticalAlignment="Center" FontWeight="SemiLight"/>
+                            <TextBlock Width="55" VerticalAlignment="Center" HorizontalTextAlignment="Right" Foreground="{ThemeResource GraySolidBrush}">
+                                <Run Text="604" />
+                                <Run Text=" MB"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <ListViewItem Margin="0,20,0,0">
+                        <StackPanel Orientation="Horizontal" Padding="9,0,12,0" Height="36">
+                            <Border BorderBrush="{ThemeResource GeneralTxbForeground}" Width="18" Height="18" BorderThickness="1">
+                                <Viewbox MaxHeight="17" MaxWidth="16" VerticalAlignment="Center">
+                                    <SymbolIcon Symbol="Accept"/>
+                                </Viewbox>
+                            </Border>
+                            <TextBlock Text="Selected" Width="92" Margin="10,0,0,0" VerticalAlignment="Center" FontWeight="SemiLight"/>
+                            <TextBlock Width="55" VerticalAlignment="Center" HorizontalTextAlignment="Right" Foreground="{ThemeResource GraySolidBrush}">
+                                <Run Text="604" />
+                                <Run Text=" MB"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+            </StackPanel>
+            
+        </Grid>
+        
+    </Grid>
+</Page>

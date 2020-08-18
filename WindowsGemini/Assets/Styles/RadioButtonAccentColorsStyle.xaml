@@ -15,7 +15,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">
-                    <RelativePanel x:Name="RootGrid" Margin="0,0,2,0">
+                    <RelativePanel x:Name="RootGrid" Margin="0,0,0,0">
                         <Rectangle Width="40" Height="40" Fill="{TemplateBinding Background}" Margin="0"/>
                         <Border Margin="0" x:Name="RootBorder" RelativePanel.Above="" Width="40" Height="40" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
                             <SymbolIcon x:Name="RootSymbol" Symbol="Accept" Foreground="White" />

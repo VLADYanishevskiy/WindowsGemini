@@ -123,12 +123,11 @@
     <Compile Include="Models\CommandHadlers\CommandHandler.cs" />
     <Compile Include="Models\FileEqualsChecker.cs" />
     <Compile Include="Models\FileTypeChecker.cs" />
-    <Compile Include="Models\Settings\AccentColorSettings.cs" />
     <Compile Include="Models\Settings\CompositeSettings.cs" />
-    <Compile Include="Models\Settings\DeleteDuplicatesSettings.cs" />
     <Compile Include="Models\Settings\DeletionMode.cs" />
-    <Compile Include="Models\ThemeSettingsController.cs" />
+    <Compile Include="Models\Settings\ThemeSettingsController.cs" />
     <Compile Include="Models\ValueConverters\EnumBooleanConverter.cs" />
+    <Compile Include="Models\ValueConverters\ModeEnumBooleanConverter.cs" />
     <Compile Include="Models\ValueConverters\RadioButtonCheckedConverter.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel\CommandNewScanViewModel.cs" />
@@ -155,6 +154,9 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\ResultsScanPage.xaml.cs">
+      <DependentUpon>ResultsScanPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SettingPage.xaml.cs">
       <DependentUpon>SettingPage.xaml</DependentUpon>
     </Compile>
@@ -199,6 +201,10 @@
     <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ResultsScanPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SettingPage.xaml">
       <SubType>Designer</SubType>

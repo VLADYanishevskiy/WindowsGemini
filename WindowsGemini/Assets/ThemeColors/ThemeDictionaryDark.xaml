@@ -16,7 +16,7 @@
     <SolidColorBrush x:Key="GeneralBlueWhiteButtonForeground" Color="White"/>
     <SolidColorBrush x:Key="MainBackgroundColor" Color="Transparent" />
     <SolidColorBrush x:Key="StackPanelOfFoldersToScanBackground" Color="White"/>
-
+    
 
 
     <!-- Main Left side grid with folders-->
@@ -50,4 +50,7 @@
     <SolidColorBrush x:Key="RectangleDocumentsFill" Color="#d0df9c"/>
     <SolidColorBrush x:Key="RectangleArchivesFill" Color="#c293c2"/>
     <SolidColorBrush x:Key="RectangleOtherFill" Color="#8ed0f4"/>
+
+
+    <SolidColorBrush x:Key="GraySolidBrush" Color="White"/>
 </ResourceDictionary>

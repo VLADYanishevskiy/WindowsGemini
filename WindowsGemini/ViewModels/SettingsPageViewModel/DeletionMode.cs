@@ -4,7 +4,19 @@ namespace WindowsGemini.ViewModels.SettingsPageViewModel
 {
     partial class SettingsViewModel
     {
-        DeletionMode mode = DeletionMode.SendToTecycleBin;
+        private DeletionMode _deletionMode = DeletionMode.SendToTecycleBin;
+        public DeletionMode DeleTionMode {
+            get
+            {
+                return _deletionMode;
+            }
+            set
+            {
+                this._deletionMode = value;
+                CompositeSettings.localSettings.Values["DeleTionMode"] = _deletionMode.ToString();
+
+            }
+        }
     }
     enum DeletionMode
     {
