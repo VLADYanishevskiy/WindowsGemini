@@ -5,7 +5,14 @@ namespace WindowsGemini.ViewModels
 {
     partial class MainViewModel
     {
-        private StorageFolder _selectedFolder;
+        private static StorageFolder _selectedFolder;
+        /*public static StorageFolder SelectedFolderWithoutNotify
+        {
+            get
+            {
+                return _selectedFolder;
+            }
+        }*/
         public StorageFolder SelectedFolder
         {
             get { return _selectedFolder; }

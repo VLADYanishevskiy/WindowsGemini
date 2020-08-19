@@ -121,8 +121,10 @@
     </Compile>
     <Compile Include="Models\Behaviors\ElementDraggableBehavior.cs" />
     <Compile Include="Models\CommandHadlers\CommandHandler.cs" />
+    <Compile Include="Models\DataTemplateSelectors\SelectedItemTemplateSelector.cs" />
     <Compile Include="Models\FileEqualsChecker.cs" />
     <Compile Include="Models\FileTypeChecker.cs" />
+    <Compile Include="Models\Settings\AccentColorSettings.cs" />
     <Compile Include="Models\Settings\CompositeSettings.cs" />
     <Compile Include="Models\Settings\DeletionMode.cs" />
     <Compile Include="Models\Settings\ThemeSettingsController.cs" />
@@ -143,6 +145,7 @@
     <Compile Include="ViewModels\MainViewModel\StatesOfScanningVM.cs" />
     <Compile Include="ViewModels\MainViewModel\TextBlockViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel\VisibilityGridOrSymbolPlusToAddFolderViewModel.cs" />
+    <Compile Include="ViewModels\SettingsPageViewModel\AppInfoVM.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel\ColorsProperties.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel\DeletionMode.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel\SettingsViewModel.cs" />
@@ -183,6 +186,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Assets\Styles\RadioButtonAccentColorsStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\ThemeColors\DefaultValues.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

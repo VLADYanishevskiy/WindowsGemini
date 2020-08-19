@@ -1,19 +1,19 @@
 ﻿<Page
-    x:Class="WindowsGemini.Views.SettingPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WindowsGemini.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:settingspageviewmodel="using:WindowsGemini.ViewModels.SettingsPageViewModel"
-    xmlns:Converters="using:WindowsGemini.Models.ValueConverters" xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:Converters="using:WindowsGemini.Models.ValueConverters"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls" 
+    xmlns:i="using:GalaSoft.MvvmLight" 
+    xmlns:i1="using:Microsoft.Xaml.Interactivity" xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    x:Class="WindowsGemini.Views.SettingPage"
     mc:Ignorable="d"
     Loaded="Page_Loaded"
     MinHeight="500"
-    Background="{ThemeResource HostBackdropBrush}">
-    <Page.DataContext>
-        <settingspageviewmodel:SettingsViewModel/>
-    </Page.DataContext>
+    >
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
@@ -25,6 +25,13 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
+
+    <Page.Background>
+        <ThemeResource ResourceKey="HostBackdropBrush"/>
+    </Page.Background>
+    <Page.DataContext>
+        <settingspageviewmodel:SettingsViewModel/>
+    </Page.DataContext>
 
     <Grid >
         <Grid x:Name="TitleBarGrid" VerticalAlignment="Top" Height="30">
@@ -40,9 +47,9 @@
                 <Converters:EnumBooleanConverter x:Key="enumBooleanConverter" />
                 <Converters:ModeEnumBooleanConverter x:Key="modeEnumBooleanConverter"/>
             </StackPanel.Resources>
-            <TextBlock Text="Settings" Foreground="{ThemeResource GeneralBlueWhiteButtonBackground}" Margin="10,10,0,0" FontSize="18"/>
+            <TextBlock Text="Settings" Foreground="{Binding AccentColor, Source={StaticResource AccentColorSettings}}" Margin="10,10,0,0" FontSize="18"/>
             <ScrollViewer Margin="13,10,0,0" Height="450">
-                <controls:WrapPanel  Orientation="Horizontal" >
+                <controls:WrapPanel  Orientation="Horizontal" HorizontalAlignment="Stretch">
                     <StackPanel x:Name="TopStackSettings" Orientation="Vertical">
                         <TextBlock Text="Language" Margin="0,12,0,0" FontSize="18" Foreground="{ThemeResource GeneralTxbForeground}"/>
                         <ComboBox Width="350" Height="32" BorderThickness="1" Margin="0,12,0,0" Foreground="{ThemeResource GeneralTxbForeground}">
@@ -51,73 +58,110 @@
                         </ComboBox>
                         <TextBlock Text="Duplicate files deletion mode" Margin="0,20,0,0" FontSize="18" Foreground="{ThemeResource GeneralTxbForeground}"/>
 
-                        <RadioButton GroupName="deleteMode" IsChecked="{Binding Path=DeleTionMode, Converter={StaticResource modeEnumBooleanConverter}, ConverterParameter=SendToTecycleBin , Mode=TwoWay}" FontSize="16">Send to Recycle Bin</RadioButton>
-                        <RadioButton GroupName="deleteMode" IsChecked="{Binding Path=DeleTionMode, Converter={StaticResource modeEnumBooleanConverter}, ConverterParameter=PermanentDeletion , Mode=TwoWay}" FontSize="16">Permanent deletion</RadioButton>
+                        <RadioButton GroupName="deleteMode" IsChecked="{Binding DeleTionMode, Converter={StaticResource modeEnumBooleanConverter}, ConverterParameter=SendToTecycleBin, Mode=TwoWay}" FontSize="16" Content="Send to Recycle Bin"/>
+                        <RadioButton GroupName="deleteMode" IsChecked="{Binding DeleTionMode, Converter={StaticResource modeEnumBooleanConverter}, ConverterParameter=PermanentDeletion, Mode=TwoWay}" FontSize="16" Content="Permanent deletion"/>
 
 
                         <TextBlock Text="Mode" Margin="0,20,0,0" FontSize="18" Foreground="{ThemeResource GeneralTxbForeground}"/>
 
-                        <RadioButton GroupName="themeMode" IsChecked="{Binding Path=ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Light , Mode=TwoWay}" FontSize="16" Foreground="{ThemeResource GeneralTxbForeground}">Light</RadioButton>
-                        <RadioButton GroupName="themeMode" IsChecked="{Binding Path=ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Dark , Mode=TwoWay}" FontSize="16" Foreground="{ThemeResource GeneralTxbForeground}">Dark</RadioButton>
-                        <RadioButton GroupName="themeMode" IsChecked="{Binding Path=ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=UseDefault , Mode=TwoWay}" FontSize="16" Foreground="{ThemeResource GeneralTxbForeground}">Use system settings</RadioButton>
+                        <RadioButton GroupName="themeMode" IsChecked="{Binding ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Light, Mode=TwoWay}" FontSize="16" Foreground="{ThemeResource GeneralTxbForeground}" Content="Light"/>
+                        <RadioButton GroupName="themeMode" IsChecked="{Binding ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Dark, Mode=TwoWay}" FontSize="16" Foreground="{ThemeResource GeneralTxbForeground}" Content="Dark"/>
+                        <RadioButton GroupName="themeMode" IsChecked="{Binding ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=UseDefault, Mode=TwoWay}" FontSize="16" Foreground="{ThemeResource GeneralTxbForeground}" Content="Use system settings"/>
 
                         <TextBlock Text="Accent colors" Margin="0,20,0,0" FontSize="18" Foreground="{ThemeResource GeneralTxbForeground}"/>
 
-
-                        <GridView ItemsSource="{Binding AccentColors}" SelectionMode="Single">
-                        <GridView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <RadioButton GroupName="AccentColors" 
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton GroupName="AccentColors" 
                                              HorizontalAlignment="Left"
                                              Style="{StaticResource rbtnRectStyle}" 
-                                             Background="{Binding}"
-                                             BorderThickness="3" BorderBrush="White"
-                                             />
-                                </StackPanel>
-                            </DataTemplate>
-                        </GridView.ItemTemplate>
-                        <GridView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel  Orientation="Horizontal" />
-                            </ItemsPanelTemplate>
-                        </GridView.ItemsPanel>
-                    </GridView>
+                                             Background="#f7630c"
+                                             Margin="0,0,2,0"
+                                             BorderThickness="3" BorderBrush="White">
+                                <i1:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="Checked" >
+                                        <core:InvokeCommandAction Command="{Binding SetColorCommand}" CommandParameter="#f7630c"></core:InvokeCommandAction>
+                                    </core:EventTriggerBehavior>
+                                </i1:Interaction.Behaviors>
+                            </RadioButton>
+                            <RadioButton GroupName="AccentColors" 
+                                             HorizontalAlignment="Left"
+                                             Style="{StaticResource rbtnRectStyle}" 
+                                             Background="#ff4343"
+                                         Margin="0,0,2,0"
+                                             BorderThickness="3" BorderBrush="White">
+                                <i1:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="Checked" >
+                                        <core:InvokeCommandAction Command="{Binding SetColorCommand}" CommandParameter="#ff4343"></core:InvokeCommandAction>
+                                    </core:EventTriggerBehavior>
+                                </i1:Interaction.Behaviors>
+                            </RadioButton>
+                            <RadioButton GroupName="AccentColors" 
+                                             HorizontalAlignment="Left"
+                                             Style="{StaticResource rbtnRectStyle}" 
+                                             Background="#ea005e"
+                                         Margin="0,0,2,0"
+                                             BorderThickness="3" BorderBrush="White">
+                                <i1:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="Checked" >
+                                        <core:InvokeCommandAction Command="{Binding SetColorCommand}" CommandParameter="#ea005e"></core:InvokeCommandAction>
+                                    </core:EventTriggerBehavior>
+                                </i1:Interaction.Behaviors>
+                            </RadioButton>
+                            <RadioButton GroupName="AccentColors" 
+                                             HorizontalAlignment="Left"
+                                             Style="{StaticResource rbtnRectStyle}" 
+                                             Background="#b146c2"
+                                         Margin="0,0,2,0"
+                                             BorderThickness="3" BorderBrush="White">
+                                <i1:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="Checked" >
+                                        <core:InvokeCommandAction Command="{Binding SetColorCommand}" CommandParameter="#b146c2"></core:InvokeCommandAction>
+                                    </core:EventTriggerBehavior>
+                                </i1:Interaction.Behaviors>
+                            </RadioButton>
+                            <RadioButton GroupName="AccentColors" 
+                                             HorizontalAlignment="Left"
+                                             Style="{StaticResource rbtnRectStyle}" 
+                                             Background="#107c10"
+                                                Margin="0,0,2,0"
+                                             BorderThickness="3" BorderBrush="White">
+                                <i1:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="Checked" >
+                                        <core:InvokeCommandAction Command="{Binding SetColorCommand}" CommandParameter="#107c10"></core:InvokeCommandAction>
+                                    </core:EventTriggerBehavior>
+                                </i1:Interaction.Behaviors>
+                            </RadioButton>
+                            <RadioButton GroupName="AccentColors" 
+                                             HorizontalAlignment="Left"
+                                             Style="{StaticResource rbtnRectStyle}" 
+                                             Background="#0078d7"
+                                             Margin="0,0,2,0"
+                                             BorderThickness="3" BorderBrush="White">
+                                <i1:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="Checked" >
+                                        <core:InvokeCommandAction Command="{Binding SetColorCommand}" CommandParameter="#0078d7"></core:InvokeCommandAction>
+                                    </core:EventTriggerBehavior>
+                                </i1:Interaction.Behaviors>
+                            </RadioButton>
+                        </StackPanel>
                     </StackPanel>
 
-                    <StackPanel Height="450" HorizontalAlignment="Stretch">
+                    <StackPanel Height="450" >
                         <TextBlock Text="About" Foreground="{ThemeResource GeneralTxbForeground}" FontSize="18"/>
 
-                        <TextBlock Foreground="{ThemeResource TxbPressPlusForeground}" FontSize="16" Margin="0,13,0,0">
-                            <Run Text="SomeNameApp"/>
-                            <LineBreak/>
-                            <Run Text="Version "/>
-                            <Run Text="4151512"/>
-                            <LineBreak/>
-                            <Run Text="Microsoft Research"/>
-                        </TextBlock>
+                        <TextBlock Foreground="{ThemeResource TxbPressPlusForeground}" FontSize="16" Margin="0,13,0,0"><Run Text="{Binding AppName}"/><Run Text=" "/><LineBreak/><Run Text=" "/><Run Text="Version "/><Run Text=" "/><Run Text="{Binding AppVersion}"/><Run Text=" "/><LineBreak/><Run Text=" "/><Run Text="Microsoft Research"/></TextBlock>
 
 
-                        <TextBlock FontSize="16" Width="465" Padding="0" Margin="0 , 20 , 0 ,0 " Foreground="{ThemeResource GeneralTxbForeground}">
-                            <Run Text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do"/>
-                            <LineBreak/>
-                            <Run Text="eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut"/>
-                            <LineBreak/>
-                            <Run Text="enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi"/>
-                            <LineBreak/>
-                            <Run Text="ut aliquip ex ea commodo consequat. Duis aute irure dolor in "/>
-                            <LineBreak/>
-                        </TextBlock>
+                        <TextBlock FontSize="16" Width="465" Padding="0" Margin="0 , 20 , 0 ,0 " Foreground="{ThemeResource GeneralTxbForeground}"><Run Text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do"/><Run Text=" "/><LineBreak/><Run Text=" "/><Run Text="eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut"/><Run Text=" "/><LineBreak/><Run Text=" "/><Run Text="enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi"/><Run Text=" "/><LineBreak/><Run Text=" "/><Run Text="ut aliquip ex ea commodo consequat. Duis aute irure dolor in "/><Run Text=" "/><LineBreak/></TextBlock>
 
-                        <Button Background="Transparent" Padding="0" Content="Share application" FontSize="16" Margin="0,24,0,24" Foreground="{ThemeResource GeneralBlueWhiteButtonBackground}"/>
-                        <Button Background="Transparent" Padding="0" Content="More apps" FontSize="16" Foreground="{ThemeResource GeneralBlueWhiteButtonBackground}"/>
-                        <Button Background="Transparent" Padding="0" Content="Send feedback" FontSize="16" Margin="0,20,0,0" Foreground="{ThemeResource GeneralBlueWhiteButtonBackground}"/>
+                        <Button Background="Transparent" Padding="0" Content="Share application" FontSize="16" Margin="0,24,0,24" Foreground="{Binding AccentColor, Source={StaticResource AccentColorSettings}}"/>
+                        <Button Background="Transparent" Padding="0" Content="More apps" FontSize="16" Foreground="{Binding AccentColor, Source={StaticResource AccentColorSettings}}"/>
+                        <Button Background="Transparent" Padding="0" Content="Send feedback" FontSize="16" Margin="0,20,0,0" Foreground="{Binding AccentColor, Source={StaticResource AccentColorSettings}}"/>
 
                     </StackPanel>
-
                 </controls:WrapPanel>
             </ScrollViewer>
         </StackPanel>
-        
+
     </Grid>
 </Page>

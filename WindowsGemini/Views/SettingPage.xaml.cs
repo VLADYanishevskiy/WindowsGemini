@@ -8,6 +8,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using WindowsGemini.Models.Settings;
 
 // Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -27,6 +28,7 @@ namespace WindowsGemini.Views
             coreTitleBar.ExtendViewIntoTitleBar = true;
             Listener.ThemeChanged += Listener_ThemeChanged;
             CorrectTitleBarTheme(App.Current.RequestedTheme);
+            //var obj = (new AccentColorSettings()).AccentColor;
         }
 
         private void Listener_ThemeChanged(ThemeListener sender)

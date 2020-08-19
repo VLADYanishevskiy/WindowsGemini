@@ -18,6 +18,7 @@ namespace WindowsGemini.ViewModels.SettingsPageViewModel
     {
         public SettingsViewModel()
         {
+            SetColorCommand = new DelegateCommand<string>(ExecuteColorCommand);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using Microsoft.Toolkit.Uwp.Helpers;
+using Prism.Commands;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,9 +15,11 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using WindowsGemini.Models;
+using WindowsGemini.Models.Settings;
 
 namespace WindowsGemini.ViewModels
 {
@@ -36,6 +39,7 @@ namespace WindowsGemini.ViewModels
 
         public MainViewModel()
         {
+            Application.Current.Resources["AccentColorSettings"] = new AccentColorSettings();
             StateOfScanning = 0;
             _includeFolders = new ObservableCollection<StorageFolder>();
             _includeFolders.CollectionChanged += IncludeFolders_CollectionChanged;
