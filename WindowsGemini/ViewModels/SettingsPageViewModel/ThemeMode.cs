@@ -1,14 +1,4 @@
-﻿using Microsoft.Toolkit.Uwp.UI.Animations.Behaviors;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel.Channels;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Popups;
-using Windows.UI.Xaml;
-using WindowsGemini.Models;
-using WindowsGemini.Models.Settings;
+﻿using WindowsGemini.Models;
 
 namespace WindowsGemini.ViewModels.SettingsPageViewModel
 {
@@ -25,8 +15,5 @@ namespace WindowsGemini.ViewModels.SettingsPageViewModel
                 ThemeSettingsController.ApplicationTheme = value;
             }
         }
-
-        
     }
-    
 }

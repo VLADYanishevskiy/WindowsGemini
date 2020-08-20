@@ -14,7 +14,6 @@ namespace WindowsGemini.ViewModels.SettingsPageViewModel
             {
                 this._deletionMode = value;
                 CompositeSettings.localSettings.Values["DeleTionMode"] = _deletionMode.ToString();
-
             }
         }
     }
