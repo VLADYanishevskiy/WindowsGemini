@@ -22,7 +22,7 @@ namespace WindowsGemini.Models.Behaviors
         public void Attach(DependencyObject associatedObject)
         {
             if ((associatedObject != AssociatedObject) && !Windows.ApplicationModel.DesignMode.DesignModeEnabled)
-{
+            {
                 AssociatedObject = associatedObject;
                 var fe = AssociatedObject as FrameworkElement;
                 if (fe != null)

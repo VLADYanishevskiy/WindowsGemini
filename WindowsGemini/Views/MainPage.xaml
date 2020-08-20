@@ -95,7 +95,7 @@
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <uiShadowsToolkit:DockPanel HorizontalAlignment="Stretch" Width="216">
-                                        <SymbolIcon Symbol="Folder" uiShadowsToolkit:DockPanel.Dock="Left" Foreground="{ThemeResource CymbolFolderForeground}"/>
+                                        <SymbolIcon Symbol="Folder" uiShadowsToolkit:DockPanel.Dock="Left" Foreground="{Binding AccentColor, Source={StaticResource AccentColorSettings}}" />
                                         <TextBlock Text="{Binding Name}" MaxWidth="160"  Margin="13,8,0,8" FontSize="16" FontWeight="SemiLight" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
 
                                         <Button Margin="0" Visibility="Visible" HorizontalAlignment="Right" uiShadowsToolkit:DockPanel.Dock="Right" Background="Transparent" BorderThickness="0">
@@ -134,7 +134,7 @@
                             <Run Text="{Binding txbMainPageHello}" Foreground="{ThemeResource GeneralTxbForeground}"/>
                             <LineBreak/>
                             <Run Text="{Binding txbMainPageWelcomeTo}" Foreground="{ThemeResource GeneralTxbForeground}"/>
-                            <Run Text="{Binding txbMainPageSomeNameApp}" Foreground="{ThemeResource TxbAppNameForeground}"/>
+                            <Run Text="{Binding txbMainPageSomeNameApp}" Foreground="{Binding AccentColor, Source={StaticResource AccentColorSettings}}" />
                             </TextBlock>
                             <TextBlock TextWrapping="Wrap" Margin="0,20,0,0" Foreground="{ThemeResource TxbPressPlusForeground}">
                             <Run Text="{Binding txbMainPageHintPlusOrPressButoonTop}"/>
@@ -159,7 +159,7 @@
                             <Run Text=" file(s) checked"/>
                             </TextBlock>
 
-                            <TextBlock TextWrapping="Wrap" FontWeight="SemiLight" Foreground="{ThemeResource TxbCurrentCheckingFileForeground}" FontSize="12" Margin="0,15,0,30">
+                            <TextBlock TextWrapping="Wrap" Width="204" Height="45" FontWeight="SemiLight" Foreground="{ThemeResource TxbCurrentCheckingFileForeground}" FontSize="12" Margin="0,15,0,30">
                             <Run Text="{Binding CurrentCheckingFile}"/>
                             </TextBlock>
                             <Button Content="Stop" FontSize="16" Background="{ThemeResource GeneralBlueWhiteButtonBackground}" Foreground="{ThemeResource GeneralBlueWhiteButtonForeground}" Width="120" Height="32" HorizontalAlignment="Left" Command="{Binding StopScanCommand}"/>

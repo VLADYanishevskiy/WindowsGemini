@@ -25,6 +25,8 @@ namespace WindowsGemini.ViewModels.SettingsPageViewModel
                 ThemeSettingsController.ApplicationTheme = value;
             }
         }
+
+        
     }
     
 }

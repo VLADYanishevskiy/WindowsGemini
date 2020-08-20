@@ -46,8 +46,9 @@
             <StackPanel.Resources>
                 <Converters:EnumBooleanConverter x:Key="enumBooleanConverter" />
                 <Converters:ModeEnumBooleanConverter x:Key="modeEnumBooleanConverter"/>
+                <Converters:ColorConverter x:Key="colorConverter"/>
             </StackPanel.Resources>
-            <TextBlock Text="Settings" Foreground="{Binding AccentColor, Source={StaticResource AccentColorSettings}}" Margin="10,10,0,0" FontSize="18"/>
+            <TextBlock Text="Settings" Foreground="{Binding AccentColor, Source={StaticResource AccentColorSettings} , Mode=OneWay}" Margin="10,10,0,0" FontSize="18"/>
             <ScrollViewer Margin="13,10,0,0" Height="450">
                 <controls:WrapPanel  Orientation="Horizontal" HorizontalAlignment="Stretch">
                     <StackPanel x:Name="TopStackSettings" Orientation="Vertical">
@@ -72,76 +73,23 @@
 
                         <StackPanel Orientation="Horizontal">
                             <RadioButton GroupName="AccentColors" 
-                                             HorizontalAlignment="Left"
-                                             Style="{StaticResource rbtnRectStyle}" 
-                                             Background="#f7630c"
-                                             Margin="0,0,2,0"
-                                             BorderThickness="3" BorderBrush="White">
-                                <i1:Interaction.Behaviors>
-                                    <core:EventTriggerBehavior EventName="Checked" >
-                                        <core:InvokeCommandAction Command="{Binding SetColorCommand}" CommandParameter="#f7630c"></core:InvokeCommandAction>
-                                    </core:EventTriggerBehavior>
-                                </i1:Interaction.Behaviors>
+                                             Style="{StaticResource rbtnRectStyle}" Background="#f7630c" Margin="0,0,2,0" BorderThickness="3" BorderBrush="White"
+                                            IsChecked="{Binding Colors, Converter={StaticResource colorConverter}, ConverterParameter=Orange, Mode=TwoWay}">
                             </RadioButton>
-                            <RadioButton GroupName="AccentColors" 
-                                             HorizontalAlignment="Left"
-                                             Style="{StaticResource rbtnRectStyle}" 
-                                             Background="#ff4343"
-                                         Margin="0,0,2,0"
-                                             BorderThickness="3" BorderBrush="White">
-                                <i1:Interaction.Behaviors>
-                                    <core:EventTriggerBehavior EventName="Checked" >
-                                        <core:InvokeCommandAction Command="{Binding SetColorCommand}" CommandParameter="#ff4343"></core:InvokeCommandAction>
-                                    </core:EventTriggerBehavior>
-                                </i1:Interaction.Behaviors>
+                            <RadioButton GroupName="AccentColors" Style="{StaticResource rbtnRectStyle}" Background="#ff4343" Margin="0,0,2,0" BorderThickness="3" BorderBrush="White"
+                                            IsChecked="{Binding Colors, Converter={StaticResource colorConverter}, ConverterParameter=Corral, Mode=TwoWay}">
                             </RadioButton>
-                            <RadioButton GroupName="AccentColors" 
-                                             HorizontalAlignment="Left"
-                                             Style="{StaticResource rbtnRectStyle}" 
-                                             Background="#ea005e"
-                                         Margin="0,0,2,0"
-                                             BorderThickness="3" BorderBrush="White">
-                                <i1:Interaction.Behaviors>
-                                    <core:EventTriggerBehavior EventName="Checked" >
-                                        <core:InvokeCommandAction Command="{Binding SetColorCommand}" CommandParameter="#ea005e"></core:InvokeCommandAction>
-                                    </core:EventTriggerBehavior>
-                                </i1:Interaction.Behaviors>
+                            <RadioButton GroupName="AccentColors" Style="{StaticResource rbtnRectStyle}" Background="#ea005e" Margin="0,0,2,0" BorderThickness="3" BorderBrush="White"
+                                            IsChecked="{Binding Colors, Converter={StaticResource colorConverter}, ConverterParameter=Red, Mode=TwoWay}">
                             </RadioButton>
-                            <RadioButton GroupName="AccentColors" 
-                                             HorizontalAlignment="Left"
-                                             Style="{StaticResource rbtnRectStyle}" 
-                                             Background="#b146c2"
-                                         Margin="0,0,2,0"
-                                             BorderThickness="3" BorderBrush="White">
-                                <i1:Interaction.Behaviors>
-                                    <core:EventTriggerBehavior EventName="Checked" >
-                                        <core:InvokeCommandAction Command="{Binding SetColorCommand}" CommandParameter="#b146c2"></core:InvokeCommandAction>
-                                    </core:EventTriggerBehavior>
-                                </i1:Interaction.Behaviors>
+                            <RadioButton GroupName="AccentColors" Style="{StaticResource rbtnRectStyle}" Background="#b146c2" Margin="0,0,2,0" BorderThickness="3" BorderBrush="White"
+                                            IsChecked="{Binding Colors, Converter={StaticResource colorConverter}, ConverterParameter=Purple, Mode=TwoWay}">
                             </RadioButton>
-                            <RadioButton GroupName="AccentColors" 
-                                             HorizontalAlignment="Left"
-                                             Style="{StaticResource rbtnRectStyle}" 
-                                             Background="#107c10"
-                                                Margin="0,0,2,0"
-                                             BorderThickness="3" BorderBrush="White">
-                                <i1:Interaction.Behaviors>
-                                    <core:EventTriggerBehavior EventName="Checked" >
-                                        <core:InvokeCommandAction Command="{Binding SetColorCommand}" CommandParameter="#107c10"></core:InvokeCommandAction>
-                                    </core:EventTriggerBehavior>
-                                </i1:Interaction.Behaviors>
+                            <RadioButton GroupName="AccentColors" Style="{StaticResource rbtnRectStyle}" Background="#107c10" Margin="0,0,2,0" BorderThickness="3" BorderBrush="White"
+                                            IsChecked="{Binding Colors, Converter={StaticResource colorConverter}, ConverterParameter=Green, Mode=TwoWay}">
                             </RadioButton>
-                            <RadioButton GroupName="AccentColors" 
-                                             HorizontalAlignment="Left"
-                                             Style="{StaticResource rbtnRectStyle}" 
-                                             Background="#0078d7"
-                                             Margin="0,0,2,0"
-                                             BorderThickness="3" BorderBrush="White">
-                                <i1:Interaction.Behaviors>
-                                    <core:EventTriggerBehavior EventName="Checked" >
-                                        <core:InvokeCommandAction Command="{Binding SetColorCommand}" CommandParameter="#0078d7"></core:InvokeCommandAction>
-                                    </core:EventTriggerBehavior>
-                                </i1:Interaction.Behaviors>
+                            <RadioButton GroupName="AccentColors" Style="{StaticResource rbtnRectStyle}" Background="#0078d7" Margin="0,0,2,0" BorderThickness="3" BorderBrush="White"
+                                            IsChecked="{Binding Colors, Converter={StaticResource colorConverter}, ConverterParameter=Blue, Mode=TwoWay}">
                             </RadioButton>
                         </StackPanel>
                     </StackPanel>
@@ -149,10 +97,19 @@
                     <StackPanel Height="450" >
                         <TextBlock Text="About" Foreground="{ThemeResource GeneralTxbForeground}" FontSize="18"/>
 
-                        <TextBlock Foreground="{ThemeResource TxbPressPlusForeground}" FontSize="16" Margin="0,13,0,0"><Run Text="{Binding AppName}"/><Run Text=" "/><LineBreak/><Run Text=" "/><Run Text="Version "/><Run Text=" "/><Run Text="{Binding AppVersion}"/><Run Text=" "/><LineBreak/><Run Text=" "/><Run Text="Microsoft Research"/></TextBlock>
+                        <TextBlock Foreground="{ThemeResource TxbPressPlusForeground}" FontSize="16" Margin="0,13,0,0">
+                            <Run Text="{Binding AppName}"/>
+                            <LineBreak/>
+                            <Run Text="Version "/>
+                            <Run Text="{Binding AppVersion}"/>
+                            <LineBreak/>
+                            <Run Text="Microsoft Research"/>
+                        </TextBlock>
 
 
-                        <TextBlock FontSize="16" Width="465" Padding="0" Margin="0 , 20 , 0 ,0 " Foreground="{ThemeResource GeneralTxbForeground}"><Run Text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do"/><Run Text=" "/><LineBreak/><Run Text=" "/><Run Text="eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut"/><Run Text=" "/><LineBreak/><Run Text=" "/><Run Text="enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi"/><Run Text=" "/><LineBreak/><Run Text=" "/><Run Text="ut aliquip ex ea commodo consequat. Duis aute irure dolor in "/><Run Text=" "/><LineBreak/></TextBlock>
+                        <TextBlock TextWrapping="Wrap" FontSize="16" Width="465" Padding="0" Margin="0 , 20 , 0 ,0 " Foreground="{ThemeResource GeneralTxbForeground}">
+                            <Run Text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in "/>
+                        </TextBlock>
 
                         <Button Background="Transparent" Padding="0" Content="Share application" FontSize="16" Margin="0,24,0,24" Foreground="{Binding AccentColor, Source={StaticResource AccentColorSettings}}"/>
                         <Button Background="Transparent" Padding="0" Content="More apps" FontSize="16" Foreground="{Binding AccentColor, Source={StaticResource AccentColorSettings}}"/>

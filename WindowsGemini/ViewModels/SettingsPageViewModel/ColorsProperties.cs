@@ -9,37 +9,49 @@ using WindowsGemini.Models;
 using Microsoft.Toolkit.Uwp.Helpers;
 using System.ComponentModel.DataAnnotations;
 using WindowsGemini.Models.Settings;
+using System;
 
 namespace WindowsGemini.ViewModels.SettingsPageViewModel
 {
     // Accent colors
     partial class SettingsViewModel
     {
-        private ObservableCollection<string> _accentColors = new ObservableCollection<string>() {
-            "#f7630c" , "#ff4343",
-            "#ea005e" , "#b146c2",
-            "#107c10" , "#0078d7", };
-        public ObservableCollection<string> AccentColors
+        private AccentColors _colors;
+
+        public AccentColors Colors
         {
-            get { return _accentColors; }
-            set { _accentColors = value; }
-        }
-        public string CurrentAccentColor {
             get
             {
-                return "";
+                return (AccentColors)Enum.Parse(typeof(AccentColors), CompositeSettings.localSettings.Values["CurrentAccentColor"].ToString());
             }
             set
             {
-                ((SolidColorBrush)App.Current.Resources["GeneralBlueWhiteButtonBackground"]).Color = ColorHelper.ToColor(value);// = new SolidColorBrush(Colors.Red);
+                _colors = value;
+                switch (value)
+                {
+                    case AccentColors.Orange:
+                        AccentColorSettings.AccentColor = "#f7630c";
+                        break;
+                    case AccentColors.Corral:
+                        AccentColorSettings.AccentColor = "#ff4343";
+                        break;
+                    case AccentColors.Red:
+                        AccentColorSettings.AccentColor = "#ea005e";
+                        break;
+                    case AccentColors.Purple:
+                        AccentColorSettings.AccentColor = "#b146c2";
+                        break;
+                    case AccentColors.Green:
+                        AccentColorSettings.AccentColor = "#107c10";
+                        break;
+                    case AccentColors.Blue:
+                        AccentColorSettings.AccentColor = "#0078d7";
+                        break;
+                    default:
+                        break;
+                }
+                CompositeSettings.localSettings.Values["CurrentAccentColor"] = value.ToString();
             }
-        }
-
-        public DelegateCommand<string> SetColorCommand { get; }
-
-        private void ExecuteColorCommand(string e)
-        {
-            AccentColorSettings.AccentColor = e;
         }
     }
 }
