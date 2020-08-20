@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.VoiceCommands;
 using Windows.Storage;
 
 namespace WindowsGemini.ViewModels
 {
-
-    // Scan results
     partial class MainViewModel
     {
         private ObservableCollection<StorageFile> _images = new ObservableCollection<StorageFile>();
@@ -22,8 +15,6 @@ namespace WindowsGemini.ViewModels
         private ObservableCollection<StorageFile> _archieves = new ObservableCollection<StorageFile>();
         private ObservableCollection<StorageFolder> _folders = new ObservableCollection<StorageFolder>();
         private ObservableCollection<StorageFile> _other = new ObservableCollection<StorageFile>();
-
-
 
         private double _imagesSize;
         public double ImagesSize
@@ -86,7 +77,6 @@ namespace WindowsGemini.ViewModels
             NotifyPropertyChanged(nameof(FullSizeOfDuplicates));
         }
 
-
         private static async Task<double> GetFilesSizeInMB(ICollection<StorageFile> files)
         {
             double FilesSize = 0;
@@ -102,10 +92,7 @@ namespace WindowsGemini.ViewModels
         {
             var baseProperties = await file.GetBasicPropertiesAsync();
             var bytesSize = baseProperties.Size;
-
             
-            //return bytesSize; // Bytes
-            //return bytesSize / 1024;//KB
             return (bytesSize / 1024) / 1024; //MB
         }
         private static async Task<ulong> GetFileSizeInBytes(StorageFile file)

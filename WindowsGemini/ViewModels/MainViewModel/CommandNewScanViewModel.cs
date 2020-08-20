@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using Windows.UI.Xaml;
 using WindowsGemini.Models;
 
 namespace WindowsGemini.ViewModels
@@ -27,7 +24,6 @@ namespace WindowsGemini.ViewModels
             _archieves.Clear();
             _folders.Clear();
             _other.Clear();
-
             _state_select_folder();
             SelectedFolder = null;
         }

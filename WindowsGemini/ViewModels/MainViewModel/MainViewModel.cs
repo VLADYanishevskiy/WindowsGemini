@@ -1,22 +1,8 @@
-﻿using Microsoft.Toolkit.Uwp.Helpers;
-using Prism.Commands;
-using System;
-using System.Collections;
+﻿using Prism.Commands;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.ExceptionServices;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using Windows.Storage;
-using Windows.Storage.Pickers;
-using Windows.UI;
-using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using WindowsGemini.Models;
 using WindowsGemini.Models.Settings;
@@ -26,7 +12,6 @@ namespace WindowsGemini.ViewModels
 
     partial class MainViewModel : BaseViewModel
     {
-
         Stack<StorageFile> groupedFiles;
 
         private readonly ObservableCollection<StorageFolder> _includeFolders;
@@ -34,8 +19,6 @@ namespace WindowsGemini.ViewModels
         {
             get { return _includeFolders; }
         }
-
-
 
         public MainViewModel()
         {

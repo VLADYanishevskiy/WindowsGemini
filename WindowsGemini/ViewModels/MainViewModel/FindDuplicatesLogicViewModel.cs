@@ -1,24 +1,16 @@
 ﻿using Microsoft.Toolkit.Uwp.Helpers;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Windows.Security.Authentication.Identity.Core;
-using Windows.Security.Cryptography.Core;
 using Windows.Storage;
 using Windows.UI.Popups;
-using Windows.UI.Xaml.Controls;
 using WindowsGemini.Models;
 
 namespace WindowsGemini.ViewModels
 {
     partial class MainViewModel
     {
-
         private bool StopScan = false;
         private bool StopFindScan = false;
 
@@ -116,8 +108,7 @@ namespace WindowsGemini.ViewModels
             toRemove = null;
             GC.Collect();
 
-            //CountOfFiles = sortedFiles.Count;
-
+            CountOfFiles = sortedFiles.Count;
 
             foreach (var entry in sortedFiles)
             {
@@ -229,5 +220,4 @@ namespace WindowsGemini.ViewModels
             }
         }
     }
-
 }

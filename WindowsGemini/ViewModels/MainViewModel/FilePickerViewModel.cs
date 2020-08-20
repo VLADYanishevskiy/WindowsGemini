@@ -30,6 +30,5 @@ namespace WindowsGemini.ViewModels
                 FoldersToScan.Add(folder);
             }
         }
-
     }
 }

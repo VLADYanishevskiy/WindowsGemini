@@ -15,7 +15,6 @@ namespace WindowsGemini.ViewModels
             e.AcceptedOperation = DataPackageOperation.Copy;
         }
 
-
         public DelegateCommand<DragEventArgs> DropCommand { get; } 
         private async void ExecuteDropCommandAsync(DragEventArgs e)
         {

@@ -34,9 +34,6 @@ namespace WindowsGemini.ViewModels
                 Notify_Results_Collection_Completed();
 
                 _state_scanning_finished();
-
-                //StackPanelNewScanVisibility = Windows.UI.Xaml.Visibility.Collapsed;
-                //StackPanelResultsScanVisibility = Windows.UI.Xaml.Visibility.Visible;
             }
         }
 
