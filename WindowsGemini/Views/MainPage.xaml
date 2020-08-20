@@ -13,14 +13,9 @@
     extensions:TitleBarExtensions.ButtonBackgroundColor="Transparent"
     extensions:TitleBarExtensions.ButtonInactiveBackgroundColor="Transparent"
     extensions:TitleBarExtensions.InactiveBackgroundColor="Transparent"
-    xmlns:mdt="using:WindowsGemini.Models.DataTemplateSelectors"
-    xmlns:mediaToolKit="using:Microsoft.Toolkit.Uwp.UI.Media"
-    xmlns:media="using:Windows.UI.Xaml.Media" 
     MinHeight="500"
     xmlns:viewmodels="using:WindowsGemini.ViewModels" 
-    xmlns:Custom1="using:WindowsGemini.Models.Behaviors"
-    xmlns:customcontrols="using:WindowsGemini.Views.CustomControls"
-    xmlns:AppFolder="using:WindowsGemini">
+    xmlns:customcontrols="using:WindowsGemini.Views.CustomControls">
     <Page.DataContext>
         <viewmodels:MainViewModel/>
     </Page.DataContext>
@@ -68,9 +63,7 @@
                     <ScrollViewer VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                         <ListView x:Name="listViewOfFolders" Background="Transparent"
                               ItemsSource="{Binding FoldersToScan}" Margin="0,0,0,44"
-                              SelectedItem="{Binding SelectedFolder , Mode=TwoWay}" 
-                              >
-                            <!--ItemTemplateSelector = "{StaticResource SelectedItemTemplateSelector}"-->
+                              SelectedItem="{Binding SelectedFolder , Mode=TwoWay}">
 
                             <ListView.ItemTemplate>
                                 <DataTemplate>

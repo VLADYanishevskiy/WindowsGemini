@@ -1,27 +1,12 @@
-﻿using Microsoft.Toolkit.Collections;
-using Microsoft.Toolkit.Uwp.Helpers;
-using Microsoft.Toolkit.Uwp.UI.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.IO;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices.WindowsRuntime;
+﻿using Microsoft.Toolkit.Uwp.UI.Helpers;
 using Windows.ApplicationModel.Core;
-using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
-using Windows.Storage;
-using Windows.Storage.Pickers;
 using Windows.UI;
-using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Navigation;
-using WindowsGemini.Models;
-using WindowsGemini.ViewModels;
 using WindowsGemini.Views;
 using WindowsGemini.Views.CustomControls;
 
@@ -38,7 +23,6 @@ namespace WindowsGemini
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
             ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(500, 500));
-
 
             Binding myBinding = new Binding();
             myBinding.Source = this.DataContext;
@@ -89,6 +73,5 @@ namespace WindowsGemini
             mltView.Views.Clear();
             this.Frame.Navigate(typeof(ResultsScanPage));
         }
-
     }
 }

@@ -1,22 +1,14 @@
-﻿using Microsoft.Toolkit.Extensions;
-using Microsoft.Toolkit.Uwp.UI.Helpers;
+﻿using Microsoft.Toolkit.Uwp.UI.Helpers;
 using Windows.ApplicationModel.Core;
 using Windows.UI;
 using Windows.UI.Core;
-using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using WindowsGemini.Models.Settings;
-
-// Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace WindowsGemini.Views
 {
-    /// <summary>
-    /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
-    /// </summary>
     public sealed partial class SettingPage : Page
     {
         ThemeListener Listener = new ThemeListener();
@@ -28,7 +20,6 @@ namespace WindowsGemini.Views
             coreTitleBar.ExtendViewIntoTitleBar = true;
             Listener.ThemeChanged += Listener_ThemeChanged;
             CorrectTitleBarTheme(App.Current.RequestedTheme);
-            //var obj = (new AccentColorSettings()).AccentColor;
         }
 
         private void Listener_ThemeChanged(ThemeListener sender)

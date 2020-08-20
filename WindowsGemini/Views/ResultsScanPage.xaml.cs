@@ -18,13 +18,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace WindowsGemini.Views
 {
-    /// <summary>
-    /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
-    /// </summary>
     public sealed partial class ResultsScanPage : Page, IDisposable
     {
         ThemeListener Listener = new ThemeListener();
@@ -37,7 +32,6 @@ namespace WindowsGemini.Views
             Listener.ThemeChanged += Listener_ThemeChanged;
             CorrectTitleBarTheme(App.Current.RequestedTheme);
         }
-
 
         private void Listener_ThemeChanged(ThemeListener sender)
         {

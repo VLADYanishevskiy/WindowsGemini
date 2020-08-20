@@ -1,2 +1,1 @@
 ﻿1) Добавить затемнение при dra&drop
-2) Добавить привязку к SelectedItem в AccentColors
