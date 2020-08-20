@@ -26,26 +26,6 @@
     </Page.DataContext>
     <Page.Resources>
         <ResourceDictionary>
-            <DataTemplate x:Key="NormalItemTemplate" x:DataType="x:Boolean">
-                <uiShadowsToolkit:DockPanel HorizontalAlignment="Stretch" Width="216">
-                    <SymbolIcon Symbol="Folder" uiShadowsToolkit:DockPanel.Dock="Left" Foreground="{ThemeResource CymbolFolderForeground}"/>
-                    <TextBlock Text="{Binding Name}" MaxWidth="160"  Margin="13,8,0,8" FontSize="16" FontWeight="SemiLight" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                    
-                </uiShadowsToolkit:DockPanel>
-            </DataTemplate>
-            <DataTemplate x:Key="SelectedItemTemplate" x:DataType="x:Boolean">
-                <uiShadowsToolkit:DockPanel HorizontalAlignment="Stretch" Width="216">
-                    <SymbolIcon Symbol="Folder" uiShadowsToolkit:DockPanel.Dock="Left" Foreground="{ThemeResource CymbolFolderForeground}"/>
-                    <TextBlock Text="{Binding Name}" MaxWidth="160"  Margin="13,8,0,8" FontSize="16" FontWeight="SemiLight" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
-                    <Button Margin="0" Visibility="Visible" HorizontalAlignment="Right" uiShadowsToolkit:DockPanel.Dock="Right" Background="Transparent" BorderThickness="0">
-                        <SymbolIcon Symbol="Cancel" Foreground="{ThemeResource BtnRemoveFolderFromLeftGrid}" />
-                    </Button>
-                </uiShadowsToolkit:DockPanel>
-            </DataTemplate>
-            <mdt:SelectedItemTemplateSelector x:Key="SelectedItemTemplateSelector"
-            Normal="{StaticResource NormalItemTemplate}"
-            Accent="{StaticResource SelectedItemTemplate}"/>
-
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary Source="/Assets/ThemeColors/ThemeDictionaryLight.xaml" x:Key="Light"/>
                 <ResourceDictionary Source="/Assets/ThemeColors/ThemeDictionaryDark.xaml" x:Key="Dark"/>

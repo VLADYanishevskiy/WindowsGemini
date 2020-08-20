@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 using WindowsGemini.Models.Settings;
-using WindowsGemini.ViewModels.SettingsPageViewModel;
 
 namespace WindowsGemini.Models.ValueConverters
 {
@@ -41,6 +36,5 @@ namespace WindowsGemini.Models.ValueConverters
                 return Enum.Parse(typeof(AccentColors), CompositeSettings.localSettings.Values["CurrentAccentColor"].ToString());
             }
         }
-
     }
 }

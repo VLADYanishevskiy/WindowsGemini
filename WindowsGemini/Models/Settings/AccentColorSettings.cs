@@ -37,8 +37,5 @@ namespace WindowsGemini.Models.Settings
                 AccentColor = "#0078d7";
             }
         }
-
-
-
     }
 }

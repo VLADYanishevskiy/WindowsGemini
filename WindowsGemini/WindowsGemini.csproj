@@ -119,9 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Behaviors\ElementDraggableBehavior.cs" />
     <Compile Include="Models\CommandHadlers\CommandHandler.cs" />
-    <Compile Include="Models\DataTemplateSelectors\SelectedItemTemplateSelector.cs" />
     <Compile Include="Models\FileEqualsChecker.cs" />
     <Compile Include="Models\FileTypeChecker.cs" />
     <Compile Include="Models\Settings\AccentColor.cs" />
@@ -248,7 +246,9 @@
       <Version>7.2.0.1422</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\Behaviors\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Fonts\9404.ttf" />
   </ItemGroup>
