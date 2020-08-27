@@ -11,7 +11,7 @@ namespace WindowsGemini.ViewModels.SettingsPageViewModel
         {
             get
             {
-                return (AccentColors)Enum.Parse(typeof(AccentColors), CompositeSettings.localSettings.Values["CurrentAccentColor"].ToString());
+                return _colors;
             }
             set
             {

@@ -43,11 +43,11 @@ namespace WindowsGemini.Models
             if ((CompositeSettings.localSettings.Values["ApplicationTheme"] as string) != null)
             {
                 object obj = CompositeSettings.localSettings.Values["ApplicationTheme"];
-                ThemeSettingsController.ApplicationTheme = (ApplTheme)Enum.Parse(typeof(ApplTheme), obj.ToString());
+                ApplicationTheme = (ApplTheme)Enum.Parse(typeof(ApplTheme), obj.ToString());
             }
             else
             {
-                ThemeSettingsController.ApplicationTheme = ApplTheme.UseDefault;
+                ApplicationTheme = ApplTheme.UseDefault;
             }
         }
     }

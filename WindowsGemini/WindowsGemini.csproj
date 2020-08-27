@@ -125,7 +125,6 @@
     <Compile Include="Models\Settings\AccentColor.cs" />
     <Compile Include="Models\Settings\AccentColorSettings.cs" />
     <Compile Include="Models\Settings\CompositeSettings.cs" />
-    <Compile Include="Models\Settings\DeletionMode.cs" />
     <Compile Include="Models\Settings\ThemeSettingsController.cs" />
     <Compile Include="Models\ValueConverters\ColorConverter.cs" />
     <Compile Include="Models\ValueConverters\EnumBooleanConverter.cs" />
@@ -252,7 +251,9 @@
       <Version>18.2.0.54</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <PRIResource Include="Strings\en-US\Resources.resw" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Fonts\9404.ttf" />
   </ItemGroup>
