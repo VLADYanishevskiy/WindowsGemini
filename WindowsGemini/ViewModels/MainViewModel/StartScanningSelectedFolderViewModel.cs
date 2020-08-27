@@ -21,8 +21,6 @@ namespace WindowsGemini.ViewModels
             }
             else
             {
-                StopScan = false;
-                StopFindScan = false;
                 groupedFiles.Clear();
                 ClearStatsOfScanning();
 

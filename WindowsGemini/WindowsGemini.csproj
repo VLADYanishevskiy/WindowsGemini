@@ -245,6 +245,12 @@
     <PackageReference Include="Prism.Core">
       <Version>7.2.0.1422</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.SfInput.UWP">
+      <Version>18.2.0.54</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.SfMenu.UWP">
+      <Version>18.2.0.54</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\Behaviors\" />

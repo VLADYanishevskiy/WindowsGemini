@@ -18,7 +18,7 @@ namespace WindowsGemini.ViewModels
         }
         private async void OpenFilePickerAction()
         {
-            var folderPicker = new FolderPicker();
+            FolderPicker folderPicker = new FolderPicker();
             folderPicker.SuggestedStartLocation = PickerLocationId.Desktop;
             folderPicker.FileTypeFilter.Add("*");
 

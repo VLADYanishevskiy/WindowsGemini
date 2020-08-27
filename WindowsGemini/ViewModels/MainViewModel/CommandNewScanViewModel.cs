@@ -26,6 +26,7 @@ namespace WindowsGemini.ViewModels
             _other.Clear();
             _state_select_folder();
             SelectedFolder = null;
+            StopScanTokenSource = new System.Threading.CancellationTokenSource();
         }
     }
 }
