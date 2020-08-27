@@ -128,7 +128,7 @@
                         </StackPanel>
                     </StackPanel>
 
-                    <StackPanel x:Name="PanelAboutProgrammInfo" Height="450" HorizontalAlignment="Left">
+                    <StackPanel x:Name="PanelAboutProgrammInfo" Padding="0,12,0,0" Height="450" HorizontalAlignment="Left">
                         
                         <TextBlock Text="About" Foreground="{ThemeResource GeneralTxbForeground}" FontSize="18"/>
 
