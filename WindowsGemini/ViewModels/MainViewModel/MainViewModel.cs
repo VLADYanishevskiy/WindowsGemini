@@ -22,6 +22,7 @@ namespace WindowsGemini.ViewModels
 
         public MainViewModel()
         {
+            resourceLoader = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView("Resources");
             StateOfScanning = 0;
             _includeFolders = new ObservableCollection<StorageFolder>();
             _includeFolders.CollectionChanged += IncludeFolders_CollectionChanged;

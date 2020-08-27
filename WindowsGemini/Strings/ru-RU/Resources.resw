@@ -118,126 +118,126 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="btnMoreApps.Content" xml:space="preserve">
-    <value>More apps</value>
+    <value>Больше приложений</value>
   </data>
   <data name="btnNewScan.Content" xml:space="preserve">
-    <value>New scan</value>
+    <value>Новое сканирование</value>
   </data>
   <data name="btnReviewResults.Content" xml:space="preserve">
-    <value>Review results</value>
+    <value>Показать результаты</value>
   </data>
   <data name="btnSendFeed.Content" xml:space="preserve">
-    <value>Send feedback</value>
+    <value>Отправить отзыв</value>
   </data>
   <data name="btnShareApp.Content" xml:space="preserve">
-    <value>Share application</value>
+    <value>Поделиться приложением</value>
   </data>
   <data name="btnStop.Content" xml:space="preserve">
-    <value>Stop</value>
+    <value>Стоп</value>
   </data>
   <data name="msgAskSureStopScan" xml:space="preserve">
-    <value>Are you sure you want to stop scanning?</value>
+    <value>Вы действительно хотите остановить сканирование ?</value>
   </data>
   <data name="msgNo" xml:space="preserve">
-    <value>No</value>
+    <value>Нет</value>
   </data>
   <data name="msgYes" xml:space="preserve">
-    <value>Yes</value>
+    <value>Да</value>
   </data>
   <data name="rbtnDelModePermanentDel.Content" xml:space="preserve">
-    <value>Permanent deletion</value>
+    <value>Немедленное удаление</value>
   </data>
   <data name="rbtnDelModeRecycleBin.Content" xml:space="preserve">
-    <value>Send to Recycle Bin</value>
+    <value>Отправить в корзину</value>
   </data>
   <data name="rbtnThemeModeDark.Content" xml:space="preserve">
-    <value>Dark</value>
+    <value>Темная</value>
   </data>
   <data name="rbtnThemeModeDefault.Content" xml:space="preserve">
-    <value>Use system settings</value>
+    <value>Использовать системные настройки</value>
   </data>
   <data name="rbtnThemeModeLight.Content" xml:space="preserve">
-    <value>Light</value>
+    <value>Светлая</value>
   </data>
   <data name="txbAbout.Text" xml:space="preserve">
-    <value>About</value>
+    <value>Справка</value>
   </data>
   <data name="txbAccentColors.Text" xml:space="preserve">
-    <value>Accent colors</value>
+    <value>Доступные цвета</value>
   </data>
   <data name="txbAllOfyDuplicatesRes" xml:space="preserve">
-    <value>all of your duplicates.</value>
+    <value>все ваши дубликатов</value>
   </data>
   <data name="txbArchives.Text" xml:space="preserve">
-    <value>Archives</value>
+    <value>Архивы</value>
   </data>
   <data name="txbCountOfCheckedFilesRes.Text" xml:space="preserve">
-    <value> file(s) checked</value>
+    <value> файл(ов) проверено</value>
   </data>
   <data name="txbDeletingUniqueFiles" xml:space="preserve">
-    <value>Deleting unique files</value>
+    <value>Удаление уникальных файлов</value>
   </data>
   <data name="txbDeuplicateDeletionMode.Text" xml:space="preserve">
-    <value>Duplicate files deletion mode</value>
+    <value>Режим удаления дубликатов файлов</value>
   </data>
   <data name="txbDocuments.Text" xml:space="preserve">
-    <value>Documents</value>
+    <value>Документы</value>
   </data>
   <data name="txbFoundInFolders.Text" xml:space="preserve">
-    <value>found in folders</value>
+    <value>найдено в папке</value>
   </data>
   <data name="txbGroupFilesBySameSize" xml:space="preserve">
-    <value>Grouping files by same size</value>
+    <value>Группировка по размеру</value>
   </data>
   <data name="txbImages.Text" xml:space="preserve">
-    <value>Images</value>
+    <value>Картинки</value>
   </data>
   <data name="txbJustPushButtonBellowRes" xml:space="preserve">
-    <value>Just push the button below to find</value>
+    <value>Просто нажмите кнопку ниже чтобы найти</value>
   </data>
   <data name="txbLanguage.Text" xml:space="preserve">
-    <value>Language</value>
+    <value>Язык</value>
   </data>
   <data name="txbMainPageHelloRes" xml:space="preserve">
-    <value>Hello!</value>
+    <value>Привет!</value>
   </data>
   <data name="txbMainPageWelcomeToRes" xml:space="preserve">
-    <value>Welcome to </value>
+    <value>Добро пожаловать в</value>
   </data>
   <data name="txbModeTheme.Text" xml:space="preserve">
-    <value>Mode</value>
+    <value>Тема</value>
   </data>
   <data name="txbOf.Text" xml:space="preserve">
-    <value> of </value>
+    <value> из </value>
   </data>
   <data name="txbOrJustDDtoStartRes" xml:space="preserve">
-    <value>or just drag&amp;drop to start scanning.</value>
+    <value>или просто перетащите для начала сканирования</value>
   </data>
   <data name="txbOther.Text" xml:space="preserve">
-    <value>Other</value>
+    <value>Другое</value>
   </data>
   <data name="txbPressPlusToAddRes" xml:space="preserve">
-    <value>Please press +  to add folders</value>
+    <value>Пожалуйста нажмите + чтобы добавить папки для сканирования</value>
   </data>
   <data name="txbReadyToScanRes" xml:space="preserve">
-    <value>Ready to Scan!</value>
+    <value>Готовы к сканированию!</value>
   </data>
   <data name="txbRunVersion.Text" xml:space="preserve">
-    <value>Version</value>
+    <value>Версия</value>
   </data>
   <data name="txbScanCompleted.Text" xml:space="preserve">
-    <value>Scan Completed!</value>
+    <value>Сканирование завершено</value>
   </data>
   <data name="txbScanning.Text" xml:space="preserve">
-    <value>Scanning...</value>
+    <value>Сканирование...</value>
   </data>
   <data name="txbSelectOneFolder" xml:space="preserve">
-    <value>Select at least one folder.</value>
+    <value>Выберите хотя бы одну папку</value>
   </data>
   <data name="txbSettings.Text" xml:space="preserve">
-    <value>Settings</value>
+    <value>Настройки</value>
   </data>
   <data name="txbStartOfComparing" xml:space="preserve">
-    <value>Start of comparing</value>
+    <value>Начало сравнения</value>
   </data>
 </root>

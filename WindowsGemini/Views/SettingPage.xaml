@@ -74,7 +74,7 @@
                 <Converters:ModeEnumBooleanConverter x:Key="modeEnumBooleanConverter"/>
                 <Converters:ColorConverter x:Key="colorConverter"/>
             </StackPanel.Resources>
-            <TextBlock Text="Settings" Foreground="{Binding AccentColor, Source={StaticResource AccentColorSettings}}" Margin="10,10,0,0" FontSize="18"/>
+            <TextBlock x:Uid="txbSettings"  Foreground="{Binding AccentColor, Source={StaticResource AccentColorSettings}}" Margin="10,10,0,0" FontSize="18"/>
             <ScrollViewer Margin="13,10,0,0" Height="450">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -86,24 +86,24 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <StackPanel x:Name="TopStackSettings" Orientation="Vertical">
-                        <TextBlock Text="Language" Margin="0,12,0,0" FontSize="18" Foreground="{ThemeResource GeneralTxbForeground}"/>
+                        <TextBlock x:Uid="txbLanguage"  Margin="0,12,0,0" FontSize="18" Foreground="{ThemeResource GeneralTxbForeground}"/>
                         <ComboBox Width="350" Height="32" BorderThickness="1" Margin="0,12,0,0" Foreground="{ThemeResource GeneralTxbForeground}">
                             <ComboBoxItem Content="English" FontSize="16"/>
                             <ComboBoxItem Content="Rus"/>
                         </ComboBox>
-                        <TextBlock Text="Duplicate files deletion mode" Margin="0,20,0,0" FontSize="18" Foreground="{ThemeResource GeneralTxbForeground}"/>
+                        <TextBlock x:Uid="txbDeuplicateDeletionMode"  Margin="0,20,0,0" FontSize="18" Foreground="{ThemeResource GeneralTxbForeground}"/>
 
-                        <RadioButton GroupName="deleteMode" IsChecked="{Binding DeleTionMode, Converter={StaticResource modeEnumBooleanConverter}, ConverterParameter=SendToTecycleBin, Mode=TwoWay}" FontSize="16" Content="Send to Recycle Bin"/>
-                        <RadioButton GroupName="deleteMode" IsChecked="{Binding DeleTionMode, Converter={StaticResource modeEnumBooleanConverter}, ConverterParameter=PermanentDeletion, Mode=TwoWay}" FontSize="16" Content="Permanent deletion"/>
+                        <RadioButton x:Uid="rbtnDelModeRecycleBin" GroupName="deleteMode" IsChecked="{Binding DeleTionMode, Converter={StaticResource modeEnumBooleanConverter}, ConverterParameter=SendToTecycleBin, Mode=TwoWay}" FontSize="16" />
+                        <RadioButton x:Uid="rbtnDelModePermanentDel" GroupName="deleteMode" IsChecked="{Binding DeleTionMode, Converter={StaticResource modeEnumBooleanConverter}, ConverterParameter=PermanentDeletion, Mode=TwoWay}" FontSize="16" />
 
 
-                        <TextBlock Text="Mode" Margin="0,20,0,0" FontSize="18" Foreground="{ThemeResource GeneralTxbForeground}"/>
+                        <TextBlock x:Uid="txbModeTheme"  Margin="0,20,0,0" FontSize="18" Foreground="{ThemeResource GeneralTxbForeground}"/>
 
-                        <RadioButton GroupName="themeMode" IsChecked="{Binding ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Light, Mode=TwoWay}" FontSize="16" Foreground="{ThemeResource GeneralTxbForeground}" Content="Light"/>
-                        <RadioButton GroupName="themeMode" IsChecked="{Binding ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Dark, Mode=TwoWay}" FontSize="16" Foreground="{ThemeResource GeneralTxbForeground}" Content="Dark"/>
-                        <RadioButton GroupName="themeMode" IsChecked="{Binding ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=UseDefault, Mode=TwoWay}" FontSize="16" Foreground="{ThemeResource GeneralTxbForeground}" Content="Use system settings"/>
+                        <RadioButton x:Uid="rbtnThemeModeLight" GroupName="themeMode" IsChecked="{Binding ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Light, Mode=TwoWay}" FontSize="16" Foreground="{ThemeResource GeneralTxbForeground}" />
+                        <RadioButton x:Uid="rbtnThemeModeDark" GroupName="themeMode" IsChecked="{Binding ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=Dark, Mode=TwoWay}" FontSize="16" Foreground="{ThemeResource GeneralTxbForeground}" />
+                        <RadioButton x:Uid="rbtnThemeModeDefault" GroupName="themeMode" IsChecked="{Binding ApplicationTheme, Converter={StaticResource enumBooleanConverter}, ConverterParameter=UseDefault, Mode=TwoWay}" FontSize="16" Foreground="{ThemeResource GeneralTxbForeground}" />
 
-                        <TextBlock Text="Accent colors" Margin="0,20,0,0" FontSize="18" Foreground="{ThemeResource GeneralTxbForeground}"/>
+                        <TextBlock x:Uid="txbAccentColors" Margin="0,20,0,0" FontSize="18" Foreground="{ThemeResource GeneralTxbForeground}"/>
 
                         <StackPanel Orientation="Horizontal">
                             <RadioButton GroupName="AccentColors" 
@@ -130,12 +130,12 @@
 
                     <StackPanel x:Name="PanelAboutProgrammInfo" Padding="0,12,0,0" Height="450" HorizontalAlignment="Left">
                         
-                        <TextBlock Text="About" Foreground="{ThemeResource GeneralTxbForeground}" FontSize="18"/>
+                        <TextBlock x:Uid="txbAbout" Foreground="{ThemeResource GeneralTxbForeground}" FontSize="18"/>
 
                         <TextBlock Foreground="{ThemeResource TxbPressPlusForeground}" FontSize="16" Margin="0,13,0,0">
                             <Run Text="{Binding AppName}"/>
                             <LineBreak/>
-                            <Run Text="Version "/>
+                            <Run x:Uid="txbRunVersion"/>
                             <Run Text="{Binding AppVersion}"/>
                             <LineBreak/>
                             <Run Text="Microsoft Research"/>
@@ -145,9 +145,9 @@
                             <Run Text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in "/>
                         </TextBlock>
 
-                        <Button Background="Transparent" Padding="0" Content="Share application" FontSize="16" Margin="0,24,0,24" Foreground="{Binding AccentColor, Source={StaticResource AccentColorSettings}}"/>
-                        <Button Background="Transparent" Padding="0" Content="More apps" FontSize="16" Foreground="{Binding AccentColor, Source={StaticResource AccentColorSettings}}"/>
-                        <Button Background="Transparent" Padding="0" Content="Send feedback" FontSize="16" Margin="0,20,0,0" Foreground="{Binding AccentColor, Source={StaticResource AccentColorSettings}}"/>
+                        <Button x:Uid="btnShareApp" Background="Transparent" Padding="0"  FontSize="16" Margin="0,24,0,24" Foreground="{Binding AccentColor, Source={StaticResource AccentColorSettings}}"/>
+                        <Button x:Uid="btnMoreApps" Background="Transparent" Padding="0"  FontSize="16" Foreground="{Binding AccentColor, Source={StaticResource AccentColorSettings}}"/>
+                        <Button x:Uid="btnSendFeed" Background="Transparent" Padding="0"  FontSize="16" Margin="0,20,0,0" Foreground="{Binding AccentColor, Source={StaticResource AccentColorSettings}}"/>
 
                     </StackPanel>
                 </Grid>

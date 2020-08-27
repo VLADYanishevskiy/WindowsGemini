@@ -12,7 +12,7 @@ namespace WindowsGemini.ViewModels
         {
             get
             {
-                return FoldersToScan.Count == 0 ? "Hello!" : "";
+                return FoldersToScan.Count == 0 ? resourceLoader.GetString("txbMainPageHelloRes") : "";
             }
             private set { }
         }
@@ -20,7 +20,8 @@ namespace WindowsGemini.ViewModels
         {
             get
             {
-                return FoldersToScan.Count == 0 ? "Welcome to " : "Ready to Scan!";
+                return FoldersToScan.Count == 0 ? resourceLoader.GetString("txbMainPageWelcomeToRes") : 
+                    resourceLoader.GetString("txbReadyToScanRes");
             }
             private set { }
         }
@@ -36,14 +37,16 @@ namespace WindowsGemini.ViewModels
         {
             get
             {
-                return FoldersToScan.Count == 0 ? "Please press \"+\"  to add folders" : "Just push the button below to find";
+                return FoldersToScan.Count == 0 ? resourceLoader.GetString("txbPressPlusToAddRes") :
+                    resourceLoader.GetString("txbJustPushButtonBellowRes");
             }
         }
         public string txbMainPageHintPlusOrPressButoonBottom
         {
             get
             {
-                return FoldersToScan.Count == 0 ? "or just drag&drop to start scanning." : "all of your duplicates.";
+                return FoldersToScan.Count == 0 ? resourceLoader.GetString("txbOrJustDDtoStartRes") :
+                    resourceLoader.GetString("txbAllOfyDuplicatesRes");
             }
         }
     }

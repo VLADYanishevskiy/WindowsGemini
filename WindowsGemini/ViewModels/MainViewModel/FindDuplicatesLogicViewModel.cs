@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Storage;
@@ -72,7 +73,7 @@ namespace WindowsGemini.ViewModels
         {
             Dictionary<ulong, List<StorageFile>> sortedFiles = new Dictionary<ulong, List<StorageFile>>();
 
-            CurrentCheckingFile = "Grouping files by same size";
+            CurrentCheckingFile = resourceLoader.GetString("txbGroupFilesBySameSize");
 
             while (groupedFiles.Count > 0)
             {
@@ -86,7 +87,7 @@ namespace WindowsGemini.ViewModels
             }
             groupedFiles.Clear();
 
-            CurrentCheckingFile = "Deleting unique files";
+            CurrentCheckingFile = resourceLoader.GetString("txbDeletingUniqueFiles");
 
             if (StopScanTokenSource.IsCancellationRequested) return;
             var toRemove = sortedFiles.Where(pair => pair.Value.Count == 1)
@@ -104,7 +105,7 @@ namespace WindowsGemini.ViewModels
 
             CountOfFiles = sortedFiles.Count;
 
-            CurrentCheckingFile = "Start of comparing";
+            CurrentCheckingFile = resourceLoader.GetString("txbStartOfComparing");
 
             foreach (var entry in sortedFiles)
             {

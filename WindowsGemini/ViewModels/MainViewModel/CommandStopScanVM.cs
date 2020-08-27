@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.ApplicationModel.Resources;
 using Windows.UI.Popups;
 using WindowsGemini.Models;
 
@@ -11,6 +12,7 @@ namespace WindowsGemini.ViewModels
 {
     partial class MainViewModel
     {
+        public static ResourceLoader resourceLoader;
         public ICommand StopScanCommand
         {
             get
@@ -20,10 +22,10 @@ namespace WindowsGemini.ViewModels
         }
         private async Task StopScanActionAsync()
         {
-            var content = "Are you sure you want to stop scanning?";
+            var content = resourceLoader.GetString("msgAskSureStopScan");
 
-            var yesCommand = new UICommand("Yes", cmd => { });
-            var noCommand = new UICommand("No", cmd => { });
+            var yesCommand = new UICommand(resourceLoader.GetString("msgYes"), cmd => { });
+            var noCommand = new UICommand(resourceLoader.GetString("msgNo"), cmd => { });
 
 
             var dialog = new MessageDialog(content);

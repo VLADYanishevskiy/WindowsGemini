@@ -10,7 +10,7 @@ namespace WindowsGemini.ViewModels
         {
             get { return _selectedFolder; }
             set { _selectedFolder = value;
-                NotifyPropertyChanged("SelectedFolder");
+                NotifyPropertyChanged(nameof(SelectedFolder));
             }
         }
     }

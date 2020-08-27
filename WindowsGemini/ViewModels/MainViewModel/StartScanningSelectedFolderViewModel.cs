@@ -16,7 +16,7 @@ namespace WindowsGemini.ViewModels
         {
             if (SelectedFolder == null)
             {
-                MessageDialog msg = new MessageDialog("Select at least one folder.");
+                MessageDialog msg = new MessageDialog(resourceLoader.GetString("txbSelectOneFolder"));
                 await msg.ShowAsync();
             }
             else
