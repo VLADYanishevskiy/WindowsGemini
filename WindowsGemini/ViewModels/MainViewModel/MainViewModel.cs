@@ -22,7 +22,6 @@ namespace WindowsGemini.ViewModels
 
         public MainViewModel()
         {
-            Application.Current.Resources["AccentColorSettings"] = new AccentColorSettings();
             StateOfScanning = 0;
             _includeFolders = new ObservableCollection<StorageFolder>();
             _includeFolders.CollectionChanged += IncludeFolders_CollectionChanged;

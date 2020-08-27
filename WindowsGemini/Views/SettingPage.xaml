@@ -6,13 +6,16 @@
     xmlns:settingspageviewmodel="using:WindowsGemini.ViewModels.SettingsPageViewModel"
     xmlns:Converters="using:WindowsGemini.Models.ValueConverters"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls" 
+    xmlns:settings="using:WindowsGemini.Models.Settings"
     x:Class="WindowsGemini.Views.SettingPage"
     mc:Ignorable="d"
     Loaded="Page_Loaded"
     MinHeight="500"
     >
+    
     <Page.Resources>
         <ResourceDictionary>
+            
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary Source="/Assets/ThemeColors/ThemeDictionaryDark.xaml" x:Key="Dark"/>
                 <ResourceDictionary Source="/Assets/ThemeColors/ThemeDictionaryLight.xaml" x:Key="Light"/>
@@ -31,6 +34,32 @@
     </Page.DataContext>
 
     <Grid >
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Maximized">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="900"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TopStackSettings.(Grid.RowSpan)" Value="2"/>
+                        <Setter Target="TopStackSettings.(Grid.Column)" Value="0"/>
+                        <Setter Target="PanelAboutProgrammInfo.(Grid.RowSpan)" Value="2"/>
+                        <Setter Target="PanelAboutProgrammInfo.(Grid.Column)" Value="1"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Minimized">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TopStackSettings.(Grid.Row)" Value="0"/>
+                        <Setter Target="TopStackSettings.(Grid.ColumnSpan)" Value="2"/>
+                        <Setter Target="PanelAboutProgrammInfo.(Grid.Row)" Value="1"/>
+                        <Setter Target="PanelAboutProgrammInfo.(Grid.ColumnSpan)" Value="2"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid x:Name="TitleBarGrid" VerticalAlignment="Top" Height="30">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
@@ -45,9 +74,17 @@
                 <Converters:ModeEnumBooleanConverter x:Key="modeEnumBooleanConverter"/>
                 <Converters:ColorConverter x:Key="colorConverter"/>
             </StackPanel.Resources>
-            <TextBlock Text="Settings" Foreground="{Binding AccentColor, Source={StaticResource AccentColorSettings} , Mode=OneWay}" Margin="10,10,0,0" FontSize="18"/>
+            <TextBlock Text="Settings" Foreground="{Binding AccentColor, Source={StaticResource AccentColorSettings}}" Margin="10,10,0,0" FontSize="18"/>
             <ScrollViewer Margin="13,10,0,0" Height="450">
-                <controls:WrapPanel  Orientation="Horizontal" HorizontalAlignment="Stretch">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="450"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
                     <StackPanel x:Name="TopStackSettings" Orientation="Vertical">
                         <TextBlock Text="Language" Margin="0,12,0,0" FontSize="18" Foreground="{ThemeResource GeneralTxbForeground}"/>
                         <ComboBox Width="350" Height="32" BorderThickness="1" Margin="0,12,0,0" Foreground="{ThemeResource GeneralTxbForeground}">
@@ -91,7 +128,8 @@
                         </StackPanel>
                     </StackPanel>
 
-                    <StackPanel Height="450" >
+                    <StackPanel x:Name="PanelAboutProgrammInfo" Height="450" HorizontalAlignment="Left">
+                        
                         <TextBlock Text="About" Foreground="{ThemeResource GeneralTxbForeground}" FontSize="18"/>
 
                         <TextBlock Foreground="{ThemeResource TxbPressPlusForeground}" FontSize="16" Margin="0,13,0,0">
@@ -103,8 +141,7 @@
                             <Run Text="Microsoft Research"/>
                         </TextBlock>
 
-
-                        <TextBlock TextWrapping="Wrap" FontSize="16" Width="465" Padding="0" Margin="0 , 20 , 0 ,0 " Foreground="{ThemeResource GeneralTxbForeground}">
+                        <TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" FontSize="16" Width="465" Padding="0" Margin="0 , 20 , 0 ,0 " Foreground="{ThemeResource GeneralTxbForeground}">
                             <Run Text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in "/>
                         </TextBlock>
 
@@ -113,8 +150,9 @@
                         <Button Background="Transparent" Padding="0" Content="Send feedback" FontSize="16" Margin="0,20,0,0" Foreground="{Binding AccentColor, Source={StaticResource AccentColorSettings}}"/>
 
                     </StackPanel>
-                </controls:WrapPanel>
+                </Grid>
             </ScrollViewer>
+            
         </StackPanel>
 
     </Grid>

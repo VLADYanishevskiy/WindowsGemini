@@ -72,6 +72,8 @@ namespace WindowsGemini.ViewModels
         {
             Dictionary<ulong, List<StorageFile>> sortedFiles = new Dictionary<ulong, List<StorageFile>>();
 
+            CurrentCheckingFile = "Grouping files by same size";
+
             while (groupedFiles.Count > 0)
             {
                 if (StopScanTokenSource.IsCancellationRequested) return;
@@ -83,6 +85,8 @@ namespace WindowsGemini.ViewModels
                 sortedFiles[fileSize].Add(groupedFiles.Pop());
             }
             groupedFiles.Clear();
+
+            CurrentCheckingFile = "Deleting unique files";
 
             if (StopScanTokenSource.IsCancellationRequested) return;
             var toRemove = sortedFiles.Where(pair => pair.Value.Count == 1)
@@ -99,6 +103,8 @@ namespace WindowsGemini.ViewModels
             GC.Collect();
 
             CountOfFiles = sortedFiles.Count;
+
+            CurrentCheckingFile = "Start of comparing";
 
             foreach (var entry in sortedFiles)
             {

@@ -252,9 +252,7 @@
       <Version>18.2.0.54</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\Behaviors\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Assets\Fonts\9404.ttf" />
   </ItemGroup>

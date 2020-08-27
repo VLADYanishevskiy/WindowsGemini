@@ -9,7 +9,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace WindowsGemini.Views
 {
-    public sealed partial class SettingPage : Page
+    public sealed partial class SettingPage : Page, System.IDisposable
     {
         ThemeListener Listener = new ThemeListener();
 
@@ -60,5 +60,9 @@ namespace WindowsGemini.Views
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += App_BackRequested;
         }
 
+        public void Dispose()
+        {
+            Listener.Dispose();
+        }
     }
 }
