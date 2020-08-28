@@ -30,7 +30,6 @@ namespace WindowsGemini
         /// <param name="e">Сведения о запросе и обработке запуска.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-            ApplicationLanguages.PrimaryLanguageOverride = "en-US";
             Frame rootFrame = Window.Current.Content as Frame;
             // Не повторяйте инициализацию приложения, если в окне уже имеется содержимое,
             // только обеспечьте активность окна

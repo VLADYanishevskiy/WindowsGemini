@@ -14,11 +14,9 @@
     extensions:TitleBarExtensions.ButtonInactiveBackgroundColor="Transparent"
     extensions:TitleBarExtensions.InactiveBackgroundColor="Transparent"
     MinHeight="500"
+    DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}"
     xmlns:viewmodels="using:WindowsGemini.ViewModels" 
     xmlns:customcontrols="using:WindowsGemini.Views.CustomControls">
-    <Page.DataContext>
-        <viewmodels:MainViewModel/>
-    </Page.DataContext>
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
@@ -26,7 +24,6 @@
                 <ResourceDictionary Source="/Assets/ThemeColors/ThemeDictionaryDark.xaml" x:Key="Dark"/>
             </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>
-
     </Page.Resources>
     <Grid Background="{ThemeResource HostBackdropBrush}" MinHeight="500">
         <Grid Grid.Row="0" Grid.Column="0">

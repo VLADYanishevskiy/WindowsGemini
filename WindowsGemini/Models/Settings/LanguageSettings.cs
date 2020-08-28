@@ -10,7 +10,6 @@ namespace WindowsGemini.Models.Settings
 {
     class LanguageSettings
     {
-        public static ObservableCollection<Language> availableLanguages;
-        public static Language currentLanguage;
+        
     }
 }

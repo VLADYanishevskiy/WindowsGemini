@@ -58,5 +58,11 @@ namespace WindowsGemini.Views.CustomControls
 
             mainStackPanel.Children.Add(Views[SelectedItemShow]);
         }
+
+        public void Clear()
+        {
+            mainStackPanel.Children.Clear();
+            Views.Clear();
+        }
     }
 }

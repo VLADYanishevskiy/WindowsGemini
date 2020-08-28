@@ -122,6 +122,7 @@
     <Compile Include="Models\CommandHadlers\CommandHandler.cs" />
     <Compile Include="Models\FileEqualsChecker.cs" />
     <Compile Include="Models\FileTypeChecker.cs" />
+    <Compile Include="Models\Language.cs" />
     <Compile Include="Models\Settings\AccentColor.cs" />
     <Compile Include="Models\Settings\AccentColorSettings.cs" />
     <Compile Include="Models\Settings\CompositeSettings.cs" />
@@ -145,6 +146,7 @@
     <Compile Include="ViewModels\MainViewModel\StatesOfScanningVM.cs" />
     <Compile Include="ViewModels\MainViewModel\TextBlockViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel\VisibilityGridOrSymbolPlusToAddFolderViewModel.cs" />
+    <Compile Include="ViewModels\MVVMLocator.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel\AppInfoVM.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel\ColorsProperties.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel\DeletionMode.cs" />

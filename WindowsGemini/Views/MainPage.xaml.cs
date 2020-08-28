@@ -33,12 +33,9 @@ namespace WindowsGemini
             myBinding.Mode = BindingMode.TwoWay;
             myBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
             BindingOperations.SetBinding(mltView, MultiViewControl.selectedItemShowProperty, myBinding);
-            mltView.SelectedItemShow = 0;
+            //mltView.SelectedItemShow = 0;
             mltView.selectedItemChanged();
             Listener.ThemeChanged += Listener_ThemeChanged;
-
-            MessageDialog dlg = new MessageDialog("Open");
-            dlg.ShowAsync();
         }
         private void Listener_ThemeChanged(ThemeListener sender)
         {
@@ -58,22 +55,26 @@ namespace WindowsGemini
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            HideBackButtonOnCurrentpage();
-        }
-        private static void HideBackButtonOnCurrentpage()
-        {
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
             Windows.UI.Core.AppViewBackButtonVisibility.Disabled;
         }
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            
+        }
         private void OpenSettings_Click(object sender, RoutedEventArgs e)
         {
-            mltView.Views.Clear();
-            this.Frame.Navigate(typeof(SettingPage));
+            mltView.Clear();
+            Frame.Navigate(typeof(SettingPage));
         }
         private void BtnOpenResultsScan(object sender, RoutedEventArgs e)
         {
-            mltView.Views.Clear();
-            this.Frame.Navigate(typeof(ResultsScanPage));
+            mltView.Clear();
+            Frame.Navigate(typeof(ResultsScanPage));
         }
+
+
+        
     }
 }

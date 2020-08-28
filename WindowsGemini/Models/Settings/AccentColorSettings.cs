@@ -24,6 +24,7 @@ namespace WindowsGemini.Models.Settings
                 CompositeSettings.localSettings.Values["AccentColor"] = _AccentColor;
             }
         }
+        
 
         static AccentColorSettings()
         {
