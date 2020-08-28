@@ -185,11 +185,23 @@
                             </uiShadowsToolkit:DockPanel>
 
                             <uiShadowsToolkit:DockPanel Margin="0,25,0,0">
-                                <Button x:Uid="btnReviewResults" x:Name="btnOpenResultsScan" Width="120" Height="32" Background="{ThemeResource GeneralBlueWhiteButtonBackground}" BorderThickness="0"
-                            FontSize="16" Foreground="{ThemeResource GeneralBlueWhiteButtonForeground}" FontWeight="SemiLight" Click="BtnOpenResultsScan"/>
-                                <Button x:Uid="btnNewScan" Width="100" Height="32" HorizontalAlignment="Right" 
-                            Background="Transparent" BorderBrush="{ThemeResource GeneralBlueWhiteButtonBackground}" BorderThickness="1"
-                            FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" Command="{Binding startNewScanCommand}"/>
+                                <Button x:Name="btnOpenResultsScan"
+                                        Background="{ThemeResource GeneralBlueWhiteButtonBackground}" 
+                                        BorderThickness="0"
+                                        Width="120"
+                                        Padding="0,5,0,5"
+                                        FontSize="16" Foreground="{ThemeResource GeneralBlueWhiteButtonForeground}" FontWeight="SemiLight"
+                                        Click="BtnOpenResultsScan">
+                                    <TextBlock x:Uid="btnReviewResults" MaxWidth="120" TextWrapping="Wrap" />
+                                </Button>
+                                <Button HorizontalAlignment="Right" 
+                                        Background="Transparent" 
+                                        MaxWidth="118"
+                                        BorderBrush="{ThemeResource GeneralBlueWhiteButtonBackground}" BorderThickness="1"
+                                        Padding="17,5,17,5"
+                                        FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" Command="{Binding startNewScanCommand}">
+                                    <TextBlock x:Uid="btnNewScan" MaxWidth="118" TextWrapping="Wrap" />
+                                </Button>
                             </uiShadowsToolkit:DockPanel>
                         </StackPanel>
                     </customcontrols:MultiViewControl.Views>

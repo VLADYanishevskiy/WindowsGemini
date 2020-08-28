@@ -125,6 +125,7 @@
     <Compile Include="Models\Settings\AccentColor.cs" />
     <Compile Include="Models\Settings\AccentColorSettings.cs" />
     <Compile Include="Models\Settings\CompositeSettings.cs" />
+    <Compile Include="Models\Settings\LanguageSettings.cs" />
     <Compile Include="Models\Settings\ThemeSettingsController.cs" />
     <Compile Include="Models\ValueConverters\ColorConverter.cs" />
     <Compile Include="Models\ValueConverters\EnumBooleanConverter.cs" />

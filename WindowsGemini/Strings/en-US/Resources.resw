@@ -120,10 +120,10 @@
   <data name="btnMoreApps.Content" xml:space="preserve">
     <value>More apps</value>
   </data>
-  <data name="btnNewScan.Content" xml:space="preserve">
+  <data name="btnNewScan.Text" xml:space="preserve">
     <value>New scan</value>
   </data>
-  <data name="btnReviewResults.Content" xml:space="preserve">
+  <data name="btnReviewResults.Text" xml:space="preserve">
     <value>Review results</value>
   </data>
   <data name="btnSendFeed.Content" xml:space="preserve">

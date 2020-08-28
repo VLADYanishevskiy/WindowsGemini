@@ -1,7 +1,9 @@
 ﻿using Microsoft.Toolkit.Uwp.UI.Helpers;
+using System.ServiceModel.Channels;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.UI;
+using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -9,6 +11,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Navigation;
 using WindowsGemini.Views;
 using WindowsGemini.Views.CustomControls;
+using Binding = Windows.UI.Xaml.Data.Binding;
 
 namespace WindowsGemini
 {
@@ -33,14 +36,13 @@ namespace WindowsGemini
             mltView.SelectedItemShow = 0;
             mltView.selectedItemChanged();
             Listener.ThemeChanged += Listener_ThemeChanged;
+
+            MessageDialog dlg = new MessageDialog("Open");
+            dlg.ShowAsync();
         }
         private void Listener_ThemeChanged(ThemeListener sender)
         {
             var theme = sender.CurrentTheme;
-            CorrectTitleBarTheme(theme);
-        }
-        private static void CorrectTitleBarTheme(ApplicationTheme theme)
-        {
             var titleBar = ApplicationView.GetForCurrentView().TitleBar;
             switch (theme)
             {

@@ -43,5 +43,6 @@ namespace WindowsGemini.ViewModels
             NotifyPropertyChanged(nameof(BtnBigPlusAddFolder));
             NotifyPropertyChanged(nameof(GridWithBtnAddAndListOfFolderVisibility));
         }
+
     }
 }
