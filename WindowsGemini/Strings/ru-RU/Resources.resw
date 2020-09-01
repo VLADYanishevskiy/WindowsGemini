@@ -126,6 +126,9 @@
   <data name="btnReviewResults.Text" xml:space="preserve">
     <value>Показать результаты</value>
   </data>
+  <data name="btnScanForDuplicates.Content" xml:space="preserve">
+    <value>Найти дубликаты</value>
+  </data>
   <data name="btnSendFeed.Content" xml:space="preserve">
     <value>Отправить отзыв</value>
   </data>

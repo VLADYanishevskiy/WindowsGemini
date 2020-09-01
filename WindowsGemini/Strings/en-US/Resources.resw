@@ -126,6 +126,9 @@
   <data name="btnReviewResults.Text" xml:space="preserve">
     <value>Review results</value>
   </data>
+  <data name="btnScanForDuplicates.Content" xml:space="preserve">
+    <value>Scan for Duplicates</value>
+  </data>
   <data name="btnSendFeed.Content" xml:space="preserve">
     <value>Send feedback</value>
   </data>

@@ -12,10 +12,8 @@
     Loaded="Page_Loaded"
     MinHeight="500"
     >
-    
     <Page.Resources>
         <ResourceDictionary>
-            
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary Source="/Assets/ThemeColors/ThemeDictionaryDark.xaml" x:Key="Dark"/>
                 <ResourceDictionary Source="/Assets/ThemeColors/ThemeDictionaryLight.xaml" x:Key="Light"/>

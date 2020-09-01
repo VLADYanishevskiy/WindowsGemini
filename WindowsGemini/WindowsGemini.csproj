@@ -130,6 +130,7 @@
     <Compile Include="Models\Settings\ThemeSettingsController.cs" />
     <Compile Include="Models\ValueConverters\ColorConverter.cs" />
     <Compile Include="Models\ValueConverters\EnumBooleanConverter.cs" />
+    <Compile Include="Models\ValueConverters\MainViewModelStatesConverters\MainViewModelStateOfScanConverter.cs" />
     <Compile Include="Models\ValueConverters\ModeEnumBooleanConverter.cs" />
     <Compile Include="Models\ValueConverters\RadioButtonCheckedConverter.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />

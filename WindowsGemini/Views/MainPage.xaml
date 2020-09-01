@@ -15,8 +15,8 @@
     extensions:TitleBarExtensions.InactiveBackgroundColor="Transparent"
     MinHeight="500"
     DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}"
-    xmlns:viewmodels="using:WindowsGemini.ViewModels" 
-    xmlns:customcontrols="using:WindowsGemini.Views.CustomControls">
+    xmlns:customcontrols="using:WindowsGemini.Views.CustomControls" 
+    xmlns:Converters="using:WindowsGemini.Models.ValueConverters.MainViewModelStatesConverters">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
@@ -26,6 +26,43 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid Background="{ThemeResource HostBackdropBrush}" MinHeight="500">
+        <Grid.Resources>
+            <Converters:MainViewModelStateOfScanConverter x:Key="mvmStateConverter" />
+        </Grid.Resources>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="StateStartScan">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{Binding StateOfScanning, Converter={StaticResource mvmStateConverter} , ConverterParameter=0 , Mode=OneWay}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="stackStartScanState.Visibility" Value="Visible" />
+                        <Setter Target="stackScanningState.Visibility" Value="Collapsed" />
+                        <Setter Target="stackResultsScanState.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="StateScanning">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{Binding StateOfScanning, Converter={StaticResource mvmStateConverter} , ConverterParameter=1 , Mode=OneWay}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="stackStartScanState.Visibility" Value="Collapsed" />
+                        <Setter Target="stackScanningState.Visibility" Value="Visible" />
+                        <Setter Target="stackResultsScanState.Visibility" Value="Collapsed" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="StateResultsScan">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{Binding StateOfScanning, Converter={StaticResource mvmStateConverter} , ConverterParameter=2 , Mode=OneWay}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="stackStartScanState.Visibility" Value="Collapsed" />
+                        <Setter Target="stackScanningState.Visibility" Value="Collapsed" />
+                        <Setter Target="stackResultsScanState.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid Grid.Row="0" Grid.Column="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="240"/>
@@ -97,114 +134,111 @@
                     <SymbolIcon Symbol="Setting"/>
                 </Button>
 
-                <customcontrols:MultiViewControl x:Name="mltView" >
-                    <customcontrols:MultiViewControl.Views>
-                        <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0" >
-                            <TextBlock x:Name="txt" TextWrapping="Wrap"  FontSize="16" Foreground="#202020" FontFamily="SegoeUI" FontWeight="SemiBold" >
+                <Grid>
+                    <StackPanel x:Name="stackStartScanState" Visibility="Collapsed"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0" >
+                        <TextBlock x:Name="txt" TextWrapping="Wrap"  FontSize="16" Foreground="#202020" FontFamily="SegoeUI" FontWeight="SemiBold" >
                                 <Run Text="{Binding txbMainPageHello}" Foreground="{ThemeResource GeneralTxbForeground}"/>
                                 <LineBreak/>
                                 <Run Text="{Binding txbMainPageWelcomeTo}" Foreground="{ThemeResource GeneralTxbForeground}"/>
                                 <Run Text="{Binding txbMainPageSomeNameApp}" Foreground="{Binding AccentColor, Source={StaticResource AccentColorSettings}}" />
-                            </TextBlock>
-                            <TextBlock TextWrapping="Wrap" Margin="0,20,0,0" Foreground="{ThemeResource TxbPressPlusForeground}">
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap" Margin="0,20,0,0" Foreground="{ThemeResource TxbPressPlusForeground}">
                                 <Run Text="{Binding txbMainPageHintPlusOrPressButoonTop}"/>
                                 <LineBreak/>
                                 <Run Text="{Binding txbMainPageHintPlusOrPressButoonBottom}"/>
-                            </TextBlock>
-                            <Button Margin="0,30,0,0" Width="160" Height="36" Foreground="{ThemeResource GeneralBlueWhiteButtonForeground}"
-                                                                Background="{Binding AccentColor, Source={StaticResource AccentColorSettings}}" Content="Scan for Duplicates" BorderThickness="0" Command="{Binding StartScanningSelectedFolderCommand}"/>
-                        </StackPanel>
-
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0">
-                            <TextBlock x:Uid="txbScanning" FontSize="24" FontWeight="SemiLight" Margin="0,0,0,20" Foreground="{ThemeResource GeneralTxbForeground}"/>
-                            <ProgressBar Width="220" Height="16" HorizontalAlignment="Left" Background="{ThemeResource ProgressBarBackground}" CornerRadius="10"
+                        </TextBlock>
+                        <Button x:Uid="btnScanForDuplicates" Margin="0,30,0,0" Width="160" Height="36" Foreground="{ThemeResource GeneralBlueWhiteButtonForeground}"
+                                                                Background="{Binding AccentColor, Source={StaticResource AccentColorSettings}}" BorderThickness="0" Command="{Binding StartScanningSelectedFolderCommand}"/>
+                    </StackPanel>
+                    <StackPanel x:Name="stackScanningState" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0">
+                        <TextBlock x:Uid="txbScanning" FontSize="24" FontWeight="SemiLight" Margin="0,0,0,20" Foreground="{ThemeResource GeneralTxbForeground}"/>
+                        <ProgressBar Width="220" Height="16" HorizontalAlignment="Left" Background="{ThemeResource ProgressBarBackground}" CornerRadius="10"
                                      Minimum="0"
                                      Value="{Binding CountOfCheckedFiles}"
                                      Maximum="{Binding CountOfFiles}"
                                      Foreground="{ThemeResource ProgressBarForeground}"/>
-                            <TextBlock Foreground="{ThemeResource TxbCountOfFilesCheckedForeground}" FontSize="16" Margin="0,16" FontWeight="Light">
+                        <TextBlock Foreground="{ThemeResource TxbCountOfFilesCheckedForeground}" FontSize="16" Margin="0,16" FontWeight="Light">
                             <Run Text="{Binding CountOfCheckedFiles}"/>
                             <Run x:Uid="txbOf" />
                             <Run Text="{Binding CountOfFiles}"/>
                             <Run x:Uid="txbCountOfCheckedFilesRes"/>
-                            </TextBlock>
+                        </TextBlock>
 
-                            <TextBlock TextWrapping="Wrap" Width="204" Height="45" FontWeight="SemiLight" Foreground="{ThemeResource TxbCurrentCheckingFileForeground}" FontSize="12" Margin="0,15,0,30">
+                        <TextBlock TextWrapping="Wrap" Width="204" Height="45" FontWeight="SemiLight" Foreground="{ThemeResource TxbCurrentCheckingFileForeground}" FontSize="12" Margin="0,15,0,30">
                             <Run Text="{Binding CurrentCheckingFile}"/>
-                            </TextBlock>
-                            <Button x:Uid="btnStop" FontSize="16" Background="{ThemeResource GeneralBlueWhiteButtonBackground}" Foreground="{ThemeResource GeneralBlueWhiteButtonForeground}" Width="120" Height="32" HorizontalAlignment="Left" Command="{Binding StopScanCommand}"/>
-                        </StackPanel>
-
-                        <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Width="235">
-                            <TextBlock x:Uid="txbScanCompleted" FontSize="18" FontWeight="SemiLight" HorizontalAlignment="Left" Foreground="{ThemeResource GeneralTxbForeground}"/>
-                            <Rectangle Height="1" Fill="{ThemeResource RectangleSplitFill}" Margin="0,10,0,5" Opacity="20"/>
-                            <uiShadowsToolkit:DockPanel>
-                                <TextBlock Foreground="{ThemeResource TxbFullSizeOfDuplicatesForeground}" FontSize="24" FontWeight="SemiLight" 
+                        </TextBlock>
+                        <Button x:Uid="btnStop" FontSize="16" Background="{ThemeResource GeneralBlueWhiteButtonBackground}" Foreground="{ThemeResource GeneralBlueWhiteButtonForeground}" Width="120" Height="32" HorizontalAlignment="Left" Command="{Binding StopScanCommand}"/>
+                    </StackPanel>
+                    <StackPanel x:Name="stackResultsScanState" Visibility="Collapsed"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="235">
+                        <TextBlock x:Uid="txbScanCompleted" FontSize="18" FontWeight="SemiLight" HorizontalAlignment="Left" Foreground="{ThemeResource GeneralTxbForeground}"/>
+                        <Rectangle Height="1" Fill="{ThemeResource RectangleSplitFill}" Margin="0,10,0,5" Opacity="20"/>
+                        <uiShadowsToolkit:DockPanel>
+                            <TextBlock Foreground="{ThemeResource TxbFullSizeOfDuplicatesForeground}" FontSize="24" FontWeight="SemiLight" 
                                uiShadowsToolkit:DockPanel.Dock="Left">
                                 <Run Text="{Binding FullSizeOfDuplicates}"/>
                                 <Run Text="MB"/>
-                                </TextBlock>
-                                <TextBlock x:Uid="txbFoundInFolders" Foreground="#797979" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                            </uiShadowsToolkit:DockPanel>
-                            <Rectangle Height="1" Fill="{ThemeResource RectangleSplitFill}" Margin="0,5,0,5" Opacity="20"/>
+                            </TextBlock>
+                            <TextBlock x:Uid="txbFoundInFolders" Foreground="#797979" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                        </uiShadowsToolkit:DockPanel>
+                        <Rectangle Height="1" Fill="{ThemeResource RectangleSplitFill}" Margin="0,5,0,5" Opacity="20"/>
 
-                            <uiShadowsToolkit:DockPanel Margin="0,5,0,5">
-                                <Rectangle Fill="{ThemeResource RectangleImageFill}" Height="23" Width="4" HorizontalAlignment="Left"/>
-                                <TextBlock x:Uid="txbImages" FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" Margin="3,6,0,5"/>
-                                <TextBlock FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" VerticalAlignment="Center" HorizontalAlignment="Right">
+                        <uiShadowsToolkit:DockPanel Margin="0,5,0,5">
+                            <Rectangle Fill="{ThemeResource RectangleImageFill}" Height="23" Width="4" HorizontalAlignment="Left"/>
+                            <TextBlock x:Uid="txbImages" FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" Margin="3,6,0,5"/>
+                            <TextBlock FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" VerticalAlignment="Center" HorizontalAlignment="Right">
                                 <Run Text="{Binding ImagesSize}"/> 
                                 <Run Text=" MB"/>
-                                </TextBlock>
-                            </uiShadowsToolkit:DockPanel>
-                            <uiShadowsToolkit:DockPanel Margin="0,5,0,5">
-                                <Rectangle Fill="{ThemeResource RectangleDocumentsFill}" Height="23" Width="4" HorizontalAlignment="Left"/>
-                                <TextBlock x:Uid="txbDocuments" FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" Margin="3,6,0,5"/>
-                                <TextBlock FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" VerticalAlignment="Center" HorizontalAlignment="Right">
+                            </TextBlock>
+                        </uiShadowsToolkit:DockPanel>
+                        <uiShadowsToolkit:DockPanel Margin="0,5,0,5">
+                            <Rectangle Fill="{ThemeResource RectangleDocumentsFill}" Height="23" Width="4" HorizontalAlignment="Left"/>
+                            <TextBlock x:Uid="txbDocuments" FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" Margin="3,6,0,5"/>
+                            <TextBlock FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" VerticalAlignment="Center" HorizontalAlignment="Right">
                                 <Run Text="{Binding DocumentsSize}"/> 
                                 <Run Text=" MB"/>
-                                </TextBlock>
-                            </uiShadowsToolkit:DockPanel>
-                            <uiShadowsToolkit:DockPanel Margin="0,5,0,5">
-                                <Rectangle Fill="{ThemeResource RectangleArchivesFill}" Height="23" Width="4" HorizontalAlignment="Left"/>
-                                <TextBlock x:Uid="txbArchives" FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" Margin="3,6,0,5"/>
-                                <TextBlock FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" VerticalAlignment="Center" HorizontalAlignment="Right">
+                            </TextBlock>
+                        </uiShadowsToolkit:DockPanel>
+                        <uiShadowsToolkit:DockPanel Margin="0,5,0,5">
+                            <Rectangle Fill="{ThemeResource RectangleArchivesFill}" Height="23" Width="4" HorizontalAlignment="Left"/>
+                            <TextBlock x:Uid="txbArchives" FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" Margin="3,6,0,5"/>
+                            <TextBlock FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" VerticalAlignment="Center" HorizontalAlignment="Right">
                                 <Run Text="{Binding ArchivesSize}"/>
                                 <Run Text=" MB"/>
-                                </TextBlock>
-                            </uiShadowsToolkit:DockPanel>
-                            <uiShadowsToolkit:DockPanel Margin="0,5,0,5">
-                                <Rectangle Fill="{ThemeResource RectangleOtherFill}" Height="23" Width="4" HorizontalAlignment="Left"/>
-                                <TextBlock x:Uid="txbOther" FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" Margin="3,6,0,5"/>
-                                <TextBlock FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" VerticalAlignment="Center" HorizontalAlignment="Right">
+                            </TextBlock>
+                        </uiShadowsToolkit:DockPanel>
+                        <uiShadowsToolkit:DockPanel Margin="0,5,0,5">
+                            <Rectangle Fill="{ThemeResource RectangleOtherFill}" Height="23" Width="4" HorizontalAlignment="Left"/>
+                            <TextBlock x:Uid="txbOther" FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" Margin="3,6,0,5"/>
+                            <TextBlock FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" VerticalAlignment="Center" HorizontalAlignment="Right">
                                 <Run Text="{Binding OtherSize}"/>
                                 <Run Text=" MB"/>
-                                </TextBlock>
-                            </uiShadowsToolkit:DockPanel>
+                            </TextBlock>
+                        </uiShadowsToolkit:DockPanel>
 
-                            <uiShadowsToolkit:DockPanel Margin="0,25,0,0">
-                                <Button x:Name="btnOpenResultsScan"
+                        <uiShadowsToolkit:DockPanel Margin="0,25,0,0">
+                            <Button x:Name="btnOpenResultsScan"
                                         Background="{ThemeResource GeneralBlueWhiteButtonBackground}" 
                                         BorderThickness="0"
                                         Width="120"
                                         Padding="0,5,0,5"
                                         FontSize="16" Foreground="{ThemeResource GeneralBlueWhiteButtonForeground}" FontWeight="SemiLight"
                                         Click="BtnOpenResultsScan">
-                                    <TextBlock x:Uid="btnReviewResults" MaxWidth="120" TextWrapping="Wrap" />
-                                </Button>
-                                <Button HorizontalAlignment="Right" 
+                                <TextBlock x:Uid="btnReviewResults" MaxWidth="120" TextWrapping="Wrap" />
+                            </Button>
+                            <Button HorizontalAlignment="Right" 
                                         Background="Transparent" 
                                         MaxWidth="118"
                                         BorderBrush="{ThemeResource GeneralBlueWhiteButtonBackground}" BorderThickness="1"
                                         Padding="17,5,17,5"
                                         FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" Command="{Binding startNewScanCommand}">
-                                    <TextBlock x:Uid="btnNewScan" MaxWidth="118" TextWrapping="Wrap" />
-                                </Button>
-                            </uiShadowsToolkit:DockPanel>
-                        </StackPanel>
-                    </customcontrols:MultiViewControl.Views>
-                </customcontrols:MultiViewControl>
+                                <TextBlock x:Uid="btnNewScan" MaxWidth="118" TextWrapping="Wrap" />
+                            </Button>
+                        </uiShadowsToolkit:DockPanel>
+                    </StackPanel>
+                </Grid>
+
+                
             </Grid>
         </Grid>
-        
     </Grid>
 </Page>
