@@ -19,22 +19,22 @@ namespace WindowsGemini.ViewModels.SettingsPageViewModel
                 switch (value)
                 {
                     case AccentColors.Orange:
-                        AccentColorSettings.AccentColor = "#f7630c";
+                        MVVMLocator.AccentColorSettings.AccentColor = "#f7630c";
                         break;
                     case AccentColors.Corral:
-                        AccentColorSettings.AccentColor = "#ff4343";
+                        MVVMLocator.AccentColorSettings.AccentColor = "#ff4343";
                         break;
                     case AccentColors.Red:
-                        AccentColorSettings.AccentColor = "#ea005e";
+                        MVVMLocator.AccentColorSettings.AccentColor = "#ea005e";
                         break;
                     case AccentColors.Purple:
-                        AccentColorSettings.AccentColor = "#b146c2";
+                        MVVMLocator.AccentColorSettings.AccentColor = "#b146c2";
                         break;
                     case AccentColors.Green:
-                        AccentColorSettings.AccentColor = "#107c10";
+                        MVVMLocator.AccentColorSettings.AccentColor = "#107c10";
                         break;
                     case AccentColors.Blue:
-                        AccentColorSettings.AccentColor = "#0078d7";
+                        MVVMLocator.AccentColorSettings.AccentColor = "#0078d7";
                         break;
                     default:
                         break;

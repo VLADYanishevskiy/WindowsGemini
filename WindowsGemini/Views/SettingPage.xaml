@@ -3,15 +3,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    xmlns:settingspageviewmodel="using:WindowsGemini.ViewModels.SettingsPageViewModel"
     xmlns:Converters="using:WindowsGemini.Models.ValueConverters"
-    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls" 
-    xmlns:settings="using:WindowsGemini.Models.Settings"
     x:Class="WindowsGemini.Views.SettingPage"
     mc:Ignorable="d"
     Loaded="Page_Loaded"
     MinHeight="500"
+    DataContext="{Binding Source={StaticResource Locator}, Path=SettingsViewModel}"
     >
+    
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
@@ -27,9 +26,6 @@
     <Page.Background>
         <ThemeResource ResourceKey="HostBackdropBrush"/>
     </Page.Background>
-    <Page.DataContext>
-        <settingspageviewmodel:SettingsViewModel/>
-    </Page.DataContext>
 
     <Grid >
         <VisualStateManager.VisualStateGroups>
@@ -58,6 +54,7 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
+        
         <Grid x:Name="TitleBarGrid" VerticalAlignment="Top" Height="30">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>

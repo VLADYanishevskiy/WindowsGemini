@@ -4,14 +4,14 @@ namespace WindowsGemini.ViewModels.SettingsPageViewModel
 {
     partial class SettingsViewModel
     {
-        public string AppVersion
+        public static string AppVersion
         {
             get
             {
                 return Assembly.GetExecutingAssembly().GetName().Version.ToString();
             }
         }
-        public string AppName
+        public static string AppName
         {
             get
             {

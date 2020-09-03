@@ -19,6 +19,7 @@ namespace WindowsGemini.ViewModels.SettingsPageViewModel
                 NotifyPropertyChanged(nameof(Languages));
             }
         }
+
         private Language appLanguage;
         public Language AppLanguage
         {
@@ -30,6 +31,8 @@ namespace WindowsGemini.ViewModels.SettingsPageViewModel
             {
                 appLanguage = value;
                 ApplicationLanguages.PrimaryLanguageOverride = appLanguage.LanguageCode;
+                CompositeSettings.localSettings.Values["Language"] = $"{value.DisplayName},{value.LanguageCode}";
+                NotifyPropertyChanged(nameof(AppLanguage));
             }
         }
 
@@ -57,6 +60,21 @@ namespace WindowsGemini.ViewModels.SettingsPageViewModel
                 new Language { DisplayName = "English", LanguageCode = "en-US" },
                 new Language { DisplayName = "Russian", LanguageCode = "ru-RU" }
             };
+
+            if (CompositeSettings.localSettings.Values["Language"] != null)
+            {
+                string strLanguage = (string)CompositeSettings.localSettings.Values["Language"];
+                var langProps = strLanguage.Split(",");
+                appLanguage = new Language()
+                {
+                    DisplayName = langProps[0],
+                    LanguageCode = langProps[1]
+                };
+            }
+            else
+            {
+                AppLanguage = Languages[0];
+            }
         }
 
     }

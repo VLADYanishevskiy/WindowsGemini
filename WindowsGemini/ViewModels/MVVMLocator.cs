@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WindowsGemini.Models.Settings;
+using WindowsGemini.ViewModels.SettingsPageViewModel;
 
 namespace WindowsGemini.ViewModels
 {
@@ -20,5 +22,37 @@ namespace WindowsGemini.ViewModels
                 return mainVM;
             }
         }
+
+        private static SettingsViewModel settingsVM;
+        public static SettingsViewModel SettingsViewModel
+        {
+            get
+            {
+                if(settingsVM == null)
+                {
+                    settingsVM = new SettingsViewModel();
+                }
+                return settingsVM;
+            }
+        }
+
+        private static AccentColorSettings colorsSettings;
+        public static AccentColorSettings AccentColorSettings
+        {
+            get
+            {
+                if(colorsSettings == null)
+                {
+                    colorsSettings = new AccentColorSettings();
+                }
+                return new AccentColorSettings();
+            }
+        }
+
+        public MVVMLocator()
+        {
+
+        }
+
     }
 }

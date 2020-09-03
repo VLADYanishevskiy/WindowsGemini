@@ -13,20 +13,21 @@ using Windows.UI.Xaml.Media;
 
 namespace WindowsGemini.Models.Settings
 {
-    internal class AccentColorSettings 
+    internal class AccentColorSettings : BaseViewModel
     {
         private static string _AccentColor ;
-        public static string AccentColor
+        public string AccentColor
         {
             get { return _AccentColor; }
             set {
                 _AccentColor = value;
                 CompositeSettings.localSettings.Values["AccentColor"] = _AccentColor;
+                NotifyPropertyChanged(nameof(AccentColor));
             }
         }
         
 
-        static AccentColorSettings()
+        public AccentColorSettings()
         {
             if ((CompositeSettings.localSettings.Values["AccentColor"] as string) != null)
             {

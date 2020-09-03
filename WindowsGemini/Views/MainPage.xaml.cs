@@ -27,14 +27,6 @@ namespace WindowsGemini
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
             ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(500, 500));
 
-            //Binding myBinding = new Binding();
-            //myBinding.Source = this.DataContext;
-            //myBinding.Path = new PropertyPath("StateOfScanning");
-            //myBinding.Mode = BindingMode.TwoWay;
-            //myBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-            //BindingOperations.SetBinding(mltView, MultiViewControl.selectedItemShowProperty, myBinding);
-            //mltView.SelectedItemShow = 0;
-            //mltView.selectedItemChanged();
             Listener.ThemeChanged += Listener_ThemeChanged;
         }
         private void Listener_ThemeChanged(ThemeListener sender)
@@ -65,12 +57,10 @@ namespace WindowsGemini
         }
         private void OpenSettings_Click(object sender, RoutedEventArgs e)
         {
-            //mltView.Clear();
             Frame.Navigate(typeof(SettingPage));
         }
         private void BtnOpenResultsScan(object sender, RoutedEventArgs e)
         {
-            //mltView.Clear();
             Frame.Navigate(typeof(ResultsScanPage));
         }
 

@@ -15,8 +15,7 @@
     extensions:TitleBarExtensions.InactiveBackgroundColor="Transparent"
     MinHeight="500"
     DataContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}"
-    xmlns:customcontrols="using:WindowsGemini.Views.CustomControls" 
-    xmlns:Converters="using:WindowsGemini.Models.ValueConverters.MainViewModelStatesConverters">
+    xmlns:Converters="using:WindowsGemini.Models.ValueConverters.MainViewModelStatesConverters" xmlns:valueconverters="using:WindowsGemini.Models.ValueConverters" xmlns:viewmodels="using:WindowsGemini.ViewModels">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
@@ -28,9 +27,10 @@
     <Grid Background="{ThemeResource HostBackdropBrush}" MinHeight="500">
         <Grid.Resources>
             <Converters:MainViewModelStateOfScanConverter x:Key="mvmStateConverter" />
+            <valueconverters:LanguageConverter x:Key="lngConverter"/>
         </Grid.Resources>
         <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
+            <VisualStateGroup x:Name="ScanVisualStates">
                 <VisualState x:Name="StateStartScan">
                     <VisualState.StateTriggers>
                         <StateTrigger IsActive="{Binding StateOfScanning, Converter={StaticResource mvmStateConverter} , ConverterParameter=0 , Mode=OneWay}" />
@@ -59,6 +59,15 @@
                         <Setter Target="stackStartScanState.Visibility" Value="Collapsed" />
                         <Setter Target="stackScanningState.Visibility" Value="Collapsed" />
                         <Setter Target="stackResultsScanState.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup>
+                <VisualState x:Name="EngUSSizes">
+                    <VisualState.StateTriggers>
+                        <!--<StateTrigger IsActive="{Binding Source=, Converter={StaticResource lngConverter} , ConverterParameter=en-US , Mode=OneWay}" />-->
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
