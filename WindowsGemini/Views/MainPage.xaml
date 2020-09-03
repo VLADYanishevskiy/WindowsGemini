@@ -18,6 +18,7 @@
     xmlns:Converters="using:WindowsGemini.Models.ValueConverters.MainViewModelStatesConverters" xmlns:valueconverters="using:WindowsGemini.Models.ValueConverters" xmlns:viewmodels="using:WindowsGemini.ViewModels">
     <Page.Resources>
         <ResourceDictionary>
+            <viewmodels:MVVMLocator x:Key="locator"/>
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary Source="/Assets/ThemeColors/ThemeDictionaryLight.xaml" x:Key="Light"/>
                 <ResourceDictionary Source="/Assets/ThemeColors/ThemeDictionaryDark.xaml" x:Key="Dark"/>
@@ -63,11 +64,33 @@
                 </VisualState>
             </VisualStateGroup>
             <VisualStateGroup>
-                <VisualState x:Name="EngUSSizes">
+                <VisualState x:Name="ruRULang">
                     <VisualState.StateTriggers>
-                        <!--<StateTrigger IsActive="{Binding Source=, Converter={StaticResource lngConverter} , ConverterParameter=en-US , Mode=OneWay}" />-->
+                        <StateTrigger IsActive="{Binding AppLanguageCode , Converter={StaticResource lngConverter} , ConverterParameter='ru-RU' , Mode=OneWay}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
+                        <Setter Target="btnOpenResultsScan.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="btnOpenResultsScan.(Grid.Row)" Value="0" />
+                        <Setter Target="btnOpenResultsScan.Width" Value="240"/>
+
+                        <Setter Target="btnNewSCN.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="btnNewSCN.(Grid.Row)" Value="2" />
+                        <Setter Target="btnNewSCN.Width" Value="236"/>
+
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="engUsLang">
+                    <VisualState.StateTriggers>
+                        <StateTrigger IsActive="{Binding AppLanguageCode , Converter={StaticResource lngConverter} , ConverterParameter='en-US' , Mode=OneWay}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="btnOpenResultsScan.(Grid.Column)" Value="0" />
+                        <Setter Target="btnOpenResultsScan.(Grid.RowSpan)" Value="3" />
+                        <Setter Target="btnOpenResultsScan.Width" Value="120"/>
+
+                        <Setter Target="btnNewSCN.(Grid.Column)" Value="1" />
+                        <Setter Target="btnNewSCN.(Grid.RowSpan)" Value="3" />
+                        <Setter Target="btnNewSCN.Width" Value="100"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -82,7 +105,7 @@
             </Grid.RowDefinitions>
             <Grid x:Name="leftFileGrid" AllowDrop="True" Grid.Column="0"  BorderThickness="0" BorderBrush="Transparent" Background="{ThemeResource GridWithFoldersBackground}">
                 <i:Interaction.Behaviors>
-                    <core:EventTriggerBehavior EventName="DragOver" >
+                    <core:EventTriggerBehavior EventName="DragOver">
                         <core:InvokeCommandAction Command="{Binding DragOverCommand}"></core:InvokeCommandAction>
                     </core:EventTriggerBehavior>
                     <core:EventTriggerBehavior EventName="Drop">
@@ -142,7 +165,6 @@
                     VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,44,11,0" Click="OpenSettings_Click">
                     <SymbolIcon Symbol="Setting"/>
                 </Button>
-
                 <Grid>
                     <StackPanel x:Name="stackStartScanState" Visibility="Collapsed"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0" >
                         <TextBlock x:Name="txt" TextWrapping="Wrap"  FontSize="16" Foreground="#202020" FontFamily="SegoeUI" FontWeight="SemiBold" >
@@ -224,25 +246,42 @@
                             </TextBlock>
                         </uiShadowsToolkit:DockPanel>
 
-                        <uiShadowsToolkit:DockPanel Margin="0,25,0,0">
-                            <Button x:Name="btnOpenResultsScan"
+                        <Grid  Margin="0,10,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="32"/>
+                                <RowDefinition Height="8"/>
+                                <RowDefinition Height="32"/>
+                            </Grid.RowDefinitions>
+                            
+                                    <Button
+                                        HorizontalAlignment="Center"
+                                        x:Name="btnOpenResultsScan"
+                                        VerticalAlignment="Center"
                                         Background="{ThemeResource GeneralBlueWhiteButtonBackground}" 
                                         BorderThickness="0"
-                                        Width="120"
                                         Padding="0,5,0,5"
+                                        Width="240"
+                                        Height="32"
                                         FontSize="16" Foreground="{ThemeResource GeneralBlueWhiteButtonForeground}" FontWeight="SemiLight"
                                         Click="BtnOpenResultsScan">
-                                <TextBlock x:Uid="btnReviewResults" MaxWidth="120" TextWrapping="Wrap" />
-                            </Button>
-                            <Button HorizontalAlignment="Right" 
+                                        <TextBlock x:Uid="btnReviewResults" />
+                                    </Button>
+                                    <Button
+                                        x:Name="btnNewSCN"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        Width="234"
+                                        Height="32"
                                         Background="Transparent" 
-                                        MaxWidth="118"
                                         BorderBrush="{ThemeResource GeneralBlueWhiteButtonBackground}" BorderThickness="1"
-                                        Padding="17,5,17,5"
                                         FontSize="16" FontWeight="SemiLight" Foreground="{ThemeResource GeneralTxbForeground}" Command="{Binding startNewScanCommand}">
-                                <TextBlock x:Uid="btnNewScan" MaxWidth="118" TextWrapping="Wrap" />
-                            </Button>
-                        </uiShadowsToolkit:DockPanel>
+                                        <TextBlock x:Uid="btnNewScan" Margin="0" />
+                                    </Button>
+                        </Grid>
                     </StackPanel>
                 </Grid>
 

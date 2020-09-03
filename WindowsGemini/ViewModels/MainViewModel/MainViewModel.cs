@@ -44,5 +44,13 @@ namespace WindowsGemini.ViewModels
             NotifyPropertyChanged(nameof(GridWithBtnAddAndListOfFolderVisibility));
         }
 
+        public static string AppLanguageCode
+        {
+            get
+            {
+                return MVVMLocator.SettingsViewModel.AppLanguage.LanguageCode;
+            }
+        }
+
     }
 }

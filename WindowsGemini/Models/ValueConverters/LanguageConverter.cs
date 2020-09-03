@@ -4,21 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Data;
+using WindowsGemini.ViewModels;
 
 namespace WindowsGemini.Models.ValueConverters
 {
-    class LanguageConverter : IValueConverter
+    internal class LanguageConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            string iValue = value as string;
-
-            if (iValue != null)
-            {
-                return iValue == parameter.ToString();
-            }
-
-            return false;
+            return parameter.ToString() == value.ToString();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
